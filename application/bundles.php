@@ -34,6 +34,9 @@
  */
 
 return array(
+    'calos' => array('auto' => true),
     'docs' => array('handles' => 'docs'),
     'bob',
+    'larry',
+    'gumby'=> array('auto' => true),
 );
