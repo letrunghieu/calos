@@ -71,9 +71,33 @@ class Home_Controller extends Base_Controller
     
     public function action_forgot_password()
     {
+	$email = Input::get('email');
+	
+	if($email)
+	{
+	    $user = \CALOS\Repositories\UserRepository::find_by_email($email);
+	    if ($user)
+	    {
+		if (\CALOS\Services\UserService::request_new_password($user))
+		{
+		    $success = __('auth.recovery email has been sent to your email!');
+		}
+		else
+		{
+		    $error = __('error.unknown error');
+		}
+	    }
+	    else
+	    {
+		$error = __('auth.cannot find this email in our database!');
+	    }
+	}
+	
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
+	if (isset($success))
+	    $data['success'] = $success;
 	SEO::set_title("Recover password");
 	return View::make('home.forgot_password', $data);
     }
@@ -83,8 +107,8 @@ class Home_Controller extends Base_Controller
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
-	SEO::set_title("Recover password");
-	return View::make('home.forgot_password', $data);
+	SEO::set_title("Renew password");
+	return View::make('home.renew_password', $data);
     }
 
 }

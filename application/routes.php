@@ -109,6 +109,7 @@ Route::filter('before', function()
 Route::filter('after', function($response)
 	{
 	    // Do stuff after every request to your application...
+	    Asset::add('common_css', 'css/common.css');
 	    Asset::add('auth_css', 'css/auth.css');
 	    Asset::container('footer')->add('common_js', 'js/common.js');
 	});

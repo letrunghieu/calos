@@ -68,7 +68,7 @@ class AutoloaderTest extends PHPUnit_Framework_TestCase {
 	public function testPsrLibrariesAndModelsCanBeLoaded()
 	{
 		$this->assertInstanceOf('User', new User);
-		$this->assertInstanceOf('Repositories\\User', new Repositories\User);
+		$this->assertInstanceOf('Repositories\\User', new Repositories\UserRepository);
 	}
 
 	/**

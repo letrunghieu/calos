@@ -35,9 +35,14 @@
  * most common elements that you might want to prepopulate (from address,
  * SMTP host and info) can be configured.
  */
-
 return array(
-	'SetFrom'    => array('colin@example.com','Colin Viebrock'),
-	'IsSMTP'     => null,
-	'Host'       => 'smtp.example.com',
+    'SetFrom' => array('calos.dev@calos.com', 'CALOS dev app'),
+    'IsSMTP' => null,
+    'SMTPAuth' => TRUE,
+    'SMTPSecure' => 'tls',
+    'Host' => 'smtp.gmail.com',
+    'Port' => 587,
+    'Username' => 'calos.dev@gmail.com',
+    'Password' => 'calos123890',
+//    'SMTPDebug' => 2,
 );

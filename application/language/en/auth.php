@@ -15,4 +15,12 @@ return array(
     'recover page guide' => 'To find your password, please submit the email of your account. The recovery link will be sent to this email address.',
     'login with your credential' => 'login with your credential',
     'recover my password' => 'recover my password',
+    'renew password title' => 'Renew password',
+    'renew page guide' => 'To renew your password, enter the desired password twice and submit this form.',
+    'your new password' => 'your new password',
+    'retype new password' => 'retype new password',
+    'change my password' => 'change my password',
+    'cannot find this email in our database!' => 'cannot find this email in our database!',
+    'recovery email has been sent to your email!' => 'recovery email has been sent to your email!',
+    'renew password email title' => 'Renew your password',
 );

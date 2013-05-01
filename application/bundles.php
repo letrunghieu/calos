@@ -38,4 +38,6 @@ return array(
     'bob',
     'larry',
     'gumby'=> array('auto' => true),
+    'phpmailer' => array('auto' => true),
+    'mailblade' => array('auto' => true),
 );

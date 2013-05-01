@@ -31,6 +31,11 @@
 		    {{$error}}
 		</p>
 		@endif
+		@if (isset($success))
+		<p class='success alert'>
+		    {{$success}}
+		</p>
+		@endif
 	    </div>
 	</div>
     </div>
