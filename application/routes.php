@@ -32,13 +32,11 @@
   |
  */
 
-Route::get('/', function()
-	{
-	    return View::make('home.index');
-	});
+Route::get('/', array('as' => 'home', 'uses' => 'home@index'));
 
-Route::get('/login', array('as' => 'login', 'uses' => 'home@login'));
+Route::any('/login', array('as' => 'login', 'uses' => 'home@login'));
 Route::get('/logout', array('as' => 'logout', 'uses' => 'home@logout'));
+Route::any('/forgot_password', array('as' => 'forgot_password', 'uses' => 'home@forgot_password'));
 
 /*
   |--------------------------------------------------------------------------
@@ -97,7 +95,12 @@ Event::listen('500', function($exception)
 Route::filter('before', function()
 	{
 	    // Do stuff before every request to your application...
-	    if (URL::current() !== URL::home() . "login" && Auth::guest())
+	    $no_auth_routes = array(
+		URL::to_route('login'),
+		URL::to_route('logout'),
+		URL::to_route('forgot_password'),
+	    );
+	    if (!in_array(URL::current(), $no_auth_routes) && Auth::guest())
 		return Redirect::to('login');
 	});
 

@@ -5,12 +5,12 @@
     <div class='container shaded'>
 	<div class='row'>
 	    <div class='nine columns'>
-		<h1>{{__('auth.login title')}}</h1>
+		<h1>{{__('auth.recover password title')}}</h1>
 		<p>
-		    {{__('auth.login page guide')}}
+		    {{__('auth.recover page guide')}}
 		</p>
 		<p>
-		    {{HTML::link('forgot_password', ucfirst(__('auth.forgot your password?'))) }}
+		    {{HTML::link('login', ucfirst(__('auth.login with your credential'))) }}
 		</p>
 	    </div>
 	    <div class='five columns'>
@@ -20,18 +20,9 @@
 		    {{Form::label('email', ucfirst(__('auth.your email')))}}
 		    {{Form::text('email', '', array('class'=>'input text'))}}
 		</p>
-		<p class='field'>
-		    {{Form::label('password', ucfirst(__('auth.your password')))}}
-		    {{Form::password('password', array('class'=>'input password'))}}
-		</p>
-		<p class='field'>
-		    <label class='checkbox'>
-			{{Form::checkbox('remember')}} <span></span> {{ucfirst(__('auth.remember me'))}}
-		    </label>
-		</p>
 		<div class='field row'>
 		    <div class='medium primary btn fourteen columns'>
-			{{Form::submit(ucfirst(__('auth.login')), array('name' => 'login'))}}
+			{{Form::submit(ucfirst(__('auth.recover my password')), array('name' => 'recover_password'))}}
 		    </div>
 		</div>
 		{{Form::close()}}
@@ -45,4 +36,3 @@
     </div>
 </div>
 @endsection
-

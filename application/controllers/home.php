@@ -37,7 +37,43 @@ class Home_Controller extends Base_Controller
 
     public function action_login()
     {
-	return View::make('home.login');
+	$email = Input::get('email');
+	$password = Input::get('password');
+	$remember = Input::get('remember');
+	if ($email !== NULL && $password !== NULL)
+	{
+	    $credentials = array('username' => $email, 'password' => $password, 'remember' => ($remember != NULL));
+
+	    if (Auth::attempt($credentials))
+	    {
+		return Redirect::to_route('home');
+	    }
+	    else
+	    {
+		$error = __('auth.login error');
+	    }
+	}
+	$data = array();
+	if (isset($error))
+	    $data['error'] = $error;
+	return View::make('home.login', $data);
+    }
+    
+    public function action_logout()
+    {
+	if (!Auth::guest())
+	{
+	    Auth::logout();
+	}
+	return Redirect::to_route('login');
+    }
+    
+    public function action_forgot_password()
+    {
+	$data = array();
+	if (isset($error))
+	    $data['error'] = $error;
+	return View::make('home.forgot_password', $data);
     }
 
 }
