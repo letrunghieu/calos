@@ -37,6 +37,7 @@ Route::get('/', array('as' => 'home', 'uses' => 'home@index'));
 Route::any('/login', array('as' => 'login', 'uses' => 'home@login'));
 Route::get('/logout', array('as' => 'logout', 'uses' => 'home@logout'));
 Route::any('/forgot_password', array('as' => 'forgot_password', 'uses' => 'home@forgot_password'));
+Route::any('/renew_password/(:num)/(:any)', array('as' => 'renew_password', 'uses' => 'home@renew_password'));
 
 /*
   |--------------------------------------------------------------------------
@@ -100,13 +101,16 @@ Route::filter('before', function()
 		URL::to_route('logout'),
 		URL::to_route('forgot_password'),
 	    );
-	    if (!in_array(URL::current(), $no_auth_routes) && Auth::guest())
+
+	    if ((!in_array(URL::current(), $no_auth_routes) && !Request::route()->is('renew_password') ) && Auth::guest())
 		return Redirect::to('login');
 	});
 
 Route::filter('after', function($response)
 	{
 	    // Do stuff after every request to your application...
+	    Asset::add('auth_css', 'css/auth.css');
+	    Asset::container('footer')->add('common_js', 'js/common.js');
 	});
 
 Route::filter('csrf', function()

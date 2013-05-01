@@ -56,6 +56,7 @@ class Home_Controller extends Base_Controller
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
+	SEO::set_title("Log in");
 	return View::make('home.login', $data);
     }
     
@@ -73,6 +74,16 @@ class Home_Controller extends Base_Controller
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
+	SEO::set_title("Recover password");
+	return View::make('home.forgot_password', $data);
+    }
+    
+    public function action_renew_password($user_id, $renew_token)
+    {
+	$data = array();
+	if (isset($error))
+	    $data['error'] = $error;
+	SEO::set_title("Recover password");
 	return View::make('home.forgot_password', $data);
     }
 
