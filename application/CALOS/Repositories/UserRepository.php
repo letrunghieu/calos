@@ -61,12 +61,27 @@ class UserRepository
 	}
 	return false;
     }
+    
+    /**
+     * Get the current user entity
+     * 
+     * @return \CALOS\Entities\UserEntity
+     */
+    public static function current_user()
+    {
+	if (\Auth::guest()){
+	    return null;
+	}else
+	{
+	    return static::convert_from_orm(\Auth::user());
+	}
+    }
 
     private static function convert_from_orm($user)
     {
 	$user_entity = new \CALOS\Entities\UserEntity($user->id);
 	
-	$user_entity->display_name = $user->display_name;
+	$user_entity->display_name = $user->display_name ? $user->display_name : substr($user->email, 0, strpos($user->email, "@"));
 	$user_entity->email = $user->email;
 	$user_entity->password = $user->password;
 	$user_entity->new_pass_token = $user->new_pass_token;

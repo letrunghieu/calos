@@ -1,3 +1,6 @@
+<?php
+$current_user = \CALOS\Repositories\UserRepository::current_user();
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -29,6 +32,53 @@
 			    <img src="{{ URL::home() }}img/calos_logo.png" gumby-retina/>
 			</a>
 		    </h1>
+		    <div class='ten columns pull_right'>
+			<ul id='main-nav'>
+			    <li>
+				<a href='#'>Activities</a>
+			    </li>
+			    <li>
+				<a href='#'>Organization</a>
+			    </li>
+			    <li>
+				<a href='#'>Documents</a>
+			    </li>
+			    <li>
+				<a href='#'>Announcements</a>
+			    </li>
+			    <li>
+				<a href='#'>
+				    <i class='icon-down-open-big'></i>
+				    <span>{{ \CALOS\Repositories\UserRepository::current_user()->display_name }}</span>
+				    <img class='gravatar' src='<?php echo Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 40) ?>' alt='' /> 
+				</a>
+				<div class='dropdown'>
+				    <ul>
+					<li>
+					    <a href='{{ URL::to_action("user@view_profile", array($current_user->get_id())) }}'>
+						<i class='icon-suitcase'></i>	View profile
+					    </a>
+					</li>
+					<li>
+					    <a href='{{ URL::to_action("user@edit_profile", array($current_user->get_id())) }}'>
+						<i class='icon-brush'></i> Edit profile
+					    </a>
+					</li>
+					<li>
+					    <a href='{{ URL::to_action("user@update_credential", array($current_user->get_id())) }}'>
+						<i class='icon-keyboard'></i> Change email and password
+					    </a>
+					</li>
+					<li>
+					    <a href='{{ URL::to_route('logout') }}'>
+					       <i class='icon-logout'></i>Log out
+					    </a>
+					</li>
+				    </ul>
+				</div>
+			    </li>
+			</ul>
+		    </div>
 		</div>
 	    </div>
 	    <div id='page-content'>

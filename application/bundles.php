@@ -37,7 +37,14 @@ return array(
     'docs' => array('handles' => 'docs'),
     'bob',
     'larry',
-    'gumby'=> array('auto' => true),
+    'gumby' => array('auto' => true),
     'phpmailer' => array('auto' => true),
     'mailblade' => array('auto' => true),
+    'gravitas' => array(
+	'autoloads' => array(
+	    'map' => array(
+		'Gravitas\\API' => '(:bundle)/api.php',
+	    ),
+	),
+    ),
 );

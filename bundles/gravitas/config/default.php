@@ -46,7 +46,7 @@ return array(
 	// * wavatar: generated faces with differing features and backgrounds
 	// * retro: awesome generated, 8-bit arcade-style pixelated faces
 	// ======================================================================
-	'default_image' => false,
+	'default_image' => 'identicon',
 
 	// ======================================================================
 	// Rating

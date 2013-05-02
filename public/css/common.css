@@ -17,3 +17,10 @@ button:first-letter,
 #topbar .logo img {
     max-height: 55px;
 }
+
+
+#topbar .gravatar {
+    border: 2px solid #fff;
+    border-radius: 4px;
+    vertical-align: middle;
+}
