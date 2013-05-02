@@ -104,9 +104,38 @@ class Home_Controller extends Base_Controller
     
     public function action_renew_password($user_id, $renew_token)
     {
+	$new_password = Input::get('password');
+	$renew_password = Input::get('re_password');
+	if ($new_password && $renew_password)
+	{
+	    if ($new_password != $renew_password){
+		$error = __('auth.the two password are not match');
+	    }
+	    else
+	    {
+		$user = \CALOS\Repositories\UserRepository::find_by_id($user_id);
+		if ($user && $user->new_pass_token == $renew_token)
+		{
+		    if (\CALOS\Services\UserService::update_password($user, $new_password))
+		    {
+			$success = __('auth.your password has been renew!');
+		    }
+		    else
+		    {
+			$error = __('error.unknown error');
+		    }
+		}
+		else
+		{
+		    $error = __('auth.cannot find the user');
+		}
+	    }
+	}
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
+	if (isset($success))
+	    $data['success'] = $success;
 	SEO::set_title("Renew password");
 	return View::make('home.renew_password', $data);
     }

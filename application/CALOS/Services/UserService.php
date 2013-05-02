@@ -2,6 +2,9 @@
 
 namespace CALOS\Services;
 
+use CALOS\Entities\UserEntity;
+use CALOS\Repositories\UserRepository;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -33,13 +36,26 @@ class UserService
 		
 	    } catch (Exception $e)
 	    {
-		Log::error('Mailer error: ' . $e->getMessage());
+		\Log::error('Mailer error: ' . $e->getMessage());
 		return false;
 	    }
 	    return true;
 	} else
 	{
-	    Log::error('cannot save user');
+	    \Log::error('cannot save user');
+	    return false;
+	}
+    }
+    
+    public static function update_password(UserEntity $user, $new_password)
+    {
+	$user->password = \Hash::make($new_password);
+	if (UserRepository::save($user)){
+	    return true;
+	}
+	else
+	{
+	    \Log::error('cannot save user when update password.');
 	    return false;
 	}
     }

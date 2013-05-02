@@ -22,6 +22,25 @@ class UserRepository
 	    return null;
 	}
     }
+    
+    /**
+     * 
+     * @param type $id
+     * @return \CALOS\Entities\UserEntity
+     */
+    public static function find_by_id($id)
+    {
+	$user = \User::find($id);
+	if ($user)
+	{
+	    $user_entity = static::convert_from_orm($user);
+	    return $user_entity;
+	}
+	else
+	{
+	    return null;
+	}
+    }
 
     public static function save(\CALOS\Entities\UserEntity $user_entity)
     {

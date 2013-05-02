@@ -13,3 +13,7 @@ button:first-letter,
     text-transform: uppercase;
 }
 
+
+#topbar .logo img {
+    max-height: 55px;
+}

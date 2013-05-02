@@ -23,4 +23,6 @@ return array(
     'cannot find this email in our database!' => 'cannot find this email in our database!',
     'recovery email has been sent to your email!' => 'recovery email has been sent to your email!',
     'renew password email title' => 'Renew your password',
+    'the two password are not match' => 'the two password are not match.',
+    'cannot find the user' => 'cannot find the user.',
 );
