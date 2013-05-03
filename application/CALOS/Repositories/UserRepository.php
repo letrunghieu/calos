@@ -48,6 +48,8 @@ class UserRepository
 	if ($user)
 	{
 	    $user->display_name = $user_entity->display_name;
+	    $user->first_name = $user_entity->first_name;
+	    $user->last_name = $user_entity->last_name;
 	    $user->email = $user_entity->email;
 	    $user->password = $user_entity->password;
 	    $user->new_pass_token = $user_entity->new_pass_token;
@@ -55,6 +57,7 @@ class UserRepository
 	    $user->home_phone = $user_entity->home_phone;
 	    $user->office_phone = $user_entity->office_phone;
 	    $user->address = $user_entity->address;
+	    $user->gender = $user_entity->gender;
 
 	    $user->save();
 	    return true;
@@ -81,7 +84,9 @@ class UserRepository
     {
 	$user_entity = new \CALOS\Entities\UserEntity($user->id);
 	
-	$user_entity->display_name = $user->display_name ? $user->display_name : substr($user->email, 0, strpos($user->email, "@"));
+	$user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
+	$user_entity->first_name = $user->first_name;
+	$user_entity->last_name = $user->last_name;
 	$user_entity->email = $user->email;
 	$user_entity->password = $user->password;
 	$user_entity->new_pass_token = $user->new_pass_token;
@@ -89,6 +94,7 @@ class UserRepository
 	$user_entity->home_phone = $user->home_phone;
 	$user_entity->office_phone = $user->office_phone;
 	$user_entity->address = $user->address;
+	$user_entity->gender = $user->gender;
 
 	return $user_entity;
     }

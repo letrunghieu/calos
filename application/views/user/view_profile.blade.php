@@ -28,9 +28,9 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		    <p>
 			<strong class='key'>Home phone:</strong> <span class='value'>{{$current_user->home_phone}}</span>
 		    </p>
-		    <div class="medium default btn" >
+		    <div class="medium default btn icon-left icon-brush" >
 			<a href='{{ URL::to_action("user@edit_profile") }}'>
-			    <i class='icon-brush'></i> {{__('user.edit profile label')}}
+			    {{__('user.edit profile label')}}
 			</a>
 		    </div>
 		</div>

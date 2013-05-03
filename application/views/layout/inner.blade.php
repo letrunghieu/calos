@@ -65,7 +65,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 					    </a>
 					</li>
 					<li>
-					    <a href='{{ URL::to_action("user@update_credential", array($current_user->get_id())) }}'>
+					    <a href='{{ URL::to_action("user@update_credential") }}'>
 						<i class='icon-keyboard'></i> {{__('user.change email and password label')}}
 					    </a>
 					</li>
