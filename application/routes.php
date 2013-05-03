@@ -39,6 +39,8 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'home@logout'));
 Route::any('/forgot_password', array('as' => 'forgot_password', 'uses' => 'home@forgot_password'));
 Route::any('/renew_password/(:num)/(:any)', array('as' => 'renew_password', 'uses' => 'home@renew_password'));
 
+Route::controller(array('user'));
+
 /*
   |--------------------------------------------------------------------------
   | Application 404 & 500 Error Handlers

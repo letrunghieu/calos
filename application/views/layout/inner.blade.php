@@ -23,10 +23,10 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
         <![endif]-->
 
 	<div id='wrap0'>
-	    <div id="topbar" class="navbar">
+	    <div id="topbar" class="navbar container">
 		<div class="row">
 		    <!-- Toggle for mobile navigation, targeting the <ul> -->
-		    <a class="toggle" gumby-trigger="#topbar> .row > ul" href="#"><i class="icon-menu"></i></a>
+		    <a class="toggle" gumby-trigger="#main-nav" href="#"><i class="icon-menu"></i></a>
 		    <h1 class="four columns logo">
 			<a href="{{ URL::home() }}">
 			    <img src="{{ URL::home() }}img/calos_logo.png" gumby-retina/>
@@ -56,22 +56,22 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 				    <ul>
 					<li>
 					    <a href='{{ URL::to_action("user@view_profile", array($current_user->get_id())) }}'>
-						<i class='icon-suitcase'></i>	View profile
+						<i class='icon-suitcase'></i> {{__('user.view profile label')}}
 					    </a>
 					</li>
 					<li>
-					    <a href='{{ URL::to_action("user@edit_profile", array($current_user->get_id())) }}'>
-						<i class='icon-brush'></i> Edit profile
+					    <a href='{{ URL::to_action("user@edit_profile") }}'>
+						<i class='icon-brush'></i> {{__('user.edit profile label')}}
 					    </a>
 					</li>
 					<li>
 					    <a href='{{ URL::to_action("user@update_credential", array($current_user->get_id())) }}'>
-						<i class='icon-keyboard'></i> Change email and password
+						<i class='icon-keyboard'></i> {{__('user.change email and password label')}}
 					    </a>
 					</li>
 					<li>
 					    <a href='{{ URL::to_route('logout') }}'>
-					       <i class='icon-logout'></i>Log out
+					       <i class='icon-logout'></i> {{__('auth.log out label')}}
 					    </a>
 					</li>
 				    </ul>

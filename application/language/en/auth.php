@@ -2,7 +2,9 @@
 
 return array(
     'login title' => 'Log in',
-    'login' => 'log in',
+    'log in' => 'log in',
+    'log out' => 'log out',
+    'log out label' => 'Log out',
     'email' => 'email',
     'your email' => 'your email',
     'password' => 'password',
