@@ -5065,20 +5065,25 @@ form fieldset legend {
 .field.double input:last-child, .field.double .input:last-child {
   margin-left: -1px;
 }
-.field.danger:after {
+.field .danger,
+.field .warning, 
+.field .success {
+    position: relative;
+}
+.field .danger:after {
   font-family: "entypo";
   content: "\2716";
   font-size: 16px;
   position: absolute;
-  top: 5px;
-  right: 15px;
+  top: 0px;
+  right: 18px;
   z-index: 999;
   color: #ca3838;
 }
-.field.danger.append:after, .field.danger.prepend:after {
+.field .danger.append:after, .field .danger.prepend:after {
   content: "";
 }
-.field.danger input, .field.danger .input, .field.danger textarea, .field.danger .textarea, .field.danger .radio span, .field.danger .checkbox span, .field.danger .picker {
+.field .danger input, .field .danger .input, .field .danger textarea, .field .danger .textarea, .field .danger .radio span, .field .danger .checkbox span, .field .danger .picker {
   border-color: #ca3838;
   color: #ca3838;
   background: #f0c5c5;
@@ -5087,29 +5092,29 @@ form fieldset legend {
   -o-transition-duration: 0.2s;
   transition-duration: 0.2s;
 }
-.field.danger textarea {
+.field .danger textarea {
   color: #ca3838;
 }
-.field.danger input::-webkit-input-placeholder, .field.danger textarea::-webkit-input-placeholder {
+.field .danger input::-webkit-input-placeholder, .field .danger textarea::-webkit-input-placeholder {
   color: #ca3838;
 }
-.field.danger input:-moz-placeholder, .field.danger textarea:-moz-placeholder {
+.field .danger input:-moz-placeholder, .field .danger textarea:-moz-placeholder {
   color: #ca3838;
 }
-.field.warning:after {
+.field .warning:after {
   font-family: "entypo";
   content: "\26a0";
   font-size: 16px;
   position: absolute;
-  top: 5px;
-  right: 15px;
+  top: 0px;
+  right: 18px;
   z-index: 999;
   color: #f6b83f;
 }
-.field.warning.append:after, .field.warning.prepend:after {
+.field .warning.append:after, .field .warning.prepend:after {
   content: "";
 }
-.field.warning input, .field.warning .input, .field.warning textarea, .field.warning .textarea, .field.warning .radio span, .field.warning .checkbox span, .field.warning .picker {
+.field .warning input, .field .warning .input, .field .warning textarea, .field .warning .textarea, .field .warning .radio span, .field .warning .checkbox span, .field .warning .picker {
   border-color: #f6b83f;
   color: #f6b83f;
   background: #fef7ea;
@@ -5118,29 +5123,29 @@ form fieldset legend {
   -o-transition-duration: 0.2s;
   transition-duration: 0.2s;
 }
-.field.warning textarea {
+.field .warning textarea {
   color: #f6b83f;
 }
-.field.warning input::-webkit-input-placeholder, .field.warning textarea::-webkit-input-placeholder {
+.field .warning input::-webkit-input-placeholder, .field .warning textarea::-webkit-input-placeholder {
   color: #f6b83f;
 }
-.field.warning input:-moz-placeholder, .field.warning textarea:-moz-placeholder {
+.field .warning input:-moz-placeholder, .field .warning textarea:-moz-placeholder {
   color: #f6b83f;
 }
-.field.success:after {
+.field .success:after {
   font-family: "entypo";
   content: "\2713";
   font-size: 16px;
   position: absolute;
-  top: 5px;
-  right: 15px;
+  top: 0px;
+  right: 18px;
   z-index: 999;
   color: #58c026;
 }
-.field.success.append:after, .field.success.prepend:after {
+.field .success.append:after, .field .success.prepend:after {
   content: "";
 }
-.field.success input, .field.success .input, .field.success textarea, .field.success .textarea, .field.success .radio span, .field.success .checkbox span, .field.success .picker {
+.field .success input, .field .success .input, .field .success textarea, .field .success .textarea, .field .success .radio span, .field .success .checkbox span, .field .success .picker {
   border-color: #58c026;
   color: #58c026;
   background: #c0eeaa;
@@ -5149,13 +5154,13 @@ form fieldset legend {
   -o-transition-duration: 0.2s;
   transition-duration: 0.2s;
 }
-.field.success textarea {
+.field .success textarea {
   color: #58c026;
 }
-.field.success input::-webkit-input-placeholder, .field.success textarea::-webkit-input-placeholder {
+.field .success input::-webkit-input-placeholder, .field .success textarea::-webkit-input-placeholder {
   color: #58c026;
 }
-.field.success input:-moz-placeholder, .field.success textarea:-moz-placeholder {
+.field .success input:-moz-placeholder, .field .success textarea:-moz-placeholder {
   color: #58c026;
 }
 .field .picker.danger {

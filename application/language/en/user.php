@@ -29,4 +29,13 @@ return array(
     'type new email label' => 'Enter your new email',
     'retype new email label' => 'Repeat this email again',
     'update credential label' => 'Update credential',
+    'email and password updated successfully' => 'Your email and password updated successfully!',
+    
+    # validation error messages
+    'you must enter your current password' => 'You must enter your current password!',
+    'this field is not the same as your new password' => 'This field is not the same as your new password.',
+    'this field is not the same as your new email' => 'This field is not the same as your new email.',
+    'your current password is not correct' => 'Your current password is not correct',
+    'this is not a valid email address' => 'This is not a valid email address',
+    #~ validation error messages
 );
