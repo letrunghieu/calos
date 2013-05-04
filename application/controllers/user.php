@@ -44,8 +44,31 @@ class User_Controller extends Base_Controller
 	$data['user'] = $user;
 	if(isset($success))
 	    $data['success'] = $success;
-	SEO::set_title("Edit your profile");
+	SEO::set_title("Edit your profile", false);
 	return View::make('user.edit_profile', $data);
+    }
+    
+    public function action_update_credential()
+    {
+	$data = array();
+	$user = UserRepository::current_user();
+	if (Input::get('update_credential'))
+	{
+	    $rules = array(
+		'current_password' => 'required',
+		'renew_password' => 'required_with:new_password|same:new_password',
+		'renew_email' => 'required_with:new_email|same:new_email',
+	    );
+	    
+	    $validation = Validator::make(Input::all(), $rules);
+	    if ($validation->fails())
+	    {
+		var_dump($validation->errors);
+	    }
+	}
+	$data['user'] = $user;
+	SEO::set_title("Change email and password", false);
+	return View::make('user.update_credential', $data);
     }
 
 }

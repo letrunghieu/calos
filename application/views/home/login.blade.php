@@ -24,12 +24,12 @@
 		    {{Form::label('password', ucfirst(__('auth.your password')))}}
 		    {{Form::password('password', array('class'=>'input password'))}}
 		</p>
-		<p class='field'>
-		    <label class='checkbox'>
-			{{Form::checkbox('remember')}} <span></span> {{ucfirst(__('auth.remember me'))}}
+		<p class="field">
+		    <label class="checkbox">
+			{{Form::checkbox('remember')}} {{__('auth.remember me')}}
 		    </label>
 		</p>
-		<div class='field row'>
+		<div class='field row clearfix'>
 		    <div class='medium primary btn fourteen columns'>
 			{{Form::submit(ucfirst(__('auth.login')), array('name' => 'login'))}}
 		    </div>

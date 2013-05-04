@@ -20,4 +20,13 @@ return array(
     'gender label' => 'Gender',
     'male' => 'male',
     'female' => 'female',
+    'current password label' => 'Current password',
+    'current password guide' => 'For the security reasons, you must enter your current password correctly if your want to update your email and password.',
+    'change password label' => 'Change password',
+    'type new password guide' => 'Enter your new password',
+    'retype new password guide' => 'Repeat this password again',
+    'change email label' => 'Change email',
+    'type new email label' => 'Enter your new email',
+    'retype new email label' => 'Repeat this email again',
+    'update credential label' => 'Update credential',
 );

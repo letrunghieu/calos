@@ -29,13 +29,13 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 			<div class='five columns'>
 			    <p class="field">
 				{{Form::label('user[first_name]', __('user.first name label'))}}
-				{{Form::text('user[first_name]', $user->display_name, array('class'=>'input text', 'id' => null))}}
+				{{Form::text('user[first_name]', $user->first_name, array('class'=>'input text', 'id' => null))}}
 			    </p>
 			</div>
 			<div class='five columns'>
 			    <p class="field">
 				{{Form::label('user[last_name]', __('user.last name label'))}}
-				{{Form::text('user[last_name]', $user->display_name, array('class'=>'input text', 'id' => null))}}
+				{{Form::text('user[last_name]', $user->last_name, array('class'=>'input text', 'id' => null))}}
 			    </p>
 			</div>
 		    </div>

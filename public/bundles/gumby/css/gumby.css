@@ -916,7 +916,7 @@ img {
   display: table-cell;
   vertical-align: middle;
 }
-.valign â€‹
+.valign ​
 > article {
   display: table-cell;
   vertical-align: middle;
@@ -2003,32 +2003,32 @@ i.icon-note-beamed:before {
 }
 
 .icon-music.icon-left a:before, .icon-music.icon-right a:after {
-  content: "ðŸŽµ";
+  content: "🎵";
   height: inherit;
 }
 
 i.icon-music:before {
-  content: "ðŸŽµ";
+  content: "🎵";
   height: inherit;
 }
 
 .icon-search.icon-left a:before, .icon-search.icon-right a:after {
-  content: "ðŸ”";
+  content: "🔍";
   height: inherit;
 }
 
 i.icon-search:before {
-  content: "ðŸ”";
+  content: "🔍";
   height: inherit;
 }
 
 .icon-flashlight.icon-left a:before, .icon-flashlight.icon-right a:after {
-  content: "ðŸ”¦";
+  content: "🔦";
   height: inherit;
 }
 
 i.icon-flashlight:before {
-  content: "ðŸ”¦";
+  content: "🔦";
   height: inherit;
 }
 
@@ -2083,22 +2083,22 @@ i.icon-star-empty:before {
 }
 
 .icon-user.icon-left a:before, .icon-user.icon-right a:after {
-  content: "ðŸ‘¤";
+  content: "👤";
   height: inherit;
 }
 
 i.icon-user:before {
-  content: "ðŸ‘¤";
+  content: "👤";
   height: inherit;
 }
 
 .icon-users.icon-left a:before, .icon-users.icon-right a:after {
-  content: "ðŸ‘¥";
+  content: "👥";
   height: inherit;
 }
 
 i.icon-users:before {
-  content: "ðŸ‘¥";
+  content: "👥";
   height: inherit;
 }
 
@@ -2113,32 +2113,32 @@ i.icon-user-add:before {
 }
 
 .icon-video.icon-left a:before, .icon-video.icon-right a:after {
-  content: "ðŸŽ¬";
+  content: "🎬";
   height: inherit;
 }
 
 i.icon-video:before {
-  content: "ðŸŽ¬";
+  content: "🎬";
   height: inherit;
 }
 
 .icon-picture.icon-left a:before, .icon-picture.icon-right a:after {
-  content: "ðŸŒ„";
+  content: "🌄";
   height: inherit;
 }
 
 i.icon-picture:before {
-  content: "ðŸŒ„";
+  content: "🌄";
   height: inherit;
 }
 
 .icon-camera.icon-left a:before, .icon-camera.icon-right a:after {
-  content: "ðŸ“·";
+  content: "📷";
   height: inherit;
 }
 
 i.icon-camera:before {
-  content: "ðŸ“·";
+  content: "📷";
   height: inherit;
 }
 
@@ -2303,12 +2303,12 @@ i.icon-info-circled:before {
 }
 
 .icon-back.icon-left a:before, .icon-back.icon-right a:after {
-  content: "ðŸ”™";
+  content: "🔙";
   height: inherit;
 }
 
 i.icon-back:before {
-  content: "ðŸ”™";
+  content: "🔙";
   height: inherit;
 }
 
@@ -2323,42 +2323,42 @@ i.icon-home:before {
 }
 
 .icon-link.icon-left a:before, .icon-link.icon-right a:after {
-  content: "ðŸ”—";
+  content: "🔗";
   height: inherit;
 }
 
 i.icon-link:before {
-  content: "ðŸ”—";
+  content: "🔗";
   height: inherit;
 }
 
 .icon-attach.icon-left a:before, .icon-attach.icon-right a:after {
-  content: "ðŸ“Ž";
+  content: "📎";
   height: inherit;
 }
 
 i.icon-attach:before {
-  content: "ðŸ“Ž";
+  content: "📎";
   height: inherit;
 }
 
 .icon-lock.icon-left a:before, .icon-lock.icon-right a:after {
-  content: "ðŸ”’";
+  content: "🔒";
   height: inherit;
 }
 
 i.icon-lock:before {
-  content: "ðŸ”’";
+  content: "🔒";
   height: inherit;
 }
 
 .icon-lock-open.icon-left a:before, .icon-lock-open.icon-right a:after {
-  content: "ðŸ”“";
+  content: "🔓";
   height: inherit;
 }
 
 i.icon-lock-open:before {
-  content: "ðŸ”“";
+  content: "🔓";
   height: inherit;
 }
 
@@ -2383,22 +2383,22 @@ i.icon-tag:before {
 }
 
 .icon-bookmark.icon-left a:before, .icon-bookmark.icon-right a:after {
-  content: "ðŸ”–";
+  content: "🔖";
   height: inherit;
 }
 
 i.icon-bookmark:before {
-  content: "ðŸ”–";
+  content: "🔖";
   height: inherit;
 }
 
 .icon-bookmarks.icon-left a:before, .icon-bookmarks.icon-right a:after {
-  content: "ðŸ“‘";
+  content: "📑";
   height: inherit;
 }
 
 i.icon-bookmarks:before {
-  content: "ðŸ“‘";
+  content: "📑";
   height: inherit;
 }
 
@@ -2413,42 +2413,42 @@ i.icon-flag:before {
 }
 
 .icon-thumbs-up.icon-left a:before, .icon-thumbs-up.icon-right a:after {
-  content: "ðŸ‘";
+  content: "👍";
   height: inherit;
 }
 
 i.icon-thumbs-up:before {
-  content: "ðŸ‘";
+  content: "👍";
   height: inherit;
 }
 
 .icon-thumbs-down.icon-left a:before, .icon-thumbs-down.icon-right a:after {
-  content: "ðŸ‘Ž";
+  content: "👎";
   height: inherit;
 }
 
 i.icon-thumbs-down:before {
-  content: "ðŸ‘Ž";
+  content: "👎";
   height: inherit;
 }
 
 .icon-download.icon-left a:before, .icon-download.icon-right a:after {
-  content: "ðŸ“¥";
+  content: "📥";
   height: inherit;
 }
 
 i.icon-download:before {
-  content: "ðŸ“¥";
+  content: "📥";
   height: inherit;
 }
 
 .icon-upload.icon-left a:before, .icon-upload.icon-right a:after {
-  content: "ðŸ“¤";
+  content: "📤";
   height: inherit;
 }
 
 i.icon-upload:before {
-  content: "ðŸ“¤";
+  content: "📤";
   height: inherit;
 }
 
@@ -2593,12 +2593,12 @@ i.icon-chat:before {
 }
 
 .icon-bell.icon-left a:before, .icon-bell.icon-right a:after {
-  content: "ðŸ””";
+  content: "🔔";
   height: inherit;
 }
 
 i.icon-bell:before {
-  content: "ðŸ””";
+  content: "🔔";
   height: inherit;
 }
 
@@ -2613,12 +2613,12 @@ i.icon-attention:before {
 }
 
 .icon-alert.icon-left a:before, .icon-alert.icon-right a:after {
-  content: "ðŸ’¥";
+  content: "💥";
   height: inherit;
 }
 
 i.icon-alert:before {
-  content: "ðŸ’¥";
+  content: "💥";
   height: inherit;
 }
 
@@ -2733,12 +2733,12 @@ i.icon-doc-landscape:before {
 }
 
 .icon-doc-text.icon-left a:before, .icon-doc-text.icon-right a:after {
-  content: "ðŸ“„";
+  content: "📄";
   height: inherit;
 }
 
 i.icon-doc-text:before {
-  content: "ðŸ“„";
+  content: "📄";
   height: inherit;
 }
 
@@ -2753,42 +2753,42 @@ i.icon-doc-text-inv:before {
 }
 
 .icon-newspaper.icon-left a:before, .icon-newspaper.icon-right a:after {
-  content: "ðŸ“°";
+  content: "📰";
   height: inherit;
 }
 
 i.icon-newspaper:before {
-  content: "ðŸ“°";
+  content: "📰";
   height: inherit;
 }
 
 .icon-book-open.icon-left a:before, .icon-book-open.icon-right a:after {
-  content: "ðŸ“–";
+  content: "📖";
   height: inherit;
 }
 
 i.icon-book-open:before {
-  content: "ðŸ“–";
+  content: "📖";
   height: inherit;
 }
 
 .icon-book.icon-left a:before, .icon-book.icon-right a:after {
-  content: "ðŸ“•";
+  content: "📕";
   height: inherit;
 }
 
 i.icon-book:before {
-  content: "ðŸ“•";
+  content: "📕";
   height: inherit;
 }
 
 .icon-folder.icon-left a:before, .icon-folder.icon-right a:after {
-  content: "ðŸ“";
+  content: "📁";
   height: inherit;
 }
 
 i.icon-folder:before {
-  content: "ðŸ“";
+  content: "📁";
   height: inherit;
 }
 
@@ -2803,12 +2803,12 @@ i.icon-archive:before {
 }
 
 .icon-box.icon-left a:before, .icon-box.icon-right a:after {
-  content: "ðŸ“¦";
+  content: "📦";
   height: inherit;
 }
 
 i.icon-box:before {
-  content: "ðŸ“¦";
+  content: "📦";
   height: inherit;
 }
 
@@ -2823,12 +2823,12 @@ i.icon-rss:before {
 }
 
 .icon-phone.icon-left a:before, .icon-phone.icon-right a:after {
-  content: "ðŸ“ž";
+  content: "📞";
   height: inherit;
 }
 
 i.icon-phone:before {
-  content: "ðŸ“ž";
+  content: "📞";
   height: inherit;
 }
 
@@ -2883,22 +2883,22 @@ i.icon-basket:before {
 }
 
 .icon-bag.icon-left a:before, .icon-bag.icon-right a:after {
-  content: "ðŸ‘œ";
+  content: "👜";
   height: inherit;
 }
 
 i.icon-bag:before {
-  content: "ðŸ‘œ";
+  content: "👜";
   height: inherit;
 }
 
 .icon-calendar.icon-left a:before, .icon-calendar.icon-right a:after {
-  content: "ðŸ“…";
+  content: "📅";
   height: inherit;
 }
 
 i.icon-calendar:before {
-  content: "ðŸ“…";
+  content: "📅";
   height: inherit;
 }
 
@@ -2923,32 +2923,32 @@ i.icon-logout:before {
 }
 
 .icon-mic.icon-left a:before, .icon-mic.icon-right a:after {
-  content: "ðŸŽ¤";
+  content: "🎤";
   height: inherit;
 }
 
 i.icon-mic:before {
-  content: "ðŸŽ¤";
+  content: "🎤";
   height: inherit;
 }
 
 .icon-mute.icon-left a:before, .icon-mute.icon-right a:after {
-  content: "ðŸ”‡";
+  content: "🔇";
   height: inherit;
 }
 
 i.icon-mute:before {
-  content: "ðŸ”‡";
+  content: "🔇";
   height: inherit;
 }
 
 .icon-sound.icon-left a:before, .icon-sound.icon-right a:after {
-  content: "ðŸ”Š";
+  content: "🔊";
   height: inherit;
 }
 
 i.icon-sound:before {
-  content: "ðŸ”Š";
+  content: "🔊";
   height: inherit;
 }
 
@@ -2963,12 +2963,12 @@ i.icon-volume:before {
 }
 
 .icon-clock.icon-left a:before, .icon-clock.icon-right a:after {
-  content: "ðŸ•”";
+  content: "🕔";
   height: inherit;
 }
 
 i.icon-clock:before {
-  content: "ðŸ•”";
+  content: "🕔";
   height: inherit;
 }
 
@@ -2983,32 +2983,32 @@ i.icon-hourglass:before {
 }
 
 .icon-lamp.icon-left a:before, .icon-lamp.icon-right a:after {
-  content: "ðŸ’¡";
+  content: "💡";
   height: inherit;
 }
 
 i.icon-lamp:before {
-  content: "ðŸ’¡";
+  content: "💡";
   height: inherit;
 }
 
 .icon-light-down.icon-left a:before, .icon-light-down.icon-right a:after {
-  content: "ðŸ”…";
+  content: "🔅";
   height: inherit;
 }
 
 i.icon-light-down:before {
-  content: "ðŸ”…";
+  content: "🔅";
   height: inherit;
 }
 
 .icon-light-up.icon-left a:before, .icon-light-up.icon-right a:after {
-  content: "ðŸ”†";
+  content: "🔆";
   height: inherit;
 }
 
 i.icon-light-up:before {
-  content: "ðŸ”†";
+  content: "🔆";
   height: inherit;
 }
 
@@ -3023,12 +3023,12 @@ i.icon-adjust:before {
 }
 
 .icon-block.icon-left a:before, .icon-block.icon-right a:after {
-  content: "ðŸš«";
+  content: "🚫";
   height: inherit;
 }
 
 i.icon-block:before {
-  content: "ðŸš«";
+  content: "🚫";
   height: inherit;
 }
 
@@ -3433,12 +3433,12 @@ i.icon-cw:before {
 }
 
 .icon-arrows-ccw.icon-left a:before, .icon-arrows-ccw.icon-right a:after {
-  content: "ðŸ”„";
+  content: "🔄";
   height: inherit;
 }
 
 i.icon-arrows-ccw:before {
-  content: "ðŸ”„";
+  content: "🔄";
   height: inherit;
 }
 
@@ -3463,22 +3463,22 @@ i.icon-level-up:before {
 }
 
 .icon-shuffle.icon-left a:before, .icon-shuffle.icon-right a:after {
-  content: "ðŸ”€";
+  content: "🔀";
   height: inherit;
 }
 
 i.icon-shuffle:before {
-  content: "ðŸ”€";
+  content: "🔀";
   height: inherit;
 }
 
 .icon-loop.icon-left a:before, .icon-loop.icon-right a:after {
-  content: "ðŸ”";
+  content: "🔁";
   height: inherit;
 }
 
 i.icon-loop:before {
-  content: "ðŸ”";
+  content: "🔁";
   height: inherit;
 }
 
@@ -3613,22 +3613,22 @@ i.icon-progress-3:before {
 }
 
 .icon-target.icon-left a:before, .icon-target.icon-right a:after {
-  content: "ðŸŽ¯";
+  content: "🎯";
   height: inherit;
 }
 
 i.icon-target:before {
-  content: "ðŸŽ¯";
+  content: "🎯";
   height: inherit;
 }
 
 .icon-palette.icon-left a:before, .icon-palette.icon-right a:after {
-  content: "ðŸŽ¨";
+  content: "🎨";
   height: inherit;
 }
 
 i.icon-palette:before {
-  content: "ðŸŽ¨";
+  content: "🎨";
   height: inherit;
 }
 
@@ -3653,32 +3653,32 @@ i.icon-list-add:before {
 }
 
 .icon-signal.icon-left a:before, .icon-signal.icon-right a:after {
-  content: "ðŸ“¶";
+  content: "📶";
   height: inherit;
 }
 
 i.icon-signal:before {
-  content: "ðŸ“¶";
+  content: "📶";
   height: inherit;
 }
 
 .icon-trophy.icon-left a:before, .icon-trophy.icon-right a:after {
-  content: "ðŸ†";
+  content: "🏆";
   height: inherit;
 }
 
 i.icon-trophy:before {
-  content: "ðŸ†";
+  content: "🏆";
   height: inherit;
 }
 
 .icon-battery.icon-left a:before, .icon-battery.icon-right a:after {
-  content: "ðŸ”‹";
+  content: "🔋";
   height: inherit;
 }
 
 i.icon-battery:before {
-  content: "ðŸ”‹";
+  content: "🔋";
   height: inherit;
 }
 
@@ -3693,22 +3693,22 @@ i.icon-back-in-time:before {
 }
 
 .icon-monitor.icon-left a:before, .icon-monitor.icon-right a:after {
-  content: "ðŸ’»";
+  content: "💻";
   height: inherit;
 }
 
 i.icon-monitor:before {
-  content: "ðŸ’»";
+  content: "💻";
   height: inherit;
 }
 
 .icon-mobile.icon-left a:before, .icon-mobile.icon-right a:after {
-  content: "ðŸ“±";
+  content: "📱";
   height: inherit;
 }
 
 i.icon-mobile:before {
-  content: "ðŸ“±";
+  content: "📱";
   height: inherit;
 }
 
@@ -3723,12 +3723,12 @@ i.icon-network:before {
 }
 
 .icon-cd.icon-left a:before, .icon-cd.icon-right a:after {
-  content: "ðŸ’¿";
+  content: "💿";
   height: inherit;
 }
 
 i.icon-cd:before {
-  content: "ðŸ’¿";
+  content: "💿";
   height: inherit;
 }
 
@@ -3753,12 +3753,12 @@ i.icon-install:before {
 }
 
 .icon-globe.icon-left a:before, .icon-globe.icon-right a:after {
-  content: "ðŸŒŽ";
+  content: "🌎";
   height: inherit;
 }
 
 i.icon-globe:before {
-  content: "ðŸŒŽ";
+  content: "🌎";
   height: inherit;
 }
 
@@ -3823,12 +3823,12 @@ i.icon-paper-plane:before {
 }
 
 .icon-leaf.icon-left a:before, .icon-leaf.icon-right a:after {
-  content: "ðŸ‚";
+  content: "🍂";
   height: inherit;
 }
 
 i.icon-leaf:before {
-  content: "ðŸ‚";
+  content: "🍂";
   height: inherit;
 }
 
@@ -3853,12 +3853,12 @@ i.icon-mouse:before {
 }
 
 .icon-briefcase.icon-left a:before, .icon-briefcase.icon-right a:after {
-  content: "ðŸ’¼";
+  content: "💼";
   height: inherit;
 }
 
 i.icon-briefcase:before {
-  content: "ðŸ’¼";
+  content: "💼";
   height: inherit;
 }
 
@@ -3953,32 +3953,32 @@ i.icon-chart-pie:before {
 }
 
 .icon-chart-line.icon-left a:before, .icon-chart-line.icon-right a:after {
-  content: "ðŸ“ˆ";
+  content: "📈";
   height: inherit;
 }
 
 i.icon-chart-line:before {
-  content: "ðŸ“ˆ";
+  content: "📈";
   height: inherit;
 }
 
 .icon-chart-bar.icon-left a:before, .icon-chart-bar.icon-right a:after {
-  content: "ðŸ“Š";
+  content: "📊";
   height: inherit;
 }
 
 i.icon-chart-bar:before {
-  content: "ðŸ“Š";
+  content: "📊";
   height: inherit;
 }
 
 .icon-chart-area.icon-left a:before, .icon-chart-area.icon-right a:after {
-  content: "ðŸ”¾";
+  content: "🔾";
   height: inherit;
 }
 
 i.icon-chart-area:before {
-  content: "ðŸ”¾";
+  content: "🔾";
   height: inherit;
 }
 
@@ -3993,12 +3993,12 @@ i.icon-tape:before {
 }
 
 .icon-graduation-cap.icon-left a:before, .icon-graduation-cap.icon-right a:after {
-  content: "ðŸŽ“";
+  content: "🎓";
   height: inherit;
 }
 
 i.icon-graduation-cap:before {
-  content: "ðŸŽ“";
+  content: "🎓";
   height: inherit;
 }
 
@@ -4013,32 +4013,32 @@ i.icon-language:before {
 }
 
 .icon-ticket.icon-left a:before, .icon-ticket.icon-right a:after {
-  content: "ðŸŽ«";
+  content: "🎫";
   height: inherit;
 }
 
 i.icon-ticket:before {
-  content: "ðŸŽ«";
+  content: "🎫";
   height: inherit;
 }
 
 .icon-water.icon-left a:before, .icon-water.icon-right a:after {
-  content: "ðŸ’¦";
+  content: "💦";
   height: inherit;
 }
 
 i.icon-water:before {
-  content: "ðŸ’¦";
+  content: "💦";
   height: inherit;
 }
 
 .icon-droplet.icon-left a:before, .icon-droplet.icon-right a:after {
-  content: "ðŸ’§";
+  content: "💧";
   height: inherit;
 }
 
 i.icon-droplet:before {
-  content: "ðŸ’§";
+  content: "💧";
   height: inherit;
 }
 
@@ -4053,42 +4053,42 @@ i.icon-air:before {
 }
 
 .icon-credit-card.icon-left a:before, .icon-credit-card.icon-right a:after {
-  content: "ðŸ’³";
+  content: "💳";
   height: inherit;
 }
 
 i.icon-credit-card:before {
-  content: "ðŸ’³";
+  content: "💳";
   height: inherit;
 }
 
 .icon-floppy.icon-left a:before, .icon-floppy.icon-right a:after {
-  content: "ðŸ’¾";
+  content: "💾";
   height: inherit;
 }
 
 i.icon-floppy:before {
-  content: "ðŸ’¾";
+  content: "💾";
   height: inherit;
 }
 
 .icon-clipboard.icon-left a:before, .icon-clipboard.icon-right a:after {
-  content: "ðŸ“‹";
+  content: "📋";
   height: inherit;
 }
 
 i.icon-clipboard:before {
-  content: "ðŸ“‹";
+  content: "📋";
   height: inherit;
 }
 
 .icon-megaphone.icon-left a:before, .icon-megaphone.icon-right a:after {
-  content: "ðŸ“£";
+  content: "📣";
   height: inherit;
 }
 
 i.icon-megaphone:before {
-  content: "ðŸ“£";
+  content: "📣";
   height: inherit;
 }
 
@@ -4133,12 +4133,12 @@ i.icon-thermometer:before {
 }
 
 .icon-key.icon-left a:before, .icon-key.icon-right a:after {
-  content: "ðŸ”‘";
+  content: "🔑";
   height: inherit;
 }
 
 i.icon-key:before {
-  content: "ðŸ”‘";
+  content: "🔑";
   height: inherit;
 }
 
@@ -4193,12 +4193,12 @@ i.icon-flow-parallel:before {
 }
 
 .icon-rocket.icon-left a:before, .icon-rocket.icon-right a:after {
-  content: "ðŸš€";
+  content: "🚀";
   height: inherit;
 }
 
 i.icon-rocket:before {
-  content: "ðŸš€";
+  content: "🚀";
   height: inherit;
 }
 
@@ -4865,7 +4865,7 @@ form fieldset legend {
   overflow: hidden;
   margin-bottom: 10px;
   vertical-align: middle;
-  /* remove inline-block white-space â€” A 0px font-size = 0px of white space */
+  /* remove inline-block white-space — A 0px font-size = 0px of white space */
 }
 .field.metro, .field .metro {
   -webkit-border-radius: 0;
@@ -4895,7 +4895,8 @@ form fieldset legend {
   position: relative;
 }
 .field .radio input[type="radio"], .field .checkbox input[type="checkbox"] {
-  display: none;
+  display: inline;
+  width: auto;
 }
 .field .input {
   position: relative;
