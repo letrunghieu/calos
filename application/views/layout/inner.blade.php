@@ -70,6 +70,11 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 					    </a>
 					</li>
 					<li>
+					    <a href='{{ URL::to_action("admin.home@index") }}'>
+						<i class='icon-cog'></i> {{__('user.to control panel')}}
+					    </a>
+					</li>
+					<li>
 					    <a href='{{ URL::to_route('logout') }}'>
 					       <i class='icon-logout'></i> {{__('auth.log out label')}}
 					    </a>

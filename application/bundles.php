@@ -47,4 +47,7 @@ return array(
 	    ),
 	),
     ),
+    'navigation' => array(
+	'auto' => true,
+    ),
 );
