@@ -114,6 +114,9 @@ Route::filter('after', function($response)
 	    Asset::add('common_css', 'css/common.css');
 	    Asset::add('auth_css', 'css/auth.css');
 	    Asset::container('footer')->add('common_js', 'js/common.js');
+	    
+	    # create global topbar
+	    \Navigation\Navigation::make('topbar');
 	});
 
 Route::filter('csrf', function()

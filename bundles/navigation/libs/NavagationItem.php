@@ -160,8 +160,9 @@ class NavagationItem
      * @param mixed $options	The rendering option passed to this element.
      * 				
      */
-    public function render($options = array())
+    public function render($options = array(), $child_template = array(), $depth = 0)
     {
+	$indent = $depth ? str_repeat('    ', $depth) : "";
 	$default = array(
 	    'element' => 'li',
 	    'before_element' => '',
@@ -170,14 +171,15 @@ class NavagationItem
 	    'after_link' => '',
 	    'before_item' => '',
 	    'after_item' => '',
-	    'element_attribs' => '',
-	    'link_attribs' => '',
+	    'element_attribs' => array(),
+	    'link_attribs' => array(),
 	);
 
 	$options = array_merge($default, $options);
 	$options = array_merge($options, $this->_options);
-	$element_classes = "navigation_item " . ($this->_is_activate ? "active " : "");
-	$options['element_attribs']['class'] = $element_classes . (isset($options['element_attribs']['class']) ? $options['element_attribs']['class'] : "");
+	$element_classes = "navigation_item" . ($this->_is_activate ? "active" : "");
+	if (isset($options['element_attribs']['class']))
+	    $options['element_attribs']['class'] = $element_classes . " " . $options['element_attribs']['class'];
 	$element_attribs = \Laravel\HTML::attributes($options['element_attribs']);
 	$anchor_content = \Laravel\HTML::entities($this->_link);
 	if (!isset($options['link_attribs']['title']))
@@ -196,11 +198,13 @@ class NavagationItem
 	}
 
 	$output = "\n";
-	$output .= "{$options['before_element']}";
-	$output .= "<{$options['element']}{$element_attribs}>\n";
-	$output .= "{$options['before_link']}{$item_content}{$options['after_link']}\n";
-	$output .= "</{$options['element']}>\n";
-	$output .= "{$options['after_element']}\n";
+	$output .= "{$indent}{$options['before_element']}\n";
+	$output .= "{$indent}<{$options['element']}{$element_attribs}>\n";
+	$output .= "{$indent}{$options['before_link']}{$item_content}{$options['after_link']}\n";
+	if ($this->_child)
+	    $output .= $this->_child->render($child_template, $depth);
+	$output .= "{$indent}</{$options['element']}>\n";
+	$output .= "{$indent}{$options['after_element']}\n";
 	return $output;
     }
 

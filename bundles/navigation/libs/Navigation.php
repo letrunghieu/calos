@@ -26,7 +26,7 @@ class Navigation
      * @param mixed $options	the rendering options for this containers
      * @return \Navigation\NavigationContainer
      */
-    public static function make($name, $options, $register = true)
+    public static function make($name, $options = array(), $register = true)
     {
 	$container = new NavigationContainer($name, $options);
 	if ($register)

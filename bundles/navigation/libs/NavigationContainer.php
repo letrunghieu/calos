@@ -203,6 +203,50 @@ class NavigationContainer
 	    return $result;
 	}
     }
+    
+    public function render($options = array(), $depth = 0)
+    {
+	$indent = $depth ? str_repeat('    ', $depth) : "";
+	$default = array(
+	    'element' => 'ul',
+	    'before_element' => '',
+	    'after_element' => '',
+	    'element_attribs' => array(),
+	    'item_template' => array(),
+	);
+	if (isset($options[0]))
+	{
+	    $opt = array_shift($options);
+	    if (empty($options))
+	    {
+		$options = array_merge(array(), $opt);
+	    }
+	}
+	else
+	{
+	    $opt = $options;
+	}
+	$opt = \Parameter::array_merge($default, $opt);
+	$opt = \Parameter::array_merge($opt, $this->_options);
+	
+	$element_calsses = "navigation_container";
+	if (isset($opt['element_attribs']['class']))
+	    $opt['element_attribs']['class'] = $element_calsses . " " . $opt['element_attribs']['class'] ;
+	$element_attribs = \Laravel\HTML::attributes($opt['element_attribs']);
+	
+	$output = "";
+	$output .= "{$indent}{$opt['before_element']}\n";
+	$output .= "{$indent}<{$opt['element']}{$element_attribs}>\n";
+	/* @var $item \Navigation\NavagationItem */
+	foreach($this->_items as $item)
+	{
+	    $output .= $item->render($opt['item_template'], $options, $depth + 1);
+	}
+	$output .= "{$indent}</{$opt['element']}>\n";
+	$output .= "{$indent}{$opt['after_element']}\n";
+	
+	return $output;
+    }
 
 }
 
