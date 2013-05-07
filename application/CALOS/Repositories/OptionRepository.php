@@ -18,7 +18,7 @@ class OptionRepository
      */
     public static function get_option($key)
     {
-	$option = \Option::where('key', '=', $key)->first();
+	$option = \Option::where('option_key', '=', $key)->first();
 	if ($option)
 	    return $option->value;
 	return null;
@@ -26,14 +26,14 @@ class OptionRepository
 
     public static function update_option($key, $value)
     {
-	$option = \Option::where('key', '=', $key)->first();
+	$option = \Option::where('option_key', '=', $key)->first();
 	if ($option)
 	{
 	    $option->value = $value;
 	    return $option->save();
 	} else
 	{
-	    return (\Option::create(array('key' => $key, 'value' => $value)) !== false);
+	    return (\Option::create(array('option_key' => $key, 'value' => $value)) !== false);
 	}
     }
 

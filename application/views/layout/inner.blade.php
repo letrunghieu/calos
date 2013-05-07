@@ -15,7 +15,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
         {{Asset::styles()}}
         {{Asset::container('gumby')->styles()}}
 
-        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
     </head>
     <body>
         <!--[if lt IE 7]>

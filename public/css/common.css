@@ -6,6 +6,10 @@
         Purpose of the stylesheet follows.
 */
 
+a {
+    cursor: pointer;
+}
+
 p:first-letter, 
 label:first-letter,
 button:first-letter,

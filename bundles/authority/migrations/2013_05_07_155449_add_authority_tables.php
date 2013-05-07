@@ -64,7 +64,7 @@ class Authority_add_authority_tables {
 
 	public function down()
 	{
-		Schema::drop('users');
+//		Schema::drop('users');
 		Schema::drop('roles');
 		Schema::drop('role_user');
 	}

@@ -1,6 +1,8 @@
 <?php
 
 use CALOS\Repositories\UserRepository;
+use CALOS\Repositories\MetaRepository;
+use \CALOS\Repositories\OptionRepository;
 
 class User_Controller extends Base_Controller
 {
@@ -132,14 +134,52 @@ class User_Controller extends Base_Controller
 
     public function action_profile_fields()
     {
+//	var_dump(Input::all());
 	$data = array();
+
+	$updated_fields = array();
+	if (Input::get('update_fields'))
+	{
+	    $new_fields = Input::get('fields_new');
+	    if (is_array($new_fields))
+	    {
+		foreach ($new_fields as $field)
+		{
+		    $title = trim($field['title']);
+		    $type = $field['type'];
+		    $description = isset($field['description']) ? trim($field['description']) : null;
+		    $object = 'user';
+		    $domain = null;
+		    if (isset($field['domain']))
+		    {
+			$domain = explode('\n', trim($field['domain']));
+			foreach ($domain as $k => $v)
+			{
+			    $domain[$k] = trim($domain[$k]);
+			    if ($domain[$k] == '')
+				unset($domain[$k]);
+			}
+		    }
+		    $meta = MetaRepository::create_meta(Str::slug($title, "_") . "_" . time(), $title, $description, $type, $object, $domain);
+		    if ($meta)
+			$updated_fields[] = $meta->get_id();
+		}
+	    }
+	    OptionRepository::update_option('profile_fields', serialize($updated_fields));
+	}
 	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
 	if (!$current_fields)
 	    $current_fields = array();
-	
+	else
+	    $current_fields = unserialize($current_fields);
+	if (!is_array($current_fields))
+	    $current_fields = array();
 	$data['current_fields'] = $current_fields;
 	if (isset($success))
 	    $data['success'] = $success;
+	Asset::container('footer')->add('jquery-ui', 'bundles/jqueryui/js/jquery-ui-1.10.3.custom.min.js', array('jquery'));
+	Asset::container('footer')->add('', 'js/profile_fields.js', array('jquery'));
+	Asset::add('jquery-ui_css', 'bundles/jqueryui/css/jquery-ui-1.10.3.custom.min.css');
 	SEO::set_title("Current custom profile fields");
 	return View::make('user.profile_fields', $data);
     }

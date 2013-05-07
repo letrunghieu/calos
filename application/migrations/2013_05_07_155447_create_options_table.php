@@ -6,7 +6,7 @@ class Create_Options_Table {
     {
         Schema::create('options', function($table) {
             $table->increments('id');
-            $table->string('key')->unique();
+            $table->string('option_key')->unique();
             $table->text('value');
             
     });

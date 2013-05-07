@@ -10,3 +10,31 @@
     height:8em;
 }
 
+#add_custom_field .btn {
+    width: 100%;
+}
+
+#current_fields .input.custom.domain {
+    height: 8em;
+}
+
+.template-field {
+    border: 1px solid #aaa;
+}
+
+.template-field .header {
+    background: #d8d8d8;
+    padding: 5px;
+    
+}
+
+.template-field .content {
+    padding: 5px;
+}
+
+#current_fields .row{
+    /*border-bottom:  1px solid #868d92;*/
+    margin-bottom: 20px;
+}
+
+

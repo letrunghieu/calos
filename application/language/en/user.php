@@ -42,4 +42,13 @@ return array(
     'current custom profile field label' => 'Current custom profile fields',
     'view list label' => 'List all users',
     'profile fields' => 'Custom profile fields',
+    
+    # custom profile fields
+    'add new profile textarea field' => 'Add a textarea',
+    'add new profile text field' => 'Add a textbox',
+    'add new profile select single field' => 'Add ratio buttons',
+    'add new profile select multy field' => 'Add checkboxes',
+    'add new custom profile field' => 'Add new custom field',
+    'update profile fields label' => 'Update fields',
+    #~custom profile fields
 );

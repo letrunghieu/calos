@@ -6,7 +6,7 @@ class Create_Metas_Table {
     {
         Schema::create('metas', function($table) {
             $table->increments('id');
-            $table->string('key');
+            $table->string('meta_key')->unique();
             $table->string('title');
             $table->text('description')->nullable();
             $table->string('type', 100);

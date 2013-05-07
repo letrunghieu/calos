@@ -9,84 +9,178 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
     </div>
     <div class='row'>
 	<div class='ten columns' id='content'>
-	    @if (isset($success))
-	    <p class='success alert'>
-		{{$success}}
-	    </p>
-	    @endif
-	    <form method="post" action="{{ URL::current() }}" id='basic_info'>
-		<section>
-		    <h3>{{__('user.current password label')}}</h3>
-
-		    <p class='field'>
-			{{Form::label('current_password', __('user.current password guide'))}}
-			<span {{isset($validation_errors['current_password']) ? "class='danger'" : ""}}>
-			    {{Form::password('current_password', array('class'=>'wide input password'))}}
-			</span>
-		    </p>
-		    @if (isset($validation_errors['current_password']))
-		    <p class='danger alert'>
-			{{$validation_errors['current_password']}}
-		    </p>
-		    @endif
+	    <form method="post" action="{{ URL::current() }}">
+		<section id='current_fields'>
 		</section>
-		<section>
-		    <h3>{{__('user.change password label')}}</h3>
-		    <p class='field'>
-			{{Form::label('new_password', __('user.type new password guide'))}}
-			{{Form::password('new_password', array('class'=>'wide input password'))}}
-		    </p>
+		<div class='valign'>
+		    <div class="large primary btn icon-left entypo icon-check pull_left" >
+			<input type='submit' name='update_fields'  value='{{__('user.update profile fields label')}}'/>
 
-		    <p class='field'>
-			{{Form::label('renew_password', __('user.retype new password guide'))}}
-			<span {{isset($validation_errors['renew_password']) ? "class='danger'" : ""}}>
-			    {{Form::password('renew_password', array('class'=>'wide input password'))}}
-			</span>
-		    </p>
-		    @if (isset($validation_errors['renew_password']))
-		    <p class='danger alert'>
-			{{$validation_errors['renew_password']}}
-		    </p>
-		    @endif
-		</section>
-		<section>
-		    <h3>{{__('user.change email label')}}</h3>
-		    <p class="field">
-			{{Form::label('new_email', __('user.type new email label'))}}
-			<span {{isset($validation_errors['new_email']) ? "class='danger'" : ""}}>
-			    {{Form::text('new_email', '', array('class'=>'wide input text'))}}
-			</span>
-		    </p>
-		    @if (isset($validation_errors['new_email']))
-		    <p class='danger alert'>
-			{{$validation_errors['new_email']}}
-		    </p>
-		    @endif
-
-		    <p class="field">
-			{{Form::label('renew_email', __('user.retype new email label'))}}
-			<span {{isset($validation_errors['renew_email']) ? "class='danger'" : ""}}>
-			    {{Form::text('renew_email', '', array('class'=>'wide input text'))}}
-			</span>
-		    </p>
-		    @if (isset($validation_errors['renew_email']))
-		    <p class='danger alert'>
-			{{$validation_errors['renew_email']}}
-		    </p>
-		    @endif
-		</section>
-		<div class="medium primary btn icon-left entypo icon-check" >
-		    <input type='submit' name='update_credential'  value='{{__('user.update credential label')}}'/>
-
+		    </div>
+		    <div class='medium info btn icon-left entypo icon-plus pull_right'>
+			<a href='#add_custom_field'>{{__('user.add custom field label')}}</a>
+		    </div>
+		    <div class='clearfix'></div>
 		</div>
+
 	    </form>
-	    <div class='clearfix'></div>
-	    <hr />
-	    <section>
-		<h3>Further information</h3>
+	    <section class='hide' id='field_templates'>
+		<div class='row template-field template-{{ \CALOS\Entities\MetaEntity::TYPE_TEXT}} '>
+		    <div class='fourteen columns'>
+			<div class='header'>
+			    <span class='pull_left title'>Field name</span>
+			    <span class='pull_right close'>
+				<a class='show'><i class='icon-minus'></i></a>
+			    </span>
+			    <span class='clearfix'></span>
+			</div>
+			<div class='content'>
+			    <input type='hidden'  class='custom type'  value='{{ \CALOS\Entities\MetaEntity::TYPE_TEXT}}' />
+			    <p>
+				<span>{{__('user.custom field type label')}}</span>:<b>{{__('user.custom field '.\CALOS\Entities\MetaEntity::TYPE_TEXT.' label')}}</b>
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field title label'))}}
+				{{Form::text('', '', array('class'=>'input text custom title', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field description label'))}}
+				{{Form::text('', '', array('class'=>'input text custom description', 'id' => null))}}
+			    </p>
+			    <div class='pull_right'>
+				<div class='medium warning btn icon-left icon-trash'>
+				    <a>{{__('user.remove custom field label')}}</a>
+				</div>
+			    </div>
+			    <div class='clearfix'></div>
+			</div>
+		    </div>
+		</div>
+		<div class='row template-field template-{{ \CALOS\Entities\MetaEntity::TYPE_TEXTAREA}} '>
+		    <div class='fourteen columns'>
+			<div class='header'>
+			    <span class='pull_left title'>Field name</span>
+			    <span class='pull_right close'>
+				<a class='show'><i class='icon-minus'></i></a>
+			    </span>
+			    <span class='clearfix'></span>
+			</div>
+			<div class='content'>
+			    <input type='hidden'  class='custom type'  value='{{ \CALOS\Entities\MetaEntity::TYPE_TEXTAREA}}' />
+			    <p>
+				<span>{{__('user.custom field type label')}}</span>:<b>{{__('user.custom field '.\CALOS\Entities\MetaEntity::TYPE_TEXTAREA.' label')}}</b>
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field title label'))}}
+				{{Form::text('', '', array('class'=>'input text custom title', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field description label'))}}
+				{{Form::text('', '', array('class'=>'input text custom description', 'id' => null))}}
+			    </p>
+			    <div class='pull_right'>
+				<div class='medium warning btn icon-left icon-trash'>
+				    <a>{{__('user.remove custom field label')}}</a>
+				</div>
+			    </div>
+			    <div class='clearfix'></div>
+			</div>
+		    </div>
+		</div>
+		<div class='row template-field template-{{ \CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE}} '>
+		    <div class='fourteen columns'>
+			<div class='header'>
+			    <span class='pull_left title'>Field name</span>
+			    <span class='pull_right close'>
+				<a class='show'><i class='icon-minus'></i></a>
+			    </span>
+			    <span class='clearfix'></span>
+			</div>
+			<div class='content'>
+			    <input type='hidden'  class='custom type'  value='{{ \CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE}}' />
+			    <p>
+				<span>{{__('user.custom field type label')}}</span>:<b>{{__('user.custom field '.\CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE.' label')}}</b>
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field title label'))}}
+				{{Form::text('', '', array('class'=>'input text custom title', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field description label'))}}
+				{{Form::text('', '', array('class'=>'input text custom description', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field domain label'))}}
+				{{Form::textarea('', '', array('class'=>'input textarea custom domain', 'id' => null))}}
+			    </p>
+			    <div class='pull_right'>
+				<div class='medium warning btn icon-left icon-trash'>
+				    <a>{{__('user.remove custom field label')}}</a>
+				</div>
+			    </div>
+			    <div class='clearfix'></div>
+			</div>
+		    </div>
+		</div>
+		<div class='row template-field template-{{ \CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI}} '>
+		    <div class='fourteen columns'>
+			<div class='header'>
+			    <span class='pull_left title'>Field name</span>
+			    <span class='pull_right close'>
+				<a class='show'><i class='icon-minus'></i></a>
+			    </span>
+			    <span class='clearfix'></span>
+			</div>
+			<div class='content'>
+			    <input type='hidden' class='custom type'  value='{{ \CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI}}' />
+			    <p>
+				<span>{{__('user.custom field type label')}}</span>:<b>{{__('user.custom field '.\CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI.' label')}}</b>
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field title label'))}}
+				{{Form::text('', '', array('class'=>'input text custom title', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field description label'))}}
+				{{Form::text('', '', array('class'=>'input text custom description', 'id' => null))}}
+			    </p>
+			    <p class='field'>
+				{{Form::label('', __('user.custom field domain label'))}}
+				{{Form::textarea('', '', array('class'=>'input textarea custom domain', 'id' => null))}}
+			    </p>
+			    <div class='pull_right'>
+				<div class='medium warning btn icon-left icon-trash'>
+				    <a>{{__('user.remove custom field label')}}</a>
+				</div>
+			    </div>
+			    <div class='clearfix'></div>
+			</div>
+		    </div>
+		</div>
 	    </section>
 	</div>
-	<div class='four columns'>
+	<div class='four columns' id='add_custom_field'>
+	    <h3>{{__('user.add new custom profile field')}}</h3>
+	    <div class='row'>
+		<p class='medium info btn icon-right icon-plus'>
+		    <a data-type='{{ \CALOS\Entities\MetaEntity::TYPE_TEXT}}'>{{__('user.add new profile text field')}}</a>
+		</p>
+	    </div>
+	    <div class='row'>
+		<p class='medium info btn icon-right icon-plus'>
+		    <a data-type='{{\CALOS\Entities\MetaEntity::TYPE_TEXTAREA}}'>{{__('user.add new profile textarea field')}}</a>
+		</p>
+	    </div>
+	    <div class='row'>
+		<p class='medium info btn icon-right icon-plus'>
+		    <a data-type='{{\CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE}}'>{{__('user.add new profile select single field')}}</a>
+		</p>
+	    </div>
+	    <div class='row'>
+		<p class='medium info btn icon-right icon-plus'>
+		    <a data-type='{{\CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI}}'>{{__('user.add new profile select multy field')}}</a>
+		</p>
+	    </div>
 	</div>
     </div>
 </div>
