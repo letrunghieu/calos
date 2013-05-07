@@ -1,25 +1,3 @@
-User
-    display_name:string,100:nullable
-    username:string,100:unique -> required
-    email:string,100:unique -> required|mail
-    password:string,64 -> required
-    new_pass_token:string,64:nullable
-    mobile_phone:string,20:nullable
-    home_phone:string,20:nullable
-    office_phone:string,26:nullable
-    address:string:nullable
-    timestamps
-
-Meta 
-    key:string -> required
-    title:string -> required
-    description:text:nullable
-    type:string,100 -> required
-    object:string,40
-    domain:text:nullable
-    timestamps
-
-MetaValue
-    object_id:integer -> required
-    meta_id:integer -> required
-    meta_value:text -> required
+Option
+    key:string:unique
+    value:text

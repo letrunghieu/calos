@@ -4,9 +4,8 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 ?>
 @section('page-content')
 <div id='profile' class='page container'>
-    @if(isset($user))
     <div class='row'>
-	<h2>{{__('user.change email and password label')}}</h2>
+	<h2>{{__('user.current custom profile field label')}}</h2>
     </div>
     <div class='row'>
 	<div class='ten columns' id='content'>
@@ -90,10 +89,5 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	<div class='four columns'>
 	</div>
     </div>
-    @else
-    <div class='row'>
-	<h2>{{__('user.empty profile page header')}}</h2>
-    </div>
-    @endif
 </div>
 @endsection

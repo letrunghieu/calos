@@ -38,4 +38,8 @@ return array(
     'your current password is not correct' => 'Your current password is not correct',
     'this is not a valid email address' => 'This is not a valid email address',
     #~ validation error messages
+    
+    'current custom profile field label' => 'Current custom profile fields',
+    'view list label' => 'List all users',
+    'profile fields' => 'Custom profile fields',
 );

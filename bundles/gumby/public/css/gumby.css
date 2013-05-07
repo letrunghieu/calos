@@ -1070,10 +1070,10 @@ img {
 }
 .navbar ul li:hover .dropdown {
   min-height: 60px;
-  max-height: 561px;
+  /*max-height: 561px;*/
   overflow: visible;
   height: auto;
-  width: 100%;
+  /*width: 100%;*/
   padding: 0;
   border-top: 1px solid #3e4043;
   -webkit-box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
@@ -1147,6 +1147,7 @@ img {
 
 .navbar li .dropdown ul {
   margin: 0;
+  width: 0;
 }
 .navbar li .dropdown ul > li {
   position: relative;

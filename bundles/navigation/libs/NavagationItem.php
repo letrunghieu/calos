@@ -127,6 +127,46 @@ class NavagationItem
     }
 
     /**
+     * 
+     * @param type $name
+     * @param type $options
+     * @return \Navigation\NavigationContainer
+     */
+    public function make_child($name = '', $options = array())
+    {
+	$container = new NavigationContainer($name, $options);
+	$this->_child = $container;
+	$container->set_parent($this);
+	return $container;
+    }
+
+    /**
+     * 
+     * @return \Navigation\NavigationContainer
+     */
+    public function get_child()
+    {
+	return $this->_child;
+    }
+
+    /**
+     * 
+     * @param type $name
+     * @param type $options
+     * @return \Navigation\NavigationContainer
+     */
+    public function get_child_or_create($name = '', $options = array())
+    {
+	if (!$this->_child)
+	{
+	    $container = new NavigationContainer($name, $options);
+	    $this->_child = $container;
+	    $container->set_parent($this);
+	}
+	return $this->_child;
+    }
+
+    /**
      * Find a navigation item by its name
      * 
      * @param string $name
@@ -180,8 +220,10 @@ class NavagationItem
 	$element_classes = "navigation_item" . ($this->_is_activate ? "active" : "");
 	if (isset($options['element_attribs']['class']))
 	    $options['element_attribs']['class'] = $element_classes . " " . $options['element_attribs']['class'];
+	else
+	    $options['element_attribs']['class'] = $element_classes;
 	$element_attribs = \Laravel\HTML::attributes($options['element_attribs']);
-	$anchor_content = \Laravel\HTML::entities($this->_link);
+	$anchor_content = $this->_link;
 	if (!isset($options['link_attribs']['title']))
 	    $options['link_attribs']['title'] = '';
 	if ($this->_url !== null)

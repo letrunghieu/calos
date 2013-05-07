@@ -50,4 +50,7 @@ return array(
     'navigation' => array(
 	'auto' => true,
     ),
+    'authority' => array(
+        'auto' => true
+    )
 );

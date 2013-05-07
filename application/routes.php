@@ -110,13 +110,43 @@ Route::filter('before', function()
 
 Route::filter('after', function($response)
 	{
+	    $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    // Do stuff after every request to your application...
 	    Asset::add('common_css', 'css/common.css');
 	    Asset::add('auth_css', 'css/auth.css');
 	    Asset::container('footer')->add('common_js', 'js/common.js');
-	    
+
 	    # create global topbar
-	    \Navigation\Navigation::make('topbar');
+	    if (!Auth::guest())
+	    {
+		$user_item = "<i class='icon-down-open-big'></i>"
+			. CALOS\Repositories\UserRepository::current_user()->display_name . " <img class='gravatar' src='"
+			. Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 40)
+			. "' alt='' />";
+		\Navigation\Navigation::make('topbar')
+			->add_link("Activities", '', false, array(), null, 'activities_menu')
+			->add_link("Organization", '', false, array(), null, 'organization_menu')
+			->add_link("Documents", '', false, array(), null, 'documents_menu')
+			->add_link("Announcements", '', false, array(), null, 'announcements_menu')
+			->add_link("Members", '', false, array(), null, 'members_menu')
+			->add_link($user_item, '', false, array()
+				, Navigation\Navigation::make('user_sub_nav', array(), false)
+				->add_link("<i class='icon-suitcase'></i> " . __('user.view profile label'), URL::to_action("user@view_profile", array($current_user->get_id())))
+				->add_link("<i class='icon-brush'></i> " . __('user.edit profile label'), URL::to_action("user@edit_profile"))
+				->add_link("<i class='icon-keyboard'></i> " . __('user.change email and password label'), URL::to_action("user@update_credential"))
+				->add_link("<i class='icon-logout'></i> " . __('auth.log out label'), URL::to_route('logout'))
+				, 'user_menu')
+		;
+
+		if (\CALOS\Services\UserService::is_user_has_roles($current_user, array('administrator', 'personel_manager')))
+		{
+		    \Navigation\Navigation::get('topbar')->find_item('members_menu')
+			    ->make_child()
+			    ->add_link("" . __('user.view list label'), URL::to_action('user@list'))
+			    ->add_link("" . __('user.profile fields'), URL::to_action('user@profile_fields'))
+		    ;
+		}
+	    }
 	});
 
 Route::filter('csrf', function()

@@ -73,7 +73,7 @@ class User_Controller extends Base_Controller
 		} else
 		{
 		    # Check the current password, if it is correct then check other fields
-		    if (Hash::check(Input::get('current_password'),$user->password))
+		    if (Hash::check(Input::get('current_password'), $user->password))
 		    {
 			# Check the new password and email
 			if (Input::get('new_password'))
@@ -85,7 +85,8 @@ class User_Controller extends Base_Controller
 			}
 			if (Input::get('new_email'))
 			{
-			    if ($validation->errors->has('new_email')){
+			    if ($validation->errors->has('new_email'))
+			    {
 				$validation_errors['new_email'] = __('user.this is not a valid email address');
 			    }
 			    if ($validation->errors->has('renew_email'))
@@ -101,7 +102,7 @@ class User_Controller extends Base_Controller
 	    } else
 	    {
 		# There is no validation error
-		if (Hash::check(Input::get('current_password'),$user->password))
+		if (Hash::check(Input::get('current_password'), $user->password))
 		{
 		    if (Input::get('new_password'))
 		    {
@@ -111,7 +112,7 @@ class User_Controller extends Base_Controller
 		    {
 			$user->email = Input::get('new_email');
 		    }
-		    if(UserRepository::save($user))
+		    if (UserRepository::save($user))
 		    {
 			$success = __('user.email and password updated successfully');
 		    }
@@ -127,6 +128,20 @@ class User_Controller extends Base_Controller
 	    $data['success'] = $success;
 	SEO::set_title("Change email and password", false);
 	return View::make('user.update_credential', $data);
+    }
+
+    public function action_profile_fields()
+    {
+	$data = array();
+	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
+	if (!$current_fields)
+	    $current_fields = array();
+	
+	$data['current_fields'] = $current_fields;
+	if (isset($success))
+	    $data['success'] = $success;
+	SEO::set_title("Current custom profile fields");
+	return View::make('user.profile_fields', $data);
     }
 
 }

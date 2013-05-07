@@ -40,10 +40,10 @@ class Authority_add_authority_tables {
 			'name' => 'administrator'
 		));
 
-		Role::create(array(
-			'id' => 2,
-			'name' => 'moderator'
-		));
+//		Role::create(array(
+//			'id' => 2,
+//			'name' => 'moderator'
+//		));
 
 		Schema::create('role_user', function($table)
 		{

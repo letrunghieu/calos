@@ -32,7 +32,7 @@ class NavigationContainer
      * @var type 
      */
     private $_name;
-    
+
     /**
      * The parent item of this container
      *
@@ -72,7 +72,7 @@ class NavigationContainer
     {
 	$this->_items = array();
     }
-    
+
     /**
      * Set the parent item for this container
      * 
@@ -82,7 +82,7 @@ class NavigationContainer
     {
 	$this->_parent = $item;
     }
-    
+
     /**
      * Get the parent item of this container
      * 
@@ -91,6 +91,16 @@ class NavigationContainer
     public function get_parent()
     {
 	return $this->_parent;
+    }
+
+    /**
+     * The total number of navigation item in this container
+     * 
+     * @return integer
+     */
+    public function total_items()
+    {
+	return count($this->_items);
     }
 
     /**
@@ -104,17 +114,10 @@ class NavigationContainer
      * @param string $name  if exist, the unique name of this item
      * @return NavigationContainer
      */
-    public function add_link($link, $url, $is_activate = false, $options = array(), $child = null, $name = null)
+    public function add_link($link, $url, $is_activate = false, $options = array(), $child = null, $name = null, $position = -1, $order = 'after')
     {
 	$item = new NavagationItem($link, $url, FALSE, $is_activate, $options, $child);
-	$item->set_parent($this);
-	if ($name === null)
-	{
-	    $this->_items[] = $item;
-	} else
-	{
-	    $this->_items[$name] = $item;
-	}
+	$this->add_item($item, $name);
 	return $this;
     }
 
@@ -131,14 +134,7 @@ class NavigationContainer
     public function add_raw($link, $is_activate = false, $options = array(), $child = null, $name = null)
     {
 	$item = new NavagationItem($link, '', TRUE, $is_activate, $options, $child);
-	$item->set_parent($this);
-	if ($name === null)
-	{
-	    $this->_items[] = $item;
-	} else
-	{
-	    $this->_items[$name] = $item;
-	}
+	$this->add_item($item, $name);
 	return $this;
     }
 
@@ -203,7 +199,7 @@ class NavigationContainer
 	    return $result;
 	}
     }
-    
+
     public function render($options = array(), $depth = 0)
     {
 	$indent = $depth ? str_repeat('    ', $depth) : "";
@@ -221,31 +217,44 @@ class NavigationContainer
 	    {
 		$options = array_merge(array(), $opt);
 	    }
-	}
-	else
+	} else
 	{
 	    $opt = $options;
 	}
 	$opt = \Parameter::array_merge($default, $opt);
 	$opt = \Parameter::array_merge($opt, $this->_options);
-	
+
 	$element_calsses = "navigation_container";
 	if (isset($opt['element_attribs']['class']))
-	    $opt['element_attribs']['class'] = $element_calsses . " " . $opt['element_attribs']['class'] ;
+	    $opt['element_attribs']['class'] = $element_calsses . " " . $opt['element_attribs']['class'];
+	else
+	    $opt['element_attribs']['class'] = $element_calsses;
 	$element_attribs = \Laravel\HTML::attributes($opt['element_attribs']);
-	
+
 	$output = "";
 	$output .= "{$indent}{$opt['before_element']}\n";
 	$output .= "{$indent}<{$opt['element']}{$element_attribs}>\n";
 	/* @var $item \Navigation\NavagationItem */
-	foreach($this->_items as $item)
+	foreach ($this->_items as $item)
 	{
 	    $output .= $item->render($opt['item_template'], $options, $depth + 1);
 	}
 	$output .= "{$indent}</{$opt['element']}>\n";
 	$output .= "{$indent}{$opt['after_element']}\n";
-	
+
 	return $output;
+    }
+
+    private function add_item(\Navigation\NavagationItem $item, $name = null)
+    {
+	$item->set_parent($this);
+	if (!$name)
+	{
+	    $this->_items[] = $item;
+	} else
+	{
+	    $this->_items[$name] = $item;
+	}
     }
 
 }

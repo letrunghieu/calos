@@ -27,62 +27,26 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		<div class="row">
 		    <!-- Toggle for mobile navigation, targeting the <ul> -->
 		    <a class="toggle" gumby-trigger="#main-nav" href="#"><i class="icon-menu"></i></a>
-		    <h1 class="four columns logo">
+		    <h1 class="three columns logo">
 			<a href="{{ URL::home() }}">
 			    <img src="{{ URL::home() }}img/calos_logo.png" gumby-retina/>
 			</a>
 		    </h1>
-		    <div class='ten columns pull_right'>
-			<ul id='main-nav'>
-			    <li>
-				<a href='#'>Activities</a>
-			    </li>
-			    <li>
-				<a href='#'>Organization</a>
-			    </li>
-			    <li>
-				<a href='#'>Documents</a>
-			    </li>
-			    <li>
-				<a href='#'>Announcements</a>
-			    </li>
-			    <li>
-				<a href='#'>
-				    <i class='icon-down-open-big'></i>
-				    <span>{{ \CALOS\Repositories\UserRepository::current_user()->display_name }}</span>
-				    <img class='gravatar' src='<?php echo Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 40) ?>' alt='' /> 
-				</a>
-				<div class='dropdown'>
-				    <ul>
-					<li>
-					    <a href='{{ URL::to_action("user@view_profile", array($current_user->get_id())) }}'>
-						<i class='icon-suitcase'></i> {{__('user.view profile label')}}
-					    </a>
-					</li>
-					<li>
-					    <a href='{{ URL::to_action("user@edit_profile") }}'>
-						<i class='icon-brush'></i> {{__('user.edit profile label')}}
-					    </a>
-					</li>
-					<li>
-					    <a href='{{ URL::to_action("user@update_credential") }}'>
-						<i class='icon-keyboard'></i> {{__('user.change email and password label')}}
-					    </a>
-					</li>
-					<li>
-					    <a href='{{ URL::to_action("admin.home@index") }}'>
-						<i class='icon-cog'></i> {{__('user.to control panel')}}
-					    </a>
-					</li>
-					<li>
-					    <a href='{{ URL::to_route('logout') }}'>
-					       <i class='icon-logout'></i> {{__('auth.log out label')}}
-					    </a>
-					</li>
-				    </ul>
-				</div>
-			    </li>
-			</ul>
+		    <div class='eleven columns pull_right'>
+			<?php
+			$options = array(
+			    array(
+				'element_attribs' => array(
+				    'id' => 'main-nav',
+				),
+			    ),
+			    array(
+				'before_element' => "<div class='dropdown'>",
+				'after_element' => '</div>',
+			    ),
+			);
+			echo Navigation\Navigation::get('topbar')->render($options);
+			?>
 		    </div>
 		</div>
 	    </div>

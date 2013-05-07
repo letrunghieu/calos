@@ -59,5 +59,11 @@ class UserService
 	    return false;
 	}
     }
+    
+    public static function is_user_has_roles(UserEntity $user_entity, $roles){
+	$roles = (array)$roles;
+	$user = \User::find($user_entity->get_id());
+	return $user->has_any_role($roles);
+    }
 
 }
