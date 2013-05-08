@@ -38,7 +38,7 @@ class MetaRepository
 	$result = array();
 	foreach ($metas as $m)
 	{
-	    $result[] = static::convert_from_orm($m);
+	    $result[$m->id] = static::convert_from_orm($m);
 	}
 	return $result;
     }
@@ -79,9 +79,9 @@ class MetaRepository
      * @param type $meta_entity
      * @return boolean
      */
-    public static function update_meta($meta_entity)
+    public static function update_meta(MetaEntity $meta_entity)
     {
-	$meta = \Meta::find($meta_entity->id);
+	$meta = \Meta::find($meta_entity->get_id());
 	if ($meta)
 	{
 	    $meta->meta_key = $meta_entity->key;

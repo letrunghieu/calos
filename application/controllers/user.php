@@ -46,6 +46,7 @@ class User_Controller extends Base_Controller
 	$data['user'] = $user;
 	if (isset($success))
 	    $data['success'] = $success;
+	$data['current_fields'] = $this->get_user_metas();
 	SEO::set_title("Edit your profile", false);
 	return View::make('user.edit_profile', $data);
     }
@@ -134,17 +135,17 @@ class User_Controller extends Base_Controller
 
     public function action_profile_fields()
     {
-//	var_dump(Input::all());
 	$data = array();
 
 	$updated_fields = array();
 	if (Input::get('update_fields'))
 	{
-	    $new_fields = Input::get('fields_new');
-	    if (is_array($new_fields))
+	    $old_fields = Input::get('fields');
+	    if (is_array($old_fields))
 	    {
-		foreach ($new_fields as $field)
+		foreach ($old_fields as $id => $field)
 		{
+		    $id = substr($id, strlen("item_"));
 		    $title = trim($field['title']);
 		    $type = $field['type'];
 		    $description = isset($field['description']) ? trim($field['description']) : null;
@@ -159,22 +160,36 @@ class User_Controller extends Base_Controller
 			    if ($domain[$k] == '')
 				unset($domain[$k]);
 			}
+			$domain = serialize($domain);
 		    }
-		    $meta = MetaRepository::create_meta(Str::slug($title, "_") . "_" . time(), $title, $description, $type, $object, $domain);
-		    if ($meta)
-			$updated_fields[] = $meta->get_id();
+		    if (isset($field['id']))
+		    {
+			#old fields
+			$updated_fields[] = $id;
+			$meta_entity = new \CALOS\Entities\MetaEntity($id);
+			$meta_entity->title = $title;
+			$meta_entity->key = Str::slug($title, "_") . "_" . time();
+			$meta_entity->description = $description;
+			$meta_entity->object = $object;
+			$meta_entity->type = $type;
+			if ($domain)
+			{
+			    $meta_entity->domain = $domain;
+			}
+			MetaRepository::update_meta($meta_entity);
+		    } else
+		    {
+			# new fields;
+			$meta = MetaRepository::create_meta(Str::slug($title, "_") . "_" . time(), $title, $description, $type, $object, $domain);
+			if ($meta)
+			    $updated_fields[] = $meta->get_id();
+		    }
 		}
 	    }
 	    OptionRepository::update_option('profile_fields', serialize($updated_fields));
 	}
-	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
-	if (!$current_fields)
-	    $current_fields = array();
-	else
-	    $current_fields = unserialize($current_fields);
-	if (!is_array($current_fields))
-	    $current_fields = array();
-	$data['current_fields'] = $current_fields;
+	
+	$data['current_fields'] = $this->get_user_metas();
 	if (isset($success))
 	    $data['success'] = $success;
 	Asset::container('footer')->add('jquery-ui', 'bundles/jqueryui/js/jquery-ui-1.10.3.custom.min.js', array('jquery'));
@@ -182,6 +197,26 @@ class User_Controller extends Base_Controller
 	Asset::add('jquery-ui_css', 'bundles/jqueryui/css/jquery-ui-1.10.3.custom.min.css');
 	SEO::set_title("Current custom profile fields");
 	return View::make('user.profile_fields', $data);
+    }
+    
+    private function  get_user_metas()
+    {
+	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
+	if (!$current_fields)
+	    $current_fields = array();
+	else
+	    $current_fields = unserialize($current_fields);
+	if (!is_array($current_fields))
+	    $current_fields = array();
+	$fields = MetaRepository::find_by_multi_id($current_fields);
+	$sorted_fields = array();
+	foreach ($current_fields as $k)
+	{
+	    if (key_exists($k, $fields))
+		$sorted_fields['item_' . $k] = $fields[$k];
+	}
+	$data['current_fields'] = $sorted_fields;
+	return $sorted_fields;
     }
 
 }

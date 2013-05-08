@@ -50,5 +50,19 @@ return array(
     'add new profile select multy field' => 'Add checkboxes',
     'add new custom profile field' => 'Add new custom field',
     'update profile fields label' => 'Update fields',
+    'remove custom field label' => 'Remove',
+    'add custom field label' => 'Add new field',
+    'custom field type label' => 'Field type',
+    'custom field text label' => 'Textbox',
+    'custom field textarea label' => 'Textarea',
+    'custom field select_single label' => 'Multichoce (single selection)',
+    'custom field select_multi label' => 'Multichoce (multi selection)',
+    'custom field description label' => 'Field description',
+    'custom field title label' => 'Field title',
+    'remove custom field cancel button' => 'Cancel',
+    'remove custom field confirm button' => 'Yes, remove it!',
+    'remove custom field confirmation message title' => 'Are you sure?',
+    'remove custom field confirmation message body' => 'You are going to remove a profile custom field. Do you want to continue?'
+    
     #~custom profile fields
 );

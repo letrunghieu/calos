@@ -13,7 +13,7 @@ class MetaEntity
     const TYPE_TEXT = 'text';
     const TYPE_BOOLEAN = 'boolean';
     const TYPE_SELECT_SINGLE = 'select_single';
-    const TYPE_SELECT_MULTI = 'select_multy';
+    const TYPE_SELECT_MULTI = 'select_multi';
     const TYPE_TEXTAREA = 'textarea';
     const TYPE_RAW = 'raw';
 

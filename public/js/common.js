@@ -23,4 +23,15 @@
     });
 })();
 
+/**
+ * Message UI module for gumby
+ * @returns {undefined}
+ */
+(function() {
+    $(document).ready(function() {
+	
+    });
+
+})();
+
 

@@ -98,6 +98,15 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <hr />
 	    <section>
 		<h3>Further information</h3>
+		<div>
+		    @foreach($current_fields as $field)
+		    <div class="custom {{$field->type}}">
+			<p class="field">
+			    {{Form::label('user[meta][' . $field->key .']', $field->title)}}
+			</p>
+		    </div>
+		    @endforeach
+		</div>
 	    </section>
 	</div>
 	<div class='four columns'>

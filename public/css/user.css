@@ -25,7 +25,7 @@
 .template-field .header {
     background: #d8d8d8;
     padding: 5px;
-    
+
 }
 
 .template-field .content {
@@ -35,6 +35,11 @@
 #current_fields .row{
     /*border-bottom:  1px solid #868d92;*/
     margin-bottom: 20px;
+}
+
+#current_fields .ui-state-highlight { 
+    height: 3em; line-height: 1.2em; 
+    background: #a2d4fc;
 }
 
 

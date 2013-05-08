@@ -53,6 +53,9 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <div id='page-content'>
 		@yield('page-content')
 	    </div>
+	    <div id='messages'>
+		@yield('message')
+	    </div>
 	</div>
 
 	{{ Asset::container('gumby')->scripts() }}

@@ -10,6 +10,8 @@
 
 Asset::container('gumby')->bundle('gumby');
 Asset::container('gumby')->add('gumby_css', 'css/gumby.css');
+Asset::container('gumby')->add('gumby_css_mod', 'css/gumby.mod.css');
 Asset::container('gumby')->add('jquery', 'js/libs/jquery-1.9.1.min.js');
+Asset::container('gumby')->add('gumby_message_module', 'js/libs/ui/gumby.message.js');
 Asset::container('gumby')->add('modernizr', 'js/libs/modernizr-2.6.2.min.js');
 Asset::container('gumby')->add('gumby_js_min', 'js/libs/gumby.min.js', 'jquery');
