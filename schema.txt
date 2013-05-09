@@ -1,3 +1,13 @@
-Option
-    key:string:unique
-    value:text
+OrganizationUnit Vacancy:hm
+    name:string,100
+    description:text:nullable
+    leader_vacancy_id:integer:nullable
+    parent_id:integer:nullable
+    timestamps
+
+Vacancy OrganizationUnit:bt
+    name:string,100
+    description:string,1024:nullable
+    supervisor_id:integer:nullable
+    is_current_valid:boolean
+    timestamps

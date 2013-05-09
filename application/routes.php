@@ -110,6 +110,9 @@ Route::filter('before', function()
 
 Route::filter('after', function($response)
 	{
+	    # disable timestamps columns on pivot tables
+	    Laravel\Database\Eloquent\Pivot::$timestamps = false;
+
 	    $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    // Do stuff after every request to your application...
 	    Asset::add('common_css', 'css/common.css');
@@ -146,6 +149,8 @@ Route::filter('after', function($response)
 			    ->add_link("" . __('user.profile fields'), URL::to_action('user@profile_fields'))
 		    ;
 		}
+
+//		var_dump(Auth::user()->metas()->first()->relationships['pivot']->meta_value);
 	    }
 	});
 

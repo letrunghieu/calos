@@ -28,34 +28,6 @@ class UserEntity
     {
 	$this->_id = $id;
     }
-
-    /**
-     * Get or set the value of a meta information of this user
-     * 
-     * @param string $key
-     * @param mixed $value
-     * @return null|boolean
-     */
-    public function meta($key, $value = NULL)
-    {
-	if (!key_exists($key, $this->_metas))
-	    return NULL;
-	$element = $this->_metas[$key];
-	if ($value !== NULL)
-	{
-	    $this->_metas[$key] = $value;
-	    return TRUE;
-	}
-	else
-	{
-	    return $element;
-	}
-    }
-
-    public function metas()
-    {
-	return $this->_metas;
-    }
     
     public function get_id(){
 	return $this->_id;

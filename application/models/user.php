@@ -45,5 +45,15 @@ class User extends Basemodel
 
 	return false;
     }
+    
+    public function metas()
+    {
+	return $this->has_many_and_belongs_to('Meta', 'metavalues', 'object_id', 'meta_id')->with('meta_value');
+    }
+    
+    public function vacancies()
+    {
+	return $this->has_many_and_belongs_to('Vacancy', 'user_vacancy');
+    }
 
 }
