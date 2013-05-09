@@ -9,18 +9,19 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	<h2>{{__('user.edit profile label')}}</h2>
     </div>
     <div class='row'>
-	<div class='ten columns' id='content'>
-	    <section>
-		<h3>Basic information</h3>
-		@if (isset($success))
-		<p class='success alert'>
-		    {{$success}}
-		</p>
-		@endif
-		<p>
-		    <em>{{__('user.edit gravtar guide')}}</em>
-		</p>
-		<form method="post" action="{{ URL::current() }}" id='basic_info'>
+	<form method="post" action="{{ URL::current() }}" id='basic_info'>
+	    <div class='ten columns' id='content'>
+		<section>
+		    <h3>Basic information</h3>
+		    @if (isset($success))
+		    <p class='success alert'>
+			{{$success}}
+		    </p>
+		    @endif
+		    <p>
+			<em>{{__('user.edit gravtar guide')}}</em>
+		    </p>
+
 		    <p class="field">
 			{{Form::label('user[display_name]', __('user.display name label'))}}
 			{{Form::text('user[display_name]', $user->display_name, array('class'=>'xwide input text', 'id' => null))}}
@@ -68,49 +69,66 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 			{{Form::label('user[home_phone]', __('user.home phone label'))}}
 			{{Form::text('user[home_phone]', $user->home_phone, array('class'=>'wide input text', 'id' => null))}}
 		    </p>
+		</section>
+		<div class='clearfix'></div>
+		<hr />
+		<section>
+		    <h3>Further information</h3>
+		    <div>
+			@foreach($current_fields as $field)
+			<div class="custom {{$field->type}}">
+			    <div class="field">
+				{{Form::label('user[meta][' . $field->key .']', $field->title)}}
+				@if ($field->description)
+				{{Form::label('user[meta][' . $field->key .']', $field->description, array('class' => 'description'))}}
+				@endif
+				@if ($field->type == \CALOS\Entities\MetaEntity::TYPE_TEXT)
+				{{Form::text('user['. $field->key .']', '', array('class'=>'wide input text'))}}
+				@elseif($field->type == \CALOS\Entities\MetaEntity::TYPE_TEXTAREA)
+				{{Form::textarea('user['. $field->key .']', '', array('class'=>'xwide input textarea'))}}
+				@elseif($field->type == \CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE)
+				<div class="picker wide">
+				    {{Form::select('user['. $field->key .']', unserialize($field->domain))}}
+				</div>
+
+				@elseif($field->type == \CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI)
+				@foreach(unserialize($field->domain) as $k => $v)
+				<label class="checkbox checked">
+				    {{Form::checkbox('user['. $field->key .'][]', $k)}}
+				    {{$v}}
+				</label>
+				@endforeach
+				@endif
+			    </div>
+			</div>
+			@endforeach
+		    </div>
+		</section>
+	    </div>
+	    <div class='four columns'>
+		<div  gumby-fixed="80">
 		    <div class='row'>
-			<div class='pull_left'>
-			    <div class="medium primary btn icon-left entypo icon-check" >
-				<input type='submit' name='update_profile'  value='{{__('user.update profile label')}}'/>
-
-			    </div>
+			<div class="large primary btn" >
+			    <input type='submit' name='update_profile'  value='{{__('user.update profile label')}}'/>
 			</div>
-			<div class='pull_left margin-left'>
-			    <div class="medium default btn icon-left entypo icon-suitcase" >
-				<a href='{{ URL::to_action("user@view_profile", array($user->get_id())) }}'>
-				    {{__('user.view profile label')}}
-				</a>
-			    </div>
-			</div>
-			<div class='pull_right'>
-			    <div class="medium default btn icon-left entypo icon-keyboard" >
-				<a href='{{ URL::to_action("user@update_credential") }}'>
-				    {{__('user.change email and password label')}}
-				</a>
-			    </div>
+			<div class="vertical-nav">
+			    <ul class="nopad">
+				<li>
+				    <a href='{{ URL::to_action("user@view_profile", array($user->get_id())) }}'>
+					{{__('user.view profile label')}}
+				    </a>
+				</li>
+				<li>
+				    <a href='{{ URL::to_action("user@update_credential") }}'>
+					{{__('user.change email and password label')}}
+				    </a>
+				</li>
+			    </ul>
 			</div>
 		    </div>
-		</form>
-
-
-	    </section>
-	    <div class='clearfix'></div>
-	    <hr />
-	    <section>
-		<h3>Further information</h3>
-		<div>
-		    @foreach($current_fields as $field)
-		    <div class="custom {{$field->type}}">
-			<p class="field">
-			    {{Form::label('user[meta][' . $field->key .']', $field->title)}}
-			</p>
-		    </div>
-		    @endforeach
 		</div>
-	    </section>
-	</div>
-	<div class='four columns'>
-	</div>
+	    </div>
+	</form>
     </div>
     @else
     <div class='row'>

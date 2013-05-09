@@ -5,6 +5,7 @@ $has_domain_types = array(
     \CALOS\Entities\MetaEntity::TYPE_SELECT_MULTI,
     \CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE
 );
+
 ?>
 @section('page-content')
 <div id='profile' class='page container'>
@@ -38,7 +39,7 @@ $has_domain_types = array(
 				<input type='hidden' name='fields[item_{{$field->get_id()}}][type]'  class='custom type'  value='{{$field->type}}' />
 				<input type='hidden' name='fields[item_{{$field->get_id()}}][id]'  class='custom type'  value='{{$field->get_id()}}' />
 				<p>
-				    <span>{{__('user.custom field type label')}}</span>: <b>{{__('user.custom field '.\CALOS\Entities\MetaEntity::TYPE_SELECT_SINGLE.' label')}}</b>
+				    <span>{{__('user.custom field type label')}}</span>: <b>{{__('user.custom field '.$field->type.' label')}}</b>
 				</p>
 				<p class='field'>
 				    {{Form::label('fields[item_'.$field->get_id().'][title]', __('user.custom field title label'))}}
@@ -51,7 +52,7 @@ $has_domain_types = array(
 				@if(in_array($field->type,$has_domain_types))
 				<p class='field'>
 				    {{Form::label('fields[item_'.$field->get_id().'][domain]', __('user.custom field domain label'))}}
-				    {{Form::textarea('fields[item_'.$field->get_id().'][domain]', implode('\n', unserialize($field->domain) ), array('class'=>'input textarea custom domain'))}}
+				    {{Form::textarea('fields[item_'.$field->get_id().'][domain]', implode("\n", unserialize($field->domain) ), array('class'=>'input textarea custom domain'))}}
 				</p>
 				@endif
 			    </div>

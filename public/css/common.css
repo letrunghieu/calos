@@ -23,10 +23,20 @@ li:first-letter {
 }
 
 
+#site-footer .logo img,
 #topbar .logo img {
     max-height: 55px;
 }
 
+#site-footer {
+    border-top: 1px solid #ddd;
+    margin-top: 2em;
+    padding-top: 0.5em;
+}
+#site-footer .copyright{
+    font-size: 0.85em;
+    text-align: right;
+}
 
 #topbar .gravatar {
     border: 2px solid #fff;
@@ -39,4 +49,10 @@ li:first-letter {
     border-radius: 8px 8px 8px 8px;
     box-shadow: 0 0 2px #474747;
     margin-top: 1.2em;
+}
+
+
+.field .description {
+    font-size: 0.85em;
+    font-style: italic;
 }

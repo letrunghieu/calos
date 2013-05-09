@@ -23,7 +23,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
         <![endif]-->
 
 	<div id='wrap0'>
-	    <div id="topbar" class="navbar container">
+	    <div id="topbar" class="navbar container"  gumby-fixed="top">
 		<div class="row">
 		    <!-- Toggle for mobile navigation, targeting the <ul> -->
 		    <a class="toggle" gumby-trigger="#main-nav" href="#"><i class="icon-menu"></i></a>
@@ -56,6 +56,22 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <div id='messages'>
 		@yield('message')
 	    </div>
+
+	    <footer class="container shaded" id="site-footer">
+		<div class="row">
+		    <div class="valign">
+			<div class="logo">
+			    <a href="{{ URL::home() }}">
+				<img src="{{ URL::home() }}img/calos_logo_dark.png" gumby-retina />
+			    </a>
+			</div>
+			<div>
+			    <p class="copyright">Powered by CALOS system @ 2013</p>
+			</div>
+		    </div>
+
+		</div>
+	    </footer>
 	</div>
 
 	{{ Asset::container('gumby')->scripts() }}

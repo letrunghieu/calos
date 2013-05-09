@@ -42,26 +42,18 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <hr />
 	    <section>
 		<h3>Further information</h3>
+		@foreach($current_fields as $field)
+		<div class="custom {{$field->type}}">
+		    <div class="field">
+			<p>
+			    <strong class='key'>{{$field->title}}</strong> <span class='value'>{{ ""}}</span>
+			</p>
+		    </div>
+		</div>
+		@endforeach
 	    </section>
 	</div>
 	<div class='four columns'>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
-	    <p>a</p>
 	</div>
     </div>
     @else

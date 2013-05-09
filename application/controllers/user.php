@@ -23,6 +23,7 @@ class User_Controller extends Base_Controller
 	{
 	    $data['user'] = $user;
 	}
+	$data['current_fields'] = $this->get_user_metas();
 	SEO::set_title("View profile of {$user->display_name}", false);
 	return View::make('user.view_profile', $data);
     }
@@ -153,12 +154,13 @@ class User_Controller extends Base_Controller
 		    $domain = null;
 		    if (isset($field['domain']))
 		    {
-			$domain = explode('\n', trim($field['domain']));
-			foreach ($domain as $k => $v)
+			$d = explode("\n", trim($field['domain']));
+			$domain = array();
+			foreach ($d as $v)
 			{
-			    $domain[$k] = trim($domain[$k]);
-			    if ($domain[$k] == '')
-				unset($domain[$k]);
+			    $v = trim($v);
+			    if ($v != '')
+				$domain[$v] = $v;
 			}
 			$domain = serialize($domain);
 		    }
@@ -203,11 +205,12 @@ class User_Controller extends Base_Controller
     {
 	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
 	if (!$current_fields)
-	    $current_fields = array();
+	    return array();
 	else
 	    $current_fields = unserialize($current_fields);
-	if (!is_array($current_fields))
-	    $current_fields = array();
+	if (!is_array($current_fields) || empty($current_fields))
+	    return array();
+	
 	$fields = MetaRepository::find_by_multi_id($current_fields);
 	$sorted_fields = array();
 	foreach ($current_fields as $k)

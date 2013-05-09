@@ -6,7 +6,7 @@
         Purpose of the stylesheet follows.
 */
 
-#basic_info .textarea {
+#basic_info .input.textarea {
     height:8em;
 }
 
