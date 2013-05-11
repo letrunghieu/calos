@@ -12,21 +12,21 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	<div class='ten columns' id='content'>
 	    <section>
 		<div class='nine columns'>
-		    <h3>Basic information</h3>
+		    <h3>{{__('user.basic info label')}}</h3>
 		    <p>
-			<strong class='key'>Email:</strong> <span class='value'>{{$current_user->email}}</span>
+			<strong class='key'>{{__('user.email label')}}:</strong> <span class='value'>{{$current_user->email}}</span>
 		    </p>
 		    <p>
-			<strong class='key'>Address:</strong> <span class='value'>{{$current_user->address}}</span>
+			<strong class='key'>{{__('user.address label')}}:</strong> <span class='value'>{{$current_user->address}}</span>
 		    </p>
 		    <p>
-			<strong class='key'>Mobile:</strong> <span class='value'>{{$current_user->mobile_phone}}</span>
+			<strong class='key'>{{__('user.mobile phone label')}}:</strong> <span class='value'>{{$current_user->mobile_phone}}</span>
 		    </p>
 		    <p>
-			<strong class='key'>Office phone:</strong> <span class='value'>{{$current_user->office_phone}}</span>
+			<strong class='key'>{{__('user.office phone label')}}:</strong> <span class='value'>{{$current_user->office_phone}}</span>
 		    </p>
 		    <p>
-			<strong class='key'>Home phone:</strong> <span class='value'>{{$current_user->home_phone}}</span>
+			<strong class='key'>{{__('user.home phone label')}}:</strong> <span class='value'>{{$current_user->home_phone}}</span>
 		    </p>
 		    <div class="medium default btn icon-left icon-brush" >
 			<a href='{{ URL::to_action("user@edit_profile") }}'>
@@ -41,7 +41,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <div class='clearfix'></div>
 	    <hr />
 	    <section>
-		<h3>Further information</h3>
+		<h3>{{__('user.further info label')}}</h3>
 		@foreach($current_fields as $field)
 		<div class="custom {{$field->type}}">
 		    <div class="field">

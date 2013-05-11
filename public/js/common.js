@@ -13,9 +13,8 @@
 	    $('.page.valign').css('position', 'relative');
 	    $('.page.valign').css('top', (windowHeight - bodyHeight) / 2.5);
 	    $('body').height(windowHeight);
+//	    $('#page-content').height(windowHeight - $('#topbar').height() - $('#site-footer').height());
 	}
-
-
     }
     $(document).ready(function() {
 	setBodyHeight();

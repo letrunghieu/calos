@@ -39,7 +39,7 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'home@logout'));
 Route::any('/forgot_password', array('as' => 'forgot_password', 'uses' => 'home@forgot_password'));
 Route::any('/renew_password/(:num)/(:any)', array('as' => 'renew_password', 'uses' => 'home@renew_password'));
 
-Route::controller(array('user'));
+Route::controller(array('user', 'organization'));
 
 /*
   |--------------------------------------------------------------------------
@@ -128,10 +128,13 @@ Route::filter('after', function($response)
 			. "' alt='' />";
 		\Navigation\Navigation::make('topbar')
 			->add_link("Activities", '', false, array(), null, 'activities_menu')
-			->add_link("Organization", '', false, array(), null, 'organization_menu')
+			->add_link("Organization", '', false, array(), Navigation\Navigation::make('organization_sub_nav', array(), false)
+				->add_link("<i class='icon-folder'></i> " . __('organization.view our organization structure'), URL::to_action("organization"))
+				->add_link("<i class='icon-folder'></i> " . __('organization.view your vacancies'), URL::to_action("organization"))
+				,'organization_menu')
 			->add_link("Documents", '', false, array(), null, 'documents_menu')
 			->add_link("Announcements", '', false, array(), null, 'announcements_menu')
-			->add_link("Members", '', false, array(), null, 'members_menu')
+			->add_link("Tools", '', false, array(), null, 'tools_menu')
 			->add_link($user_item, '', false, array()
 				, Navigation\Navigation::make('user_sub_nav', array(), false)
 				->add_link("<i class='icon-suitcase'></i> " . __('user.view profile label'), URL::to_action("user@view_profile", array($current_user->get_id())))
@@ -143,7 +146,7 @@ Route::filter('after', function($response)
 
 		if (\CALOS\Services\UserService::is_user_has_roles($current_user, array('administrator', 'personel_manager')))
 		{
-		    \Navigation\Navigation::get('topbar')->find_item('members_menu')
+		    \Navigation\Navigation::get('topbar')->find_item('tools_menu')
 			    ->make_child()
 			    ->add_link("" . __('user.view list label'), URL::to_action('user@list'))
 			    ->add_link("" . __('user.profile fields'), URL::to_action('user@profile_fields'))

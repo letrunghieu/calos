@@ -31,7 +31,7 @@
 		</p>
 		<div class='field row clearfix'>
 		    <div class='medium primary btn fourteen columns'>
-			{{Form::submit(ucfirst(__('auth.login')), array('name' => 'login'))}}
+			{{Form::submit(__('auth.log in label'), array('name' => 'login'))}}
 		    </div>
 		</div>
 		{{Form::close()}}

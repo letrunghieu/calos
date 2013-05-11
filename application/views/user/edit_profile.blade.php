@@ -12,7 +12,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	<form method="post" action="{{ URL::current() }}" id='basic_info'>
 	    <div class='ten columns' id='content'>
 		<section>
-		    <h3>Basic information</h3>
+		    <h3>{{__('user.basic info label')}}</h3>
 		    @if (isset($success))
 		    <p class='success alert'>
 			{{$success}}
@@ -73,7 +73,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		<div class='clearfix'></div>
 		<hr />
 		<section>
-		    <h3>Further information</h3>
+		    <h3>{{__('user.further info label')}}</h3>
 		    <div>
 			@foreach($current_fields as $field)
 			<div class="custom {{$field->type}}">

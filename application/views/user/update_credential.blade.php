@@ -9,13 +9,14 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	<h2>{{__('user.change email and password label')}}</h2>
     </div>
     <div class='row'>
-	<div class='ten columns' id='content'>
-	    @if (isset($success))
-	    <p class='success alert'>
-		{{$success}}
-	    </p>
-	    @endif
-	    <form method="post" action="{{ URL::current() }}" id='basic_info'>
+	<form method="post" action="{{ URL::current() }}" id='basic_info'>
+	    <div class='ten columns' id='content'>
+		@if (isset($success))
+		<p class='success alert'>
+		    {{$success}}
+		</p>
+		@endif
+
 		<section>
 		    <h3>{{__('user.current password label')}}</h3>
 
@@ -76,19 +77,19 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		    </p>
 		    @endif
 		</section>
-		<div class="medium primary btn icon-left entypo icon-check" >
-		    <input type='submit' name='update_credential'  value='{{__('user.update credential label')}}'/>
 
+		<div class='clearfix'></div>
+	    </div>
+	    <div class='four columns'>
+		<div gumby-fixed='80'>
+		    <div class="large primary btn" >
+			<input type='submit' name='update_credential'  value='{{__('user.update credential label')}}'/>
+
+		    </div>
 		</div>
-	    </form>
-	    <div class='clearfix'></div>
-	    <hr />
-	    <section>
-		<h3>Further information</h3>
-	    </section>
-	</div>
-	<div class='four columns'>
-	</div>
+
+	    </div>
+	</form>
     </div>
     @else
     <div class='row'>

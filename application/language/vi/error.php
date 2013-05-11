@@ -1,5 +1,5 @@
 <?php
 
 return array(
-    'unknown error' => 'unknown error',
+    'unknown error' => 'Lỗi không xác định đã xảy ra.',
 );
