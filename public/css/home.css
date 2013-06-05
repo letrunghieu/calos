@@ -1,0 +1,36 @@
+/* 
+    Document   : home
+    Created on : May 11, 2013, 4:45:56 PM
+    Author     : TrungHieu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+.announcement {
+    border: 1px solid #ECECEC;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.announcement.unread {
+    border-color: #D0D0D0;
+}
+
+.announcement .time, 
+.announcement .from {
+    font-size: 0.85em;
+}
+
+.announcement .time span, 
+.announcement .from span {
+    font-style: italic;
+}
+
+.announcement .title a {
+    color: #3085D6;
+    font-style: italic;
+}
+
+.announcement.unread .title a {
+    font-style: normal;
+}
+

@@ -34,7 +34,7 @@
 		messageObj.find('.button_confirm').click(settings.successData, settings.successHandler);
 	    messageObj.find('.button_cancel').click(methods.hide);
 	    container.click(methods.hide);
-	    inner.click(function(event){
+	    inner.click(function(event) {
 		event.stopPropagation();
 	    });
 	},

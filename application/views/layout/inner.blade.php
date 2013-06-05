@@ -17,13 +17,13 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 
         <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
     </head>
-    <body>
+    <body id='inner-doc'>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
 
 	<div id='wrap0'>
-	    <div id="topbar" class="navbar container"  gumby-fixed="top">
+	    <div id="topbar" class="navbar container">
 		<div class="row">
 		    <!-- Toggle for mobile navigation, targeting the <ul> -->
 		    <a class="toggle" gumby-trigger="#main-nav" href="#"><i class="icon-menu"></i></a>
