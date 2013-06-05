@@ -19,25 +19,23 @@
 		    <p class='field'>
 			<?php // ucf ?>
 			{{Form::label('email', ucfirst(__('auth.your email')))}}
-			{{Form::text('email', '', array('class'=>'input text'))}}
+			{{Form::text('email', '', array('class'=>'input-block-level'))}}
 		    </p>
 		    <p class='field'>
 			{{Form::label('password', ucfirst(__('auth.your password')))}}
-			{{Form::password('password', array('class'=>'input password'))}}
+			{{Form::password('password', array('class'=>'input-block-level'))}}
 		    </p>
 		    <p class="field">
 			<label class="checkbox">
 			    {{Form::checkbox('remember')}} {{__('auth.remember me')}}
 			</label>
 		    </p>
-		    <div class='field row clearfix'>
-			<div class='medium primary btn fourteen columns'>
-			    {{Form::submit(__('auth.log in label'), array('name' => 'login'))}}
-			</div>
-		    </div>
+		    <p>
+			{{Form::submit(__('auth.log in label'), array('name' => 'login', 'class' => 'btn btn-primary input-block-level'))}}
+		    </p>
 		    {{Form::close()}}
 		    @if (isset($error))
-		    <p class='danger alert'>
+		    <p class='alert alert-error'>
 			{{$error}}
 		    </p>
 		    @endif
