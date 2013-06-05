@@ -10,7 +10,6 @@
         <meta name="viewport" content="width=device-width">
 
         {{Asset::styles()}}
-        {{Asset::container('gumby')->styles()}}
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -25,7 +24,6 @@
 	    </div>
 	</div>
 
-	{{ Asset::container('gumby')->scripts() }}
 	{{ Asset::container('footer')->scripts() }}
 
 

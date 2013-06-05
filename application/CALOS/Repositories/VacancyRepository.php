@@ -22,6 +22,27 @@ class VacancyRepository
 			->get());
     }
 
+    public static function get_leader_vacancy_of_unit($unit_id)
+    {
+	return static::convert_from_orm(\Vacancy::where('organizationunit_id', '=', $unit_id)
+				->where('order', '=', 0)->first());
+    }
+
+    public static function get_all_vacancy_ids($unit_id)
+    {
+	$child_units = \OrganizationUnit::where('parent_id', '=', $unit_id)->get();
+	$result = array_map(function($item)
+		{
+		    return $item->id;
+		}, \DB::table('vacancies')->where('organizationunit_id', '=', $unit_id)
+			->where('is_current_valid', '=', true)->get(array('id')));
+	foreach ($child_units as $child)
+	{
+	    $result = array_merge($result, static::get_all_vacancy_ids($child->id));
+	}
+	return $result;
+    }
+
     public static function create($name, $description, $unit_id, $order)
     {
 	$vacancy = \Vacancy::create(array(
@@ -37,14 +58,11 @@ class VacancyRepository
     {
 	if ($replace_old)
 	{
-	    \DB::table('user_vacancy')
-		    ->where('vacancy_id', '=', $vacancy_id)
-		    ->delete();
+	    \UserVacancy::where('vacancy_id', '=', $vacancy_id)->delete();
 	}
-	\DB::table('user_vacancy')
-		->insert(array(
-		    'user_id' => $member_id,
-		    'vacancy_id' => $vacancy_id,
+	\UserVacancy::create(array(
+	    'user_id' => $member_id,
+	    'vacancy_id' => $vacancy_id,
 	));
     }
 

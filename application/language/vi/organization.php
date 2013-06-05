@@ -16,8 +16,13 @@ return array(
     'leader title' => 'Trưởng đơn vị',
     'member title' => 'Thành viên',
     'members' => "Các thành viên",
+    'unit members' => "Danh sách thành viên",
+    'direct members' => "Các thành viên trực thuộc",
     'belongs to %s' => "Trực thuộc <a href=':link'>:name</a>",
     'edit unit' => "Sửa thông tin đơn vị",
     'remove unit' => "Xóa đơn vị này",
-    'view unit' => "Xem trang thông tin"
+    'view unit' => "Xem trang thông tin",
+    'updated' => "Thông tin đã được cập nhật",
+    'name must be longer than 4' => "Tên của một đơn vị phải dài hơn 4 kí tự",
+    'leader vacancy name' => "Tên chức vụ trưởng đơn vị",
 );

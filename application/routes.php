@@ -115,8 +115,12 @@ Route::filter('after', function($response)
 
 	    $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    // Do stuff after every request to your application...
+	    Asset::add('bootstrap_css', 'bootstrap-awesome/css/bootstrap.css');
+	    Asset::add('bootstrap_resp_css', 'bootstrap-awesome/css/bootstrap-responsive.css');
 	    Asset::add('common_css', 'css/common.css');
 	    Asset::add('auth_css', 'css/auth.css');
+	    Asset::container('footer')->add('jquery', 'bootstrap-awesome/js/jquery-1.9.1.min.js');
+	    Asset::container('footer')->add('bootstrap_js', 'bootstrap-awesome/js/bootstrap.min.js');
 	    Asset::container('footer')->add('common_js', 'js/common.js');
 
 	    # create global topbar

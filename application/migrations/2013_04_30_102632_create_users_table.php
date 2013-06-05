@@ -19,6 +19,7 @@ class Create_Users_Table
 		    $table->string('home_phone', 20)->nullable();
 		    $table->string('office_phone', 26)->nullable();
 		    $table->string('address')->nullable();
+		    $table->string('is_valid')->default(true);
 		    $table->timestamps();
 		});
     }

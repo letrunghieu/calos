@@ -23,6 +23,7 @@ class Create_Vacancies_Table
 		    $table->increments('id');
 		    $table->integer('user_id');
 		    $table->integer('vacancy_id');
+		    $table->boolean('is_valid')->default(true);
 		    $table->timestamps();
 		});
     }

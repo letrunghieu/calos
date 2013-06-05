@@ -22,6 +22,11 @@
 		<ul class='nopad'>
 		    <li class='field'>
 			<div class='medium default btn fourteen columns'>
+			    <a href='{{URL::to_action("organization@unit_members", array($org_unit->id))}}'>{{__('organization.unit members')}}</a>
+			</div>
+		    </li>
+		    <li class='field'>
+			<div class='medium default btn fourteen columns'>
 			    <a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
 			</div>
 		    </li>

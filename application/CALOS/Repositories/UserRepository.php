@@ -22,7 +22,21 @@ class UserRepository
 	    return null;
 	}
     }
-    
+
+    public static function paginate_from_vacancies($vacancy_ids, &$paginator, $sort = 'display_name', $order = 'asc')
+    {
+	$paginator = \DB::table('users')
+		->left_join('user_vacancy', 'user_vacancy.user_id', '=', 'users.id')
+		->where_in('user_vacancy.vacancy_id', $vacancy_ids)
+		->where('users.is_valid', '=', true)
+		->order_by("users.{$sort}", $order)
+		->paginate(\Config::get('item_per_page', 20));
+	return array_map(function($user)
+		{
+		    return static::convert_from_orm($user);
+		}, (array) $paginator->results);
+    }
+
     /**
      * 
      * @param type $id
@@ -35,20 +49,19 @@ class UserRepository
 	{
 	    $user_entity = static::convert_from_orm($user);
 	    return $user_entity;
-	}
-	else
+	} else
 	{
 	    return null;
 	}
     }
-    
+
     public static function create($email, $password, $first_name, $last_name)
     {
 	$user = \User::create(array(
-	    'email' => $email,
-	    'password' => $password,
-	    'first_name' => $first_name,
-	    'last_name' => $last_name,
+		    'email' => $email,
+		    'password' => $password,
+		    'first_name' => $first_name,
+		    'last_name' => $last_name,
 	));
 	return static::convert_from_orm($user);
     }
@@ -75,7 +88,7 @@ class UserRepository
 	}
 	return false;
     }
-    
+
     /**
      * Get the current user entity
      * 
@@ -83,9 +96,10 @@ class UserRepository
      */
     public static function current_user()
     {
-	if (\Auth::guest()){
+	if (\Auth::guest())
+	{
 	    return null;
-	}else
+	} else
 	{
 	    return static::convert_from_orm(\Auth::user());
 	}
@@ -96,7 +110,7 @@ class UserRepository
 	if (!$user)
 	    return null;
 	$user_entity = new \CALOS\Entities\UserEntity($user->id);
-	
+
 	$user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
 	$user_entity->first_name = $user->first_name;
 	$user_entity->last_name = $user->last_name;

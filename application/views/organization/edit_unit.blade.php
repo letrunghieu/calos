@@ -28,6 +28,9 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
     <div class='row'>
 	<div class='ten columns'>
 	    <h2>{{ $org_unit->name }}</h2>
+	    <div>
+		<?php echo isset($messages) ? render('shared._message', array('messages' => $messages)) : ""; ?>
+	    </div>
 	    <?php echo Form::open(URL::current()) ?>
 	    <p class='field'>
 		<?php echo Form::label('name', __('organization.name')) ?>
@@ -37,17 +40,23 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		<?php echo Form::label('description', __('organization.description')) ?>
 		<?php echo Form::textarea('description', $org_unit->description, array('class' => 'textarea input')) ?>
 	    </div>
-	    <div class='field'>
-		<?php echo Form::label('parent_id', __('organization.parent unit')) ?>
-		<div class='picker'>
-		    <select name='parent_id'>
-			<?php
-			write_option($units, $org_unit->parent_id)
-			?>
-		    </select>
-		</div>
+	    <?php if ($org_unit->parent_id): ?>
+    	    <div class='field'>
+		    <?php echo Form::label('parent_id', __('organization.parent unit')) ?>
+    		<div class='picker'>
+    		    <select name='parent_id'>
+			    <?php
+			    write_option($units, $org_unit->parent_id)
+			    ?>
+    		    </select>
+    		</div>
 
-	    </div>
+    	    </div>
+	    <?php endif; ?>
+	    <p class="field">
+		<?php echo Form::label('leader_title', __('organization.leader vacancy name')) ?>
+		<?php echo Form::text('leader_title', $leader_vacancy->name, array('class' => 'text input')) ?>
+	    </p>
 	    <p>
 	    <div class='btn large primary'>
 		<?php echo Form::submit(__('common.update'), array('name' => 'commit')) ?>

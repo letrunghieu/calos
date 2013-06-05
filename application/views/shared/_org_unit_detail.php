@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 ?>
-<h3><?php echo __('organization.members'); ?></h3>
+<h3><?php echo __('organization.direct members'); ?></h3>
 <div class='org_vacancies'>
     <?php foreach ($vacancies as $v): ?>
         <div class='vacancy'>

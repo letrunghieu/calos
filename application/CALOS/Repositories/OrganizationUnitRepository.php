@@ -93,6 +93,26 @@ class OrganizationUnitRepository
 	}
 	return $unit;
     }
+    
+    public static function update($id, $name, $descriptiion, $parent_id = NULL, $leader_title = NULL)
+    {
+	$unit = \OrganizationUnit::find($id);
+	if ($unit)
+	{
+	    $unit->name = $name;
+	    $unit->description = $descriptiion;
+	    if ($parent_id)
+		$unit->parent_id = $parent_id;
+	    if ($leader_title)
+	    {
+		\DB::table('vacancies')
+			->where('organizationunit_id', '=', $id)
+			->update(array('name' => $leader_title));
+	    }
+	    return $unit->save();
+	}
+	return false;
+    }
 
     public static function convert_from_orm($obj)
     {
@@ -104,7 +124,7 @@ class OrganizationUnitRepository
 	$entity->description = $obj->description;
 	$entity->parent_id = $obj->parent_id;
 	$entity->created_at = $obj->created_at;
-	$entity->leader_vacancy = $obj->leader_vacancy;
+//	$entity->leader_vacancy = VacancyRepository::convert_from_orm($obj->leader_vacancy);
 
 	return $entity;
     }
