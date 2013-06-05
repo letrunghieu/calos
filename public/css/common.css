@@ -5,6 +5,14 @@
     Description:
         Purpose of the stylesheet follows.
 */
+html, body, #wrap0 {
+    min-height: 100%;
+}
+
+#page-content {
+    min-height: 600px;
+}
+
 .close,
 a {
     cursor: pointer;

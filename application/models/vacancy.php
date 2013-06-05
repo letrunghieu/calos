@@ -12,15 +12,15 @@ class Vacancy extends Basemodel
         return $this->belongs_to('OrganizationUnit');
     }
 
-    public function supervisor_vacancy()
-    {
-	return $this->belongs_to('Vacancy', 'supervisor_id');
-    }
-    
-    public function supervised_vacancies()
-    {
-	return $this->has_many('Vacancy', 'supervisor_id');
-    }
+//    public function supervisor_vacancy()
+//    {
+//	return $this->belongs_to('Vacancy', 'supervisor_id');
+//    }
+//    
+//    public function supervised_vacancies()
+//    {
+//	return $this->has_many('Vacancy', 'supervisor_id');
+//    }
     
     public function members()
     {

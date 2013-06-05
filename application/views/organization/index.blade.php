@@ -5,32 +5,29 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 @section('page-content')
 <div id="view_org_structure" class="page container">
     <div class="row">
-	<h2>{{__('organization.view our organization structure')}}</h2>
+
     </div>
     <div class='row'>
 	<div class='ten columns'>
-	    <div id='canvas_container'>
-		
+	    <h2>{{ $org_unit->name }}</h2>
+	    <div class='org_unit_detail'>
+		<?php echo $org_unit->description ?>
 	    </div>
+	    <div>
+		<?php echo render('shared._org_unit_detail', array('org_unit' => $org_unit, 'vacancies' => $vacancies, 'children' => $children)) ?>
+	    </div>
+
 	</div>
 	<div class='four columns'>
-	    <ul class='nopad'>
-		<li class='field'>
-		    <div class='medium primary btn fourteen columns'>
-			<a href='{{URL::to_action("organization@view_unit", array(1))}}'>View vacancy details</a>
-		    </div>
-		</li>
-		<li class='field'>
-		    <div class='medium info btn fourteen columns'>
-			<a href='{{URL::to_action("organization@edit_unit", array(1))}}'>Edit this vacancy</a>
-		    </div>
-		</li>
-		<li class='field'>
-		    <div class='medium danger btn fourteen columns'>
-			<a href=''>Remove this vacancy</a>
-		    </div>
-		</li>
-	    </ul>
+	    <div class='sidebar'>
+		<ul class='nopad'>
+		    <li class='field'>
+			<div class='medium default btn fourteen columns'>
+			    <a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
+			</div>
+		    </li>
+		</ul>
+	    </div>
 	</div>
     </div>
 </div>

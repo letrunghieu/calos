@@ -25,22 +25,6 @@ class Create_Vacancies_Table
 		    $table->integer('vacancy_id');
 		    $table->timestamps();
 		});
-
-	$vacancy = Vacancy::create(array(
-		    'name' => 'Chairman',
-		    'capacity' => 1,
-	));
-
-	Vacancy::create(array(
-	    'name' => 'Vice Chairman',
-	    'capacity' => 2,
-	    'order' => 1,
-	));
-
-	User::find(1)->vacancies()->attach($vacancy->id);
-	$org = OrganizationUnit::find(1);
-	$org->leader_vacancy_id = $vacancy->id;
-	$org->save();
     }
 
     public function down()

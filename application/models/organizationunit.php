@@ -22,7 +22,7 @@ class OrganizationUnit extends Basemodel
 	return $this->has_many('OrganizationUnit', 'parent_id');
     }
     
-    public function leader_vancancy()
+    public function leader_vacancy()
     {
 	return $this->belongs_to('Vacancy', 'leader_vacancy_id');
     }

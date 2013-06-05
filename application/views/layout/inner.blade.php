@@ -76,6 +76,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 
 	{{ Asset::container('gumby')->scripts() }}
 	{{ Asset::container('footer')->scripts() }}
+	@yield('foot_scripts')
 
 
         <script>

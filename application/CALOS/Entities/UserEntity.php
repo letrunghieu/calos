@@ -9,7 +9,7 @@ namespace CALOS\Entities;
  */
 class UserEntity
 {
-    
+    public $id;
     public $email;
     public $password;
     public $new_pass_token;
@@ -22,15 +22,14 @@ class UserEntity
     public $address;
     public $gender;
     private $_metas = array();
-    private $_id;
     
     public function __construct($id = NULL)
     {
-	$this->_id = $id;
+	$this->id = $id;
     }
     
     public function get_id(){
-	return $this->_id;
+	return $this->id;
     }
 
 }

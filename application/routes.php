@@ -128,7 +128,7 @@ Route::filter('after', function($response)
 			. "' alt='' />";
 		\Navigation\Navigation::make('topbar')
 			->add_link("Activities", '', false, array(), null, 'activities_menu')
-			->add_link("Organization", '', false, array(), Navigation\Navigation::make('organization_sub_nav', array(), false)
+			->add_link(__('organization.organization'), '', false, array(), Navigation\Navigation::make('organization_sub_nav', array(), false)
 				->add_link("<i class='icon-folder'></i> " . __('organization.view our organization structure'), URL::to_action("organization"))
 				->add_link("<i class='icon-folder'></i> " . __('organization.view your vacancies'), URL::to_action("organization"))
 				,'organization_menu')

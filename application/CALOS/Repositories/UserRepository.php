@@ -41,6 +41,17 @@ class UserRepository
 	    return null;
 	}
     }
+    
+    public static function create($email, $password, $first_name, $last_name)
+    {
+	$user = \User::create(array(
+	    'email' => $email,
+	    'password' => $password,
+	    'first_name' => $first_name,
+	    'last_name' => $last_name,
+	));
+	return static::convert_from_orm($user);
+    }
 
     public static function save(\CALOS\Entities\UserEntity $user_entity)
     {
@@ -80,8 +91,10 @@ class UserRepository
 	}
     }
 
-    private static function convert_from_orm($user)
+    public static function convert_from_orm($user)
     {
+	if (!$user)
+	    return null;
 	$user_entity = new \CALOS\Entities\UserEntity($user->id);
 	
 	$user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
