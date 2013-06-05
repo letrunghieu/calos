@@ -6,12 +6,12 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 <div id='profile' class='page container'>
     @if(isset($user))
     <div class='row'>
-	<h2>{{__($user->display_name)}}</h2>
+	<h2 class='span12'>{{__($user->display_name)}}</h2>
     </div>
     <div class='row'>
-	<div class='ten columns' id='content'>
-	    <section>
-		<div class='nine columns'>
+	<div class='span9' id='content'>
+	    <section class='row'>
+		<div class='span6'>
 		    <h3>{{__('user.basic info label')}}</h3>
 		    <p>
 			<strong class='key'>{{__('user.email label')}}:</strong> <span class='value'>{{$current_user->email}}</span>
@@ -28,13 +28,13 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		    <p>
 			<strong class='key'>{{__('user.home phone label')}}:</strong> <span class='value'>{{$current_user->home_phone}}</span>
 		    </p>
-		    <div class="medium default btn icon-left icon-brush" >
-			<a href='{{ URL::to_action("user@edit_profile") }}'>
-			    {{__('user.edit profile label')}}
+		    <div>
+			<a href='{{ URL::to_action("user@edit_profile") }}' class='btn btn-primary'>
+			    <i class='icon-edit'></i> {{__('user.edit profile label')}}
 			</a>
 		    </div>
 		</div>
-		<div class='five columns'>
+		<div class='span3'>
 		    <img class='gravatar profile-avatar pull_right' src='{{Gravitas\API::url($current_user->email, 200)}}' alt='' />
 		</div>
 	    </section>
@@ -53,7 +53,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		@endforeach
 	    </section>
 	</div>
-	<div class='four columns'>
+	<div class='span3'>
 	</div>
     </div>
     @else

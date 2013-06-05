@@ -6,7 +6,7 @@
 
     </div>
     <div class='row'>
-	<div class='ten columns'>
+	<div class='span9'>
 	    <h2>{{$org_unit->name }}<br />
 		<small>{{ __('organization.belongs to %s', array('name' => $parent->name, 'link' => URL::to_action('organization@view_unit', array($parent->id)))) }}</small>
 	    </h2>
@@ -17,23 +17,17 @@
 		<?php echo render('shared._org_unit_detail', array('org_unit' => $org_unit, 'vacancies' => $vacancies, 'children' => $children)) ?>
 	    </div>
 	</div>
-	<div class='four columns'>
+	<div class='span3'>
 	    <div class='sidebar'>
-		<ul class='nopad'>
+		<ul class='nav nav-tabs nav-stacked'>
 		    <li class='field'>
-			<div class='medium default btn fourteen columns'>
 			    <a href='{{URL::to_action("organization@unit_members", array($org_unit->id))}}'>{{__('organization.unit members')}}</a>
-			</div>
 		    </li>
 		    <li class='field'>
-			<div class='medium default btn fourteen columns'>
 			    <a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
-			</div>
 		    </li>
 		    <li class='field'>
-			<div class='medium danger btn fourteen columns'>
 			    <a href='{{URL::to_action("organization@remove_unit", array($org_unit->id))}}'>{{__('organization.remove unit')}}</a>
-			</div>
 		    </li>
 		</ul>
 	    </div>

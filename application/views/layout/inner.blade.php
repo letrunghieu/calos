@@ -13,7 +13,6 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
         <meta name="viewport" content="width=device-width">
 
         {{Asset::styles()}}
-        {{Asset::container('gumby')->styles()}}
 
         <!--<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
     </head>
@@ -23,30 +22,35 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
         <![endif]-->
 
 	<div id='wrap0'>
-	    <div id="topbar" class="navbar container">
-		<div class="row">
-		    <!-- Toggle for mobile navigation, targeting the <ul> -->
-		    <a class="toggle" gumby-trigger="#main-nav" href="#"><i class="icon-menu"></i></a>
-		    <h1 class="three columns logo">
-			<a href="{{ URL::home() }}">
+	    <div class="navbar navbar-inverse navbar-fixed-top" id='topbar'>
+		<div class="navbar-inner">
+		    <div class="container">
+			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			</a>
+			<a href="{{ URL::home() }}" class="brand logo">
 			    <img src="{{ URL::home() }}img/calos_logo.png" gumby-retina/>
 			</a>
-		    </h1>
-		    <div class='eleven columns pull_right'>
-			<?php
-			$options = array(
-			    array(
-				'element_attribs' => array(
-				    'id' => 'main-nav',
+			<div class="nav-collapse collapse">
+			    <?php
+			    $options = array(
+				array(
+				    'element_attribs' => array(
+					'id' => 'main-nav',
+					'class' => 'pull-right nav'
+				    ),
 				),
-			    ),
-			    array(
-				'before_element' => "<div class='dropdown'>",
-				'after_element' => '</div>',
-			    ),
-			);
-			echo Navigation\Navigation::get('topbar')->render($options);
-			?>
+				array(
+				    'element_attribs' => array(
+					'class' => 'dropdown-menu'
+				    ),
+				),
+			    );
+			    echo Navigation\Navigation::get('topbar')->render($options);
+			    ?>
+			</div><!--/.nav-collapse -->
 		    </div>
 		</div>
 	    </div>
@@ -57,24 +61,23 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		@yield('message')
 	    </div>
 
-	    <footer class="container shaded" id="site-footer">
-		<div class="row">
-		    <div class="valign">
-			<div class="logo">
+	    <div class='shaded'>
+		<footer class="container" id="site-footer">
+		    <div class="row">
+			<div class="logo span6">
 			    <a href="{{ URL::home() }}">
 				<img src="{{ URL::home() }}img/calos_logo_dark.png" gumby-retina />
 			    </a>
 			</div>
-			<div>
+			<div class='span6 text-right'>
 			    <p class="copyright">Powered by CALOS system @ 2013</p>
 			</div>
-		    </div>
 
-		</div>
-	    </footer>
+		    </div>
+		</footer>
+	    </div>
 	</div>
 
-	{{ Asset::container('gumby')->scripts() }}
 	{{ Asset::container('footer')->scripts() }}
 	@yield('foot_scripts')
 

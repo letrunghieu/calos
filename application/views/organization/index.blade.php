@@ -4,11 +4,8 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 ?>
 @section('page-content')
 <div id="view_org_structure" class="page container">
-    <div class="row">
-
-    </div>
     <div class='row'>
-	<div class='ten columns'>
+	<div class='span9'>
 	    <h2>{{ $org_unit->name }}</h2>
 	    <div class='org_unit_detail'>
 		<?php echo $org_unit->description ?>
@@ -18,18 +15,14 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    </div>
 
 	</div>
-	<div class='four columns'>
+	<div class='span3'>
 	    <div class='sidebar'>
-		<ul class='nopad'>
+		<ul class='nav nav-tabs nav-stacked'>
 		    <li class="field">
-			<div class='medium default btn fourteen columns'>
-			    <a href='{{URL::to_action("organization@unit_members", array($org_unit->id))}}'>{{__('organization.unit members')}}</a>
-			</div>
+			<a href='{{URL::to_action("organization@unit_members", array($org_unit->id))}}'>{{__('organization.unit members')}}</a>
 		    </li>
 		    <li class='field'>
-			<div class='medium default btn fourteen columns'>
-			    <a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
-			</div>
+			<a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
 		    </li>
 		</ul>
 	    </div>

@@ -6,13 +6,13 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 <div id='profile' class='page container'>
     @if(isset($user))
     <div class='row'>
-	<h2>{{__('user.change email and password label')}}</h2>
+	<h2 class='span12'>{{__('user.change email and password label')}}</h2>
     </div>
     <div class='row'>
 	<form method="post" action="{{ URL::current() }}" id='basic_info'>
-	    <div class='ten columns' id='content'>
+	    <div class='span9' id='content'>
 		@if (isset($success))
-		<p class='success alert'>
+		<p class='alert alert-success'>
 		    {{$success}}
 		</p>
 		@endif
@@ -77,15 +77,26 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 		    </p>
 		    @endif
 		</section>
+		<p>
+		    <input class='btn btn-primary' type='submit' name='update_credential'  value='{{__('user.update credential label')}}'/>
+		</p>
 
 		<div class='clearfix'></div>
 	    </div>
-	    <div class='four columns'>
-		<div gumby-fixed='80'>
-		    <div class="large primary btn" >
-			<input type='submit' name='update_credential'  value='{{__('user.update credential label')}}'/>
-
-		    </div>
+	    <div class='span3'>
+		<div class="vertical-nav">
+		    <ul class="nav nav-tabs nav-stacked">
+			<li>
+			    <a href='{{ URL::to_action("user@view_profile", array($user->get_id())) }}'>
+				{{__('user.view profile label')}}
+			    </a>
+			</li>
+			<li>
+			    <a href='{{ URL::to_action("user@edit_profile") }}'>
+				{{__('user.edit profile label')}}
+			    </a>
+			</li>
+		    </ul>
 		</div>
 
 	    </div>

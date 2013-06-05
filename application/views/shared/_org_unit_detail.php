@@ -11,10 +11,10 @@
 	    <?php foreach ($v->members as $m): ?>
 		<div class='member'>
 		    <div>
-			<div class='pull_left avatar'>
-			    <?php echo Gravitas\API::image($m->email, 64) ?>
+			<div class='pull-left avatar'>
+			    <?php echo Gravitas\API::image($m->email, 64,'', array('class' => 'img-circle')) ?>
 			</div>
-			<div class='pull_left'>
+			<div class='pull-left'>
 			    <p class='name'><?php echo HTML::link(URL::to_action('user@view_profile', array($m->id)), $m->display_name) ?><p>
 			    <div class='vacancy-name'>
 				<?php echo $v->name ?>

@@ -126,25 +126,34 @@ Route::filter('after', function($response)
 	    # create global topbar
 	    if (!Auth::guest())
 	    {
-		$user_item = "<i class='icon-down-open-big'></i>"
+		$user_item = " <b class='caret'></b>"
 			. CALOS\Repositories\UserRepository::current_user()->display_name . " <img class='gravatar' src='"
-			. Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 40)
+			. Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 24)
 			. "' alt='' />";
 		\Navigation\Navigation::make('topbar')
 			->add_link("Activities", '', false, array(), null, 'activities_menu')
-			->add_link(__('organization.organization'), '', false, array(), Navigation\Navigation::make('organization_sub_nav', array(), false)
+			->add_link(__('organization.organization'), '', false, array(
+			    'element_attribs' => array('class' => 'dropdown'),
+			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
+				), Navigation\Navigation::make('organization_sub_nav', array(), false)
 				->add_link("<i class='icon-folder'></i> " . __('organization.view our organization structure'), URL::to_action("organization"))
 				->add_link("<i class='icon-folder'></i> " . __('organization.view your vacancies'), URL::to_action("organization"))
-				,'organization_menu')
+				, 'organization_menu')
 			->add_link("Documents", '', false, array(), null, 'documents_menu')
 			->add_link("Announcements", '', false, array(), null, 'announcements_menu')
-			->add_link("Tools", '', false, array(), null, 'tools_menu')
-			->add_link($user_item, '', false, array()
+			->add_link("Tools", '', false, array(
+			    'element_attribs' => array('class' => 'dropdown'),
+			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
+				), null, 'tools_menu')
+			->add_link($user_item, '', false, array(
+			    'element_attribs' => array('class' => 'dropdown'),
+			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
+				)
 				, Navigation\Navigation::make('user_sub_nav', array(), false)
 				->add_link("<i class='icon-suitcase'></i> " . __('user.view profile label'), URL::to_action("user@view_profile", array($current_user->get_id())))
-				->add_link("<i class='icon-brush'></i> " . __('user.edit profile label'), URL::to_action("user@edit_profile"))
+				->add_link("<i class='icon-edit'></i> " . __('user.edit profile label'), URL::to_action("user@edit_profile"))
 				->add_link("<i class='icon-keyboard'></i> " . __('user.change email and password label'), URL::to_action("user@update_credential"))
-				->add_link("<i class='icon-logout'></i> " . __('auth.log out label'), URL::to_route('logout'))
+				->add_link("<i class='icon-signout'></i> " . __('auth.log out label'), URL::to_route('logout'))
 				, 'user_menu')
 		;
 
