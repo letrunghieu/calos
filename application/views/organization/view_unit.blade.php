@@ -19,17 +19,7 @@
 	</div>
 	<div class='span3'>
 	    <div class='sidebar'>
-		<ul class='nav nav-tabs nav-stacked'>
-		    <li class='field'>
-			    <a href='{{URL::to_action("organization@unit_members", array($org_unit->id))}}'>{{__('organization.unit members')}}</a>
-		    </li>
-		    <li class='field'>
-			    <a href='{{URL::to_action("organization@edit_unit", array($org_unit->id))}}'>{{__('organization.edit unit')}}</a>
-		    </li>
-		    <li class='field'>
-			    <a href='{{URL::to_action("organization@remove_unit", array($org_unit->id))}}'>{{__('organization.remove unit')}}</a>
-		    </li>
-		</ul>
+		@render('shared._org_unit_sidebar', array('org_unit' => $org_unit))
 	    </div>
 	</div>
     </div>

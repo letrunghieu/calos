@@ -24,6 +24,35 @@ class Organization_Controller extends Base_Controller
 	SEO::set_title('View our organization structure');
 	return View::make('organization.index', $data);
     }
+    
+    public function action_unit_activities($unit_id)
+    {
+	$data = array();
+	$org_unit = \CALOS\Repositories\OrganizationUnitRepository::get_by_id($unit_id);
+	if ($org_unit)
+	{
+	    $allowed = array('created_at', 'assigning_time', 'progress', 'deadline');
+	    $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'created_at';
+	    $order = Input::get('order') === 'desc' ? 'desc' : 'asc';
+	    $querystrings = $_GET;
+	    $paginator = NULL;
+	    $data['org_unit'] = $org_unit;
+	    $data['activities'] = \CALOS\Repositories\ActivityRepository::paginate_org_unit_task($unit_id, $paginator, array(
+		'sort' => $sort,
+		'order' => $order,
+	    ));
+	    $data['querystrings'] = $querystrings;
+	    $data['paginate_total'] = $paginator->total;
+	    $data['paginate_link'] = $paginator->appends(array(
+			'sort' => $sort,
+			'order' => $order,
+		    ))->links();
+	    $data['paginate_start'] = ($paginator->page - 1) * $paginator->per_page;
+	    SEO::set_title(__('organization.activities in %s', array('name' => $org_unit->name)));
+	    Asset::add('activity_css', 'css/activity.css');
+	    return View::make('organization.unit_activities', $data);
+	}
+    }
 
     public function action_view_unit($unit_id)
     {

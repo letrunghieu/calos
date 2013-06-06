@@ -7,4 +7,7 @@
 return array(
     'update' => "Cập nhật",
     'tools' => "Công cụ",
+    'days' => "ngày",
+    'asc' => "tăng dần",
+    'desc' => "giảm dần"
 );

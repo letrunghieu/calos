@@ -19,7 +19,7 @@ class Activity extends Basemodel
 	return $this->belongs_to('User', 'creator_id');
     }
     
-    public function assigneee()
+    public function assignee()
     {
 	return $this->belongs_to('User', 'assignee_id');
     }

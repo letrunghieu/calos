@@ -28,6 +28,16 @@ class ConvertService
 	return $result;
     }
 
+    public static function date_diff(\DateTime $date_1, \DateTime $date_2)
+    {
+	$ts1 = $date_1->getTimestamp();
+	$ts2 = $date_2->getTimestamp();
+
+	$seconds_diff = $ts2 - $ts1;
+
+	return (int)  round($seconds_diff / 3600 / 24);
+    }
+
 }
 
 ?>

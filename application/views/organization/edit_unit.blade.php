@@ -26,7 +26,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 
     </div>
     <div class='row'>
-	<div class='ten columns'>
+	<div class='span9'>
 	    <h2>{{ $org_unit->name }}</h2>
 	    <div>
 		<?php echo isset($messages) ? render('shared._message', array('messages' => $messages)) : ""; ?>
@@ -34,7 +34,7 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <?php echo Form::open(URL::current()) ?>
 	    <p class='field'>
 		<?php echo Form::label('name', __('organization.name')) ?>
-		<?php echo Form::text('name', $org_unit->name, array('class' => 'text input')) ?>
+		<?php echo Form::text('name', $org_unit->name, array('class' => 'input-block-level')) ?>
 	    </p>
 	    <div class='field'>
 		<?php echo Form::label('description', __('organization.description')) ?>
@@ -55,25 +55,19 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    <?php endif; ?>
 	    <p class="field">
 		<?php echo Form::label('leader_title', __('organization.leader vacancy name')) ?>
-		<?php echo Form::text('leader_title', $leader_vacancy->name, array('class' => 'text input')) ?>
+		<?php echo Form::text('leader_title', $leader_vacancy->name, array('class' => 'input-block-level')) ?>
 	    </p>
 	    <p>
-	    <div class='btn large primary'>
-		<?php echo Form::submit(__('common.update'), array('name' => 'commit')) ?>
+	    <div>
+		<?php echo Form::submit(__('common.update'), array('name' => 'commit', 'class'=> 'btn btn-large btn-primary')) ?>
 	    </div>
 	    </p>
 	    <?php echo Form::close(); ?>
 
 	</div>
-	<div class='four columns'>
+	<div class='span3'>
 	    <div class='sidebar'>
-		<ul class='nopad'>
-		    <li class='field'>
-			<div class='medium default btn fourteen columns'>
-			    <a href='{{URL::to_action("organization@view_unit", array($org_unit->id))}}'>{{__('organization.view unit')}}</a>
-			</div>
-		    </li>
-		</ul>
+		@render('shared._org_unit_sidebar', array('org_unit' => $org_unit))
 	    </div>
 	</div>
     </div>

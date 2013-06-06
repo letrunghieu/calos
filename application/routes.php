@@ -131,7 +131,7 @@ Route::filter('after', function($response)
 			. Gravitas\API::url(\CALOS\Repositories\UserRepository::current_user()->email, 24)
 			. "' alt='' />";
 		\Navigation\Navigation::make('topbar')
-			->add_link("Activities", '', false, array(), null, 'activities_menu')
+			->add_link(__('activity.activity'), '', false, array(), null, 'activities_menu')
 			->add_link(__('organization.organization'), '', false, array(
 			    'element_attribs' => array('class' => 'dropdown'),
 			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),

@@ -1,0 +1,25 @@
+/* 
+    Document   : activity
+    Created on : Jun 6, 2013, 6:03:55 PM
+    Author     : TrungHieu
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.activity.preview {
+    border: 1px solid #F0F0F0;
+    margin-bottom: 1em;
+    padding: 5px;
+    transition: border 0.2s;
+}
+.activity.preview:hover {
+    border-color: #d0d0d0;
+}
+.activity.preview h4 {
+    margin: 0;
+}
+.activity.preview .progress {
+    height: 5px;
+    margin-bottom: 3px;
+}
+

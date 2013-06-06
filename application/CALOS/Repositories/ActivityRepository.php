@@ -12,7 +12,7 @@ use CALOS\Entities\ActivityEntity;
 class ActivityRepository
 {
 
-    public static function paginate_date_task($user_id, $date, $paginator, $options = array())
+    public static function paginate_date_task($user_id, $date, &$paginator, $options = array())
     {
 	$default = array(
 	    'sort' => 'assigning_time',
@@ -30,7 +30,7 @@ class ActivityRepository
 	return static::convert_from_orm($paginator->results);
     }
     
-    public static function paginate_org_unit_task($user_id, $paginator, $options = array())
+    public static function paginate_org_unit_task($unit_id, &$paginator, $options = array())
     {
 	$default = array(
 	    'sort' => 'created_at',
@@ -41,7 +41,7 @@ class ActivityRepository
 	$options = array_merge($default, $options);
 	$today = new \DateTime();
 
-	$paginator = \Activity::where('creator_id', '=', $user_id)
+	$paginator = \Activity::where('organizationunit_id', '=', $unit_id)
 		->order_by($options['sort'], $options['order'])
 		->paginate($options['per_page']);
 	return static::convert_from_orm($paginator->results);
@@ -117,10 +117,10 @@ class ActivityRepository
 				$entity->parent->id = $parent->id;
 				$entity->parent->title = $parent->title;
 			    }
-			    $entity->created_at = $obj->created_at;
-			    $entity->deadline = $obj->deadline;
-			    $entity->assigning_time = $obj->assigning_time;
-			    $entity->completed_time = $obj->completed_time;
+			    $entity->created_at = new \DateTime($obj->created_at);
+			    $entity->deadline = new \DateTime($obj->deadline);
+			    $entity->assigning_time = $obj->assigning_time ? new \DateTime($obj->assigning_time) : null;
+			    $entity->completed_time = $obj->completed_time ? new \DateTime($obj->completed_time) : null;
 			    $entity->creator_comment = $obj->creator_comment;
 
 			    return $entity;
