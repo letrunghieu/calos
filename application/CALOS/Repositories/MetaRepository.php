@@ -122,7 +122,7 @@ class MetaRepository
      * @param type $meta
      * @return \CALOS\Entities\MetaEntity
      */
-    private static function convert_from_orm($meta)
+    public static function convert_from_orm($meta)
     {
 	$meta_entity = new MetaEntity($meta->id);
 	$meta_entity->key = $meta->meta_key;

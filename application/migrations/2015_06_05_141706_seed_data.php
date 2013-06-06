@@ -64,6 +64,7 @@ class Seed_Data
 
 	shuffle($users);
 	$user_index = 0;
+	$leader = $users[0];
 	foreach ($level1 as $unit)
 	{
 	    \CALOS\Repositories\OrganizationUnitRepository::create("Phân nhóm Cơ sở 2", "", $unit->id);
@@ -75,7 +76,19 @@ class Seed_Data
 	    }
 	}
 
+	$unit = $level1[0];
+	for ($j = 0; $j < 6; $j++)
+	{
+	    $title_j = $j + 1;
+	    CALOS\Repositories\AnnouncementRepository::create("Announcement Foo {$title_j}", "Foo bar", $leader->id, $unit->id);
+	}
+
 	\CALOS\Repositories\OrganizationUnitRepository::assign_leader($org->id, $admin_user->id);
+	for ($j = 0; $j < 3; $j++)
+	{
+	    $title_j = $j + 1;
+	    CALOS\Repositories\AnnouncementRepository::create("Announcement Bar {$title_j}", "Foo bar", $admin_user->id, $org->id);
+	}
     }
 
     /**

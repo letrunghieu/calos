@@ -65,5 +65,10 @@ class UserService
 	$user = \User::find($user_entity->get_id());
 	return $user->has_any_role($roles);
     }
+    
+    public static function can_write_announcement($user_id)
+    {
+	return true;
+    }
 
 }

@@ -47,11 +47,32 @@ class UserRepository
 		->where('user_vacancy.vacancy_id', '=', $vacancy->id)
 		->where('users.is_valid', '=', true)
 		->order_by("users.{$sort}", $order)
-		->paginate(\Config::get('item_per_page', 20));
+		->paginate(\Config::get('item_per_page', 20), array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone'));
 	return array_map(function($user)
 		{
 		    return static::convert_from_orm($user);
 		}, (array) $paginator->results);
+    }
+
+    public static function get_unit_members($unit_id)
+    {
+	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
+		->where('order', '=', 1000)
+		->first();
+	if (!$vacancy)
+	{
+	    var_dump($unit_id);
+	}
+	return array_map(function($item)
+		{
+		    $entity = new \CALOS\Entities\UserEntity($item->id);
+		    return $entity;
+		}, \DB::table('users')
+			->left_join('user_vacancy', 'user_vacancy.user_id', '=', 'users.id')
+			->where('user_vacancy.vacancy_id', '=', $vacancy->id)
+			->where('users.is_valid', '=', true)
+			->group_by('users.id')
+			->get(array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone')));
     }
 
     /**
@@ -79,6 +100,7 @@ class UserRepository
 		    'password' => $password,
 		    'first_name' => $first_name,
 		    'last_name' => $last_name,
+		    'display_name' => $first_name . " " . $last_name,
 	));
 	OrganizationUnitRepository::add_member(1, $user->id);
 	return static::convert_from_orm($user);
@@ -125,23 +147,25 @@ class UserRepository
 
     public static function convert_from_orm($user)
     {
-	if (!$user)
-	    return null;
-	$user_entity = new \CALOS\Entities\UserEntity($user->id);
+	return \CALOS\Services\ConvertService::to_entity($user, function($item)
+			{
+			    $user = $item;
+			    $user_entity = new \CALOS\Entities\UserEntity($user->id);
 
-	$user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
-	$user_entity->first_name = $user->first_name;
-	$user_entity->last_name = $user->last_name;
-	$user_entity->email = $user->email;
-	$user_entity->password = $user->password;
-	$user_entity->new_pass_token = $user->new_pass_token;
-	$user_entity->mobile_phone = $user->mobile_phone;
-	$user_entity->home_phone = $user->home_phone;
-	$user_entity->office_phone = $user->office_phone;
-	$user_entity->address = $user->address;
-	$user_entity->gender = $user->gender;
+			    $user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
+			    $user_entity->first_name = $user->first_name;
+			    $user_entity->last_name = $user->last_name;
+			    $user_entity->email = $user->email;
+			    $user_entity->password = $user->password;
+			    $user_entity->new_pass_token = $user->new_pass_token;
+			    $user_entity->mobile_phone = $user->mobile_phone;
+			    $user_entity->home_phone = $user->home_phone;
+			    $user_entity->office_phone = $user->office_phone;
+			    $user_entity->address = $user->address;
+			    $user_entity->gender = $user->gender;
 
-	return $user_entity;
+			    return $user_entity;
+			});
     }
 
 }

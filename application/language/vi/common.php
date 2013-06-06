@@ -6,4 +6,5 @@
  */
 return array(
     'update' => "Cập nhật",
+    'tools' => "Công cụ",
 );

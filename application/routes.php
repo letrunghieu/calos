@@ -139,9 +139,8 @@ Route::filter('after', function($response)
 				->add_link("<i class='icon-folder'></i> " . __('organization.view our organization structure'), URL::to_action("organization"))
 				->add_link("<i class='icon-folder'></i> " . __('organization.view your vacancies'), URL::to_action("organization"))
 				, 'organization_menu')
-			->add_link("Documents", '', false, array(), null, 'documents_menu')
-			->add_link("Announcements", '', false, array(), null, 'announcements_menu')
-			->add_link("Tools", '', false, array(
+			->add_link(__('announcement.announcements'), '', false, array(), null, 'announcements_menu')
+			->add_link(__('common.tools'), '', false, array(
 			    'element_attribs' => array('class' => 'dropdown'),
 			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
 				), null, 'tools_menu')
@@ -163,6 +162,14 @@ Route::filter('after', function($response)
 			    ->make_child()
 			    ->add_link("" . __('user.view list label'), URL::to_action('user@list'))
 			    ->add_link("" . __('user.profile fields'), URL::to_action('user@profile_fields'))
+		    ;
+		}
+		
+		if (\CALOS\Services\UserService::can_write_announcement($current_user->id))
+		{
+		    \Navigation\Navigation::get('topbar')->find_item('tools_menu')
+			    ->get_child_or_create()
+			    ->add_link("" . __('announcement.write new announcement'), URL::to_action('user@list'))
 		    ;
 		}
 

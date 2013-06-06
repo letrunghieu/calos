@@ -37,8 +37,13 @@ class Home_Controller extends Base_Controller
 
     public function action_index()
     {
-	SEO::set_title('Dashboard');
-	return View::make('home.index');
+	$current_user = \CALOS\Repositories\UserRepository::current_user();
+	$data = array();
+	$data['org'] = CALOS\Repositories\OrganizationUnitRepository::get_organizaion();
+	$data['announcements'] = CALOS\Repositories\AnnouncementRepository::get_latest($current_user->id);
+	
+	SEO::set_title($data['org']->name);
+	return View::make('home.index', $data);
     }
 
     public function action_login()
