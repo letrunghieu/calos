@@ -16,11 +16,11 @@ return array(
     'deadline' => "Thời hạn",
     'view all status' => "Tất cả trạng thái",
     'view completed status' => "Đã hoàn thành",
-    'view 100% status' => "Đạt 100%",
+    'view 100 status' => "Đạt 100%",
     'view occuring status' => "Đang tiến hành",
     'view delayed status' => "Đã trễ hạn",
     'sort by created_at' => "Thời gian tạo",
     'sort by deadline' => "Thời hạn kết thúc",
     'sort by assigning_time' => "Thời gian giao việc",
-    'sort by progress' => "tiến độ",
+    'sort by progress' => "Tiến độ hiện tại",
 );

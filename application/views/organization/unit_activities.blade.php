@@ -21,50 +21,51 @@
 		    <div class='span7 text-right'>
 			<div class="btn-group  text-left">
 			    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				{{__('activity.sort by created_at')}}
+				{{__('activity.sort by ' . $sort)}}
 				<span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu">
+				@foreach($avail_sorts as $av)
 				<li>
-				    {{HTML::link('',__('activity.sort by deadline'))}}
+				    <?php
+					$q = array_merge($querystrings, array('sort' => $av));
+				    ?>
+				    {{HTML::link(URL::current() . '?' . http_build_query($q),__('activity.sort by ' . $av))}}
 				</li>
-				<li>
-				    {{HTML::link('',__('activity.sort by assigning_time'))}}
-				</li>
-				<li>
-				    {{HTML::link('',__('activity.sort by progress'))}}
-				</li>
+				@endforeach
+				
 			    </ul>
 			</div>
 			<div class="btn-group  text-left">
 			    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				{{__('common.asc')}}
+				{{__('common.' . $order)}}
 				<span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu">
+				@foreach($avail_orders as $av)
 				<li>
-				    {{HTML::link('',__('common.desc'))}}
+				    <?php
+					$q = array_merge($querystrings, array('order' => $av));
+				    ?>
+				    {{HTML::link(URL::current() . '?' . http_build_query($q),__('common.' . $av))}}
 				</li>
+				@endforeach
 			    </ul>
 			</div>
 			<div class="btn-group  text-left">
 			    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-				{{__('activity.view all status')}}
+				{{__('activity.view ' . $filter .' status')}}
 				<span class="caret"></span>
 			    </a>
 			    <ul class="dropdown-menu">
+				@foreach($avail_filters as $av)
 				<li>
-				    {{HTML::link('',__('activity.view completed status'))}}
+				    <?php
+					$q = array_merge($querystrings, array('filter' => $av));
+				    ?>
+				    {{HTML::link(URL::current() . '?' . http_build_query($q),__('activity.view ' . $av .' status'))}}
 				</li>
-				<li>
-				    {{HTML::link('',__('activity.view 100% status'))}}
-				</li>
-				<li>
-				    {{HTML::link('',__('activity.view occuring status'))}}
-				</li>
-				<li>
-				    {{HTML::link('',__('activity.view delayed status'))}}
-				</li>
+				@endforeach
 			    </ul>
 			</div>
 		    </div>

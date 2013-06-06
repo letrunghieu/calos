@@ -29,37 +29,58 @@ class ActivityRepository
 		->paginate($options['per_page']);
 	return static::convert_from_orm($paginator->results);
     }
-    
+
     public static function paginate_org_unit_task($unit_id, &$paginator, $options = array())
     {
 	$default = array(
 	    'sort' => 'created_at',
 	    'order' => 'asc',
+	    'filter' => ActivityEntity::STATUS_ALL,
 	    'per_page' => \Config::get('item_per_page', 20),
 	);
 
 	$options = array_merge($default, $options);
 	$today = new \DateTime();
+	$query = \Activity::where('organizationunit_id', '=', $unit_id);
+	switch ($options['filter'])
+	{
+	    case ActivityEntity::STATUS_COMPLETED:
+		$query->where_not_null('completed_time');
+		break;
+	    case ActivityEntity::STATUS_100_PERCENT:
+		$query->where_null('completed_time')
+			->where('progress', '=', 100);
+		break;
+	    case ActivityEntity::STATUS_OCCURING:
+		$query->where_null('completed_time')
+			->where('deadline', '>', $today)
+			->where('progress', '<', 100);
+		break;
+	    case ActivityEntity::STATUS_DELAYED:
+		$query->where_null('completed_time')
+			->where('deadline', '<=', $today)
+			->where('progress', '<', 100);
+		break;
+	}
 
-	$paginator = \Activity::where('organizationunit_id', '=', $unit_id)
-		->order_by($options['sort'], $options['order'])
+	$paginator = $query->order_by($options['sort'], $options['order'])
 		->paginate($options['per_page']);
-	return static::convert_from_orm($paginator->results);
+	return (array)static::convert_from_orm($paginator->results);
     }
 
     public static function create($title, $description, $user_id, $unit_id, $deadline, $parent_id = NULL)
     {
 	$create = \Activity::create(array(
-	    'title' => $title,
-	    'description' => $description,
-	    'creator_id' => $user_id,
-	    'organizationunit_id' => $unit_id,
-	    'deadline' => $deadline,
-	    'parent_id' => $parent_id,
+		    'title' => $title,
+		    'description' => $description,
+		    'creator_id' => $user_id,
+		    'organizationunit_id' => $unit_id,
+		    'deadline' => $deadline,
+		    'parent_id' => $parent_id,
 	));
 	return $create;
     }
-    
+
     public static function assign_to($assignee_id, $activity_id)
     {
 	$activity = \Activity::find($activity_id);
@@ -70,7 +91,7 @@ class ActivityRepository
 	    $activity->save();
 	}
     }
-    
+
     public static function update_progress($activity_id, $progress_percent)
     {
 	$activity = \Activity::find($activity_id);
@@ -80,7 +101,7 @@ class ActivityRepository
 	    $activity->save();
 	}
     }
-    
+
     public static function mark_complete($activity_id, $comment = "")
     {
 	$activity = \Activity::find($activity_id);

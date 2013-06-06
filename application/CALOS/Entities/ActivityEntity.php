@@ -9,10 +9,12 @@ namespace CALOS\Entities;
  */
 class ActivityEntity
 {
-    
-    const STATUS_COMPLETED = 0;
-    const STATUS_OCCURING = 1;
-    const STATUS_DELAYED = 2;
+
+    const STATUS_COMPLETED = 'completed';
+    const STATUS_OCCURING = 'occuring';
+    const STATUS_DELAYED = 'delayed';
+    const STATUS_100_PERCENT = '100';
+    const STATUS_ALL = 'all';
 
     public $id;
     public $title;
@@ -68,35 +70,33 @@ class ActivityEntity
     public $is_valid;
     public $progress;
     public $creator_comment;
-    
-    
 
     public function status_label()
     {
 	switch ($this->status())
 	{
 	    case ActivityEntity::STATUS_COMPLETED:
-		    return "success";
+		return "success";
 	    case ActivityEntity::STATUS_OCCURING:
-		    return "info";
+		return "info";
 	    case ActivityEntity::STATUS_DELAYED:
-		    return "important";
+		return "important";
 	}
     }
-    
+
     public function status_progress_label()
     {
 	switch ($this->status())
 	{
 	    case ActivityEntity::STATUS_COMPLETED:
-		    return "success";
+		return "success";
 	    case ActivityEntity::STATUS_OCCURING:
-		    return "info";
+		return "info";
 	    case ActivityEntity::STATUS_DELAYED:
-		    return "danger";
+		return "danger";
 	}
     }
-    
+
     public function status()
     {
 	$today = new \DateTime;

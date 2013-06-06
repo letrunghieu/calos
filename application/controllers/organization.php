@@ -24,30 +24,53 @@ class Organization_Controller extends Base_Controller
 	SEO::set_title('View our organization structure');
 	return View::make('organization.index', $data);
     }
-    
+
     public function action_unit_activities($unit_id)
     {
 	$data = array();
 	$org_unit = \CALOS\Repositories\OrganizationUnitRepository::get_by_id($unit_id);
 	if ($org_unit)
 	{
-	    $allowed = array('created_at', 'assigning_time', 'progress', 'deadline');
-	    $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'created_at';
-	    $order = Input::get('order') === 'desc' ? 'desc' : 'asc';
+	    $avail_sorts = array('created_at', 'assigning_time', 'progress', 'deadline');
+	    $sort = in_array(Input::get('sort'), $avail_sorts) ? Input::get('sort') : 'created_at';
+	    if (($k = array_search($sort, $avail_sorts)) !== FALSE)
+		unset($avail_sorts[$k]);
+	    $avail_orders = array('asc', 'desc');
+	    $order = in_array(Input::get('order'), $avail_orders) ? Input::get('order') : 'asc';
+	    if (($k = array_search($order, $avail_orders)) !== FALSE)
+		unset($avail_orders[$k]);
+	    $avail_filters = array(
+		CALOS\Entities\ActivityEntity::STATUS_ALL,
+		CALOS\Entities\ActivityEntity::STATUS_COMPLETED,
+		CALOS\Entities\ActivityEntity::STATUS_100_PERCENT,
+		CALOS\Entities\ActivityEntity::STATUS_OCCURING,
+		CALOS\Entities\ActivityEntity::STATUS_DELAYED,
+	    );
+	    $filter = in_array(Input::get('filter'), $avail_filters) ? Input::get('filter') : CALOS\Entities\ActivityEntity::STATUS_ALL;
+	    if (($k = array_search($filter, $avail_filters)) !== FALSE)
+		unset($avail_filters[$k]);
 	    $querystrings = $_GET;
 	    $paginator = NULL;
 	    $data['org_unit'] = $org_unit;
 	    $data['activities'] = \CALOS\Repositories\ActivityRepository::paginate_org_unit_task($unit_id, $paginator, array(
-		'sort' => $sort,
-		'order' => $order,
+			'sort' => $sort,
+			'order' => $order,
+			'filter' => $filter,
 	    ));
 	    $data['querystrings'] = $querystrings;
 	    $data['paginate_total'] = $paginator->total;
 	    $data['paginate_link'] = $paginator->appends(array(
 			'sort' => $sort,
 			'order' => $order,
+			'filter' => $filter,
 		    ))->links();
 	    $data['paginate_start'] = ($paginator->page - 1) * $paginator->per_page;
+	    $data['sort'] = $sort;
+	    $data['avail_sorts'] = $avail_sorts;
+	    $data['order'] = $order;
+	    $data['avail_orders'] = $avail_orders;
+	    $data['filter'] = $filter;
+	    $data['avail_filters'] = $avail_filters;
 	    SEO::set_title(__('organization.activities in %s', array('name' => $org_unit->name)));
 	    Asset::add('activity_css', 'css/activity.css');
 	    return View::make('organization.unit_activities', $data);
