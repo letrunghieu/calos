@@ -14,4 +14,5 @@ return array(
     'time desc' => "Mới trước",
     'confirm' => "Xác nhận",
     'create' => "Tạo mới",
+    'actions' => "Thao tác",
 );

@@ -46,6 +46,9 @@
 			    <th>
 				{{__('user.mobile phone label')}}
 			    </th>
+			    <th>
+				{{__('common.actions')}}
+			    </th>
 			</tr>
 		    </thead>
 		    <tbody>
@@ -59,6 +62,13 @@
 			    <td>{{$mem->first_name}}</td>
 			    <td>{{$mem->email}}</td>
 			    <td>{{$mem->mobile_phone}}</td>
+			    <td>
+				<a title='{{__('user.remove')}}'><i class='icon-remove-circle'></i></a> 
+				<a title='{{__('user.set leader')}}'><i class='icon-upload-alt'></i></a> 
+				@if( $org_unit->id == 1)
+				<a title='{{__('user.add vacancy')}}'><i class='icon-plus-sign'></i></a> 
+				@endif
+			    </td>
 			</tr>
 			@endforeach
 		    </tbody>

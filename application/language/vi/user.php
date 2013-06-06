@@ -41,6 +41,10 @@ return array(
     'parent unit'=> "Đơn vị",
     'cannot created' => "Không thể tạo người dùng mới vì trùng email",
     'created successfully' => "Đã tạo xong người dùng",
+    'remove' => "Xóa",
+    'set leader' => "Đưa lên làm trưởng đơn vị",
+    'move' => "Chuyển đến vị trí khác",
+    'add vacancy' => "Giao chức vụ mới",
     
     # validation error messages
     'you must enter your current password' => 'Phải nhập mật khẩu hiện tại!',
