@@ -104,6 +104,7 @@ foreach (range(0, 100, 10) as $v)
 	</div>
 	<div class='span3'>
 	    <div class='sidebar'>
+		<?php echo render('shared._activity_sidebar', array('activity' => $activity, 'user' => $user)) ?>
 	    </div>
 	</div>
     </div>

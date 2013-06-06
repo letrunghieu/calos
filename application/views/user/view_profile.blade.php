@@ -6,10 +6,8 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 <div id='profile' class='page container'>
     @if(isset($user))
     <div class='row'>
-	<h2 class='span12'>{{__($user->display_name)}}</h2>
-    </div>
-    <div class='row'>
 	<div class='span9' id='content'>
+	    <h2 class=''>{{__($user->display_name)}}</h2>
 	    <section class='row'>
 		<div class='span6'>
 		    <h3>{{__('user.basic info label')}}</h3>
@@ -54,6 +52,9 @@ $current_user = \CALOS\Repositories\UserRepository::current_user();
 	    </section>
 	</div>
 	<div class='span3'>
+	    <div class='sidebar'>
+		<?php echo render('shared._user_sidebar', array('user'=>$user)) ?>
+	    </div>
 	</div>
     </div>
     @else

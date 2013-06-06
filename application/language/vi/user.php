@@ -33,6 +33,7 @@ return array(
     'retype new email label' => 'Nhập lại địa chỉ này',
     'update credential label' => 'Cập nhật thông tin',
     'email and password updated successfully' => 'Mật khẩu và thư điện tử đã được cập nhật!',
+    'view profile' => "Thông tin cá nhân",
     
     # validation error messages
     'you must enter your current password' => 'Phải nhập mật khẩu hiện tại!',

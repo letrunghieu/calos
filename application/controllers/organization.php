@@ -24,6 +24,22 @@ class Organization_Controller extends Base_Controller
 	SEO::set_title('View our organization structure');
 	return View::make('organization.index', $data);
     }
+    
+    public function action_user_vacancies($user_id)
+    {
+	$data = array();
+	$user = CALOS\Repositories\UserRepository::find_by_id($user_id);
+	if ($user)
+	{
+	    $vacancies = CALOS\Repositories\VacancyRepository::from_user_with_unit($user_id);
+	    
+	    $data['user'] = $user;
+	    $data['vacancies'] = $vacancies;
+	    SEO::set_title(__('organization.vacancies of %', array('name' => $user->display_name)));
+	    
+	    return View::make('organization.user_vacancies', $data);
+	}
+    }
 
     public function action_unit_activities($unit_id)
     {

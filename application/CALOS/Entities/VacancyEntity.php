@@ -14,6 +14,12 @@ class VacancyEntity
     public $capacity;
     public $order;
     public $org_unit_id;
+    
+    /**
+     *
+     * @var OrganizationUnitEntity
+     */
+    public $unit;
     public $members = array();
     
     public function is_removable()

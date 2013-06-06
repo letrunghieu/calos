@@ -76,3 +76,6 @@ li:first-letter {
     font-size: 0.85em;
     font-style: italic;
 }
+.sidebar {
+    margin-top: 1em;
+}

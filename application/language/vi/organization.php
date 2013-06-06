@@ -30,4 +30,10 @@ return array(
     'unit announcements' => "Các thông báo",
     'activities in %s' => "Các hoạt động của :name",
     'list of %s activities' => "Danh sách :total công việc (:from - :to)",
+    'view your vacancies' => "Các chức vụ của tôi",
+    'vacancies of %' => "Các chức vụ của :name",
+    'list vacancies of %' => "Danh sách chức vụ<br /><small>:name</small>",
+    'name' => "Tên đơn vị",
+    'vacancy name' => "Chức vụ",
+    'user vacancies' => "Các chức vụ",
 );

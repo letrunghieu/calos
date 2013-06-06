@@ -30,5 +30,11 @@ return array(
     'update this activity progress' => "Cập nhật tiến độ hiện tại cho công việc này",
     'confirm that activity complete' => "Xác nhận là công việc này đã hoàn thành. Bạn có thể gửi lời nhận xét của mình cho :name ngay bây giờ bằng cách nhập nhận xét của mình vào khung bên dưới.",
     'marked completed on %s with message' => "đã xác nhận công việc vào <i>':time'</i> với lời nhắn",
-    'completed' => "Đã hoàn thành"
+    'completed' => "Đã hoàn thành",
+    'view activity' => "Xem công việc",
+    'edit activity' => "Sửa thông tin",
+    'delete activity' => "Xóa công việc này",
+    'activities in unit' => "Công việc trong đơn vị",
+    'my activities' => "Công việc của tôi",
+    'user activities' => "Các công việc",
 );

@@ -22,6 +22,43 @@ class VacancyRepository
 			->get());
     }
 
+    public static function from_user_with_unit($user_id)
+    {
+	$query = \DB::table('user_vacancy')
+		->left_join('vacancies', 'user_vacancy.vacancy_id', '=', 'vacancies.id')
+		->left_join('organizationunits', 'vacancies.organizationunit_id', '=', 'organizationunits.id')
+		->where('user_vacancy.is_valid', '=', true)
+		->where('user_vacancy.user_id', '=', $user_id)
+		->order_by('organizationunits.id')
+		->order_by('vacancies.order');
+	$result =  $query->get(array(
+		    'vacancies.id as vacancy_id',
+		    'vacancies.name as vacancy_name',
+		    'organizationunits.name as unit_name',
+		    'organizationunits.id as unit_id',
+		));
+	
+	$ouput = array();
+	$current_unit_id = 0;
+	foreach($result as $row)
+	{
+	    if ($row->unit_id != $current_unit_id)
+	    {
+		$item = new VacancyEntity;
+		$item->id = $row->vacancy_id;
+		$item->name = $row->vacancy_name;
+		$unit = new \CALOS\Entities\OrganizationUnitEntity;
+		$unit->id = $row->unit_id;
+		$unit->name = $row->unit_name;
+		$item->unit = $unit;
+		$ouput[] = $item;
+		
+		$current_unit_id = $row->unit_id;
+	    }
+	}
+	return $ouput;
+    }
+
     public static function get_leader_vacancy_of_unit($unit_id)
     {
 	return static::convert_from_orm(\Vacancy::where('organizationunit_id', '=', $unit_id)
