@@ -22,10 +22,10 @@ class User_Controller extends Base_Controller
 	if ($user)
 	{
 	    $data['user'] = $user;
+	    $data['current_fields'] = $this->get_user_metas();
+	    SEO::set_title("View profile of {$user->display_name}", false);
+	    return View::make('user.view_profile', $data);
 	}
-	$data['current_fields'] = $this->get_user_metas();
-	SEO::set_title("View profile of {$user->display_name}", false);
-	return View::make('user.view_profile', $data);
     }
 
     public function action_edit_profile()
@@ -190,7 +190,7 @@ class User_Controller extends Base_Controller
 	    }
 	    OptionRepository::update_option('profile_fields', serialize($updated_fields));
 	}
-	
+
 	$data['current_fields'] = $this->get_user_metas();
 	if (isset($success))
 	    $data['success'] = $success;
@@ -200,8 +200,8 @@ class User_Controller extends Base_Controller
 	SEO::set_title("Current custom profile fields");
 	return View::make('user.profile_fields', $data);
     }
-    
-    private function  get_user_metas()
+
+    private function get_user_metas()
     {
 	$current_fields = \CALOS\Repositories\OptionRepository::get_option('profile_fields');
 	if (!$current_fields)
@@ -210,7 +210,7 @@ class User_Controller extends Base_Controller
 	    $current_fields = unserialize($current_fields);
 	if (!is_array($current_fields) || empty($current_fields))
 	    return array();
-	
+
 	$fields = MetaRepository::find_by_multi_id($current_fields);
 	$sorted_fields = array();
 	foreach ($current_fields as $k)

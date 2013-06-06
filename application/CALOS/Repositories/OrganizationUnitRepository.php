@@ -20,11 +20,11 @@ class OrganizationUnitRepository
     public static function get_all_hierachy($root = 1)
     {
 	$unit = \OrganizationUnit::find($root);
-	$children = (array)$unit->child_units;
+	$children = (array) $unit->child_units;
 	$child_units = array();
 	foreach ($children as $u)
 	{
-	    $child_units[] =  static::get_all_hierachy($u->id);
+	    $child_units[] = static::get_all_hierachy($u->id);
 	}
 	return array(
 	    'item' => static::convert_from_orm($unit),
@@ -49,7 +49,7 @@ class OrganizationUnitRepository
 	static::add_member($unit_id, $user_id);
 	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
 			->where('order', '=', 0)->first();
-	
+
 	VacancyRepository::assign_member($vacancy->id, $user_id, true);
     }
 
@@ -82,10 +82,17 @@ class OrganizationUnitRepository
     {
 	if (!$leader_title)
 	    $leader_title = __('organization.leader title');
+	$depth = 0;
+	if ($parent_id)
+	{
+	    $parent = \OrganizationUnit::find($parent_id);
+	    $depth = $parent->depth + 1;
+	}
 	$unit = \OrganizationUnit::create(array(
 		    'name' => $name,
 		    'description' => $desciption,
-		    'parent_id' => $parent_id
+		    'parent_id' => $parent_id,
+		    'depth' => $depth,
 	));
 
 	if ($unit)
@@ -95,7 +102,7 @@ class OrganizationUnitRepository
 	}
 	return $unit;
     }
-    
+
     public static function update($id, $name, $descriptiion, $parent_id = NULL, $leader_title = NULL)
     {
 	$unit = \OrganizationUnit::find($id);

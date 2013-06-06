@@ -13,6 +13,7 @@ class Create_Organizationunits_Table
 		    $table->integer('leader_vacancy_id')->nullable();
 		    $table->integer('parent_id')->nullable();
 		    $table->boolean('is_valid')->default(true);
+		    $table->integer('depth')->default(0);
 		    $table->timestamps();
 		});
     }

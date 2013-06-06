@@ -25,4 +25,5 @@ return array(
     'updated' => "Thông tin đã được cập nhật",
     'name must be longer than 4' => "Tên của một đơn vị phải dài hơn 4 kí tự",
     'leader vacancy name' => "Tên chức vụ trưởng đơn vị",
+    'list of %s members' => "Danh sách :total thành viên",
 );

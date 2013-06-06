@@ -53,20 +53,22 @@ class Organization_Controller extends Base_Controller
 	if ($org_unit)
 	{
 	    $allowed = array('display_name', 'email', 'first_name');
-	    $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'display_name';
+	    $sort = in_array(Input::get('sort'), $allowed) ? Input::get('sort') : 'first_name';
 	    $order = Input::get('order') === 'desc' ? 'desc' : 'asc';
 	    $querystrings = $_GET;
 	    $paginator = NULL;
 	    $vacancy_ids = \CALOS\Repositories\VacancyRepository::get_all_vacancy_ids($unit_id);
 	    $data['org_unit'] = $org_unit;
 	    $data['parent'] = \CALOS\Repositories\OrganizationUnitRepository::get_parent($unit_id);
-	    $data['members'] = CALOS\Repositories\UserRepository::paginate_from_vacancies($vacancy_ids, $paginator, $sort, $order);
+//	    $data['members'] = CALOS\Repositories\UserRepository::paginate_from_vacancies($vacancy_ids, $paginator, $sort, $order);
+	    $data['members'] = CALOS\Repositories\UserRepository::paginate_from_unit_members($unit_id, $paginator, $sort, $order);
 	    $data['querystrings'] = $querystrings;
 	    $data['paginate_total'] = $paginator->total;
 	    $data['paginate_link'] = $paginator->appends(array(
 			'sort' => $sort,
 			'order' => $order,
 		    ))->links();
+	    $data['paginate_start'] = ($paginator->page - 1) * $paginator->per_page;
 	    SEO::set_title($org_unit->name);
 	    return View::make('organization.unit_members', $data);
 	}

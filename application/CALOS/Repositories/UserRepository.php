@@ -37,6 +37,23 @@ class UserRepository
 		}, (array) $paginator->results);
     }
 
+    public static function paginate_from_unit_members($unit_id, &$paginator, $sort = 'display_name', $order = 'asc')
+    {
+	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
+		->where('order', '=', 1000)
+		->first();
+	$paginator = \DB::table('users')
+		->left_join('user_vacancy', 'user_vacancy.user_id', '=', 'users.id')
+		->where('user_vacancy.vacancy_id', '=', $vacancy->id)
+		->where('users.is_valid', '=', true)
+		->order_by("users.{$sort}", $order)
+		->paginate(\Config::get('item_per_page', 20));
+	return array_map(function($user)
+		{
+		    return static::convert_from_orm($user);
+		}, (array) $paginator->results);
+    }
+
     /**
      * 
      * @param type $id
