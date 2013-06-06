@@ -79,3 +79,32 @@ li:first-letter {
 .sidebar {
     margin-top: 1em;
 }
+
+.announcement {
+    border: 1px solid #ECECEC;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
+
+.announcement.unread {
+    border-color: #D0D0D0;
+}
+
+.announcement .time, 
+.announcement .from {
+    font-size: 0.85em;
+}
+
+.announcement .time span, 
+.announcement .from span {
+    font-style: italic;
+}
+
+.announcement .title a {
+    color: #3085D6;
+    font-style: italic;
+}
+
+.announcement.unread .title a {
+    font-style: normal;
+}

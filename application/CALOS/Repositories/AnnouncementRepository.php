@@ -30,6 +30,65 @@ class AnnouncementRepository
 	}
     }
 
+    public static function paginate_user_task($user_id, &$paginator, $options = array())
+    {
+	$default = array(
+	    'sort' => 'created_at',
+	    'order' => 'asc',
+	    'filter' => AnnouncementEntity::STATUS_ALL,
+	    'per_page' => \Config::get('calos.item_per_page', 20),
+	    'role' => AnnouncementEntity::ROLE_RECEIVER,
+	    'unit' => 0,
+	);
+
+	$options = array_merge($default, $options);
+	$today = new \DateTime();
+	$query = \DB::table('user_announcement')
+		->left_join('users', 'user_announcement.user_id', '=', 'users.id')
+		->left_join('announcements', 'user_announcement.announcement_id', '=', 'announcements.id')
+		->left_join('organizationunits', 'announcements.organizationunit_id', '=', 'organizationunits.id');
+	switch ($options['role'])
+	{
+	    case AnnouncementEntity::ROLE_SENDER:
+		$query->where('announcements.creator_id', '=', $user_id);
+		break;
+	    case AnnouncementEntity::ROLE_RECEIVER:
+		$query->where('user_announcement.user_id', '=', $user_id);
+		break;
+	}
+	switch ($options['filter'])
+	{
+	    case AnnouncementEntity::STATUS_READ:
+		$query->where('user_announcement.is_read', '=', true);
+		break;
+	    case AnnouncementEntity::STATUS_UNREAD:
+		$query->where('user_announcement.is_read', '=', false);
+		break;
+	}
+
+	if ($options['unit'])
+	{
+	    $query->where('announcements.organizationunit_id', '=', $options['unit']);
+	}
+
+
+
+	$paginator = $query->order_by('announcements.' . $options['sort'], $options['order'])
+		->paginate($options['per_page'], array(
+	    'announcements.id',
+	    'announcements.creator_id',
+	    'users.display_name',
+	    'users.email',
+	    'announcements.organizationunit_id',
+	    'organizationunits.name',
+	    'announcements.title',
+	    'announcements.content',
+	    'announcements.created_at',
+	    'user_announcement.is_read',
+	));
+	return (array) static::convert_from_orm($paginator->results);
+    }
+
     public static function get_latest($user_id, $number = NULL)
     {
 	if (!$number)

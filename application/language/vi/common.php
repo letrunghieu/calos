@@ -10,5 +10,7 @@ return array(
     'days' => "ngày",
     'asc' => "tăng dần",
     'desc' => "giảm dần",
+    'time asc' => "Cũ trước",
+    'time desc' => "Mới trước",
     'confirm' => "Xác nhận",
 );
