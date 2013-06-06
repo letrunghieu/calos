@@ -919,7 +919,7 @@ blockquote {
 
 blockquote p {
   margin-bottom: 0;
-  font-size: 20px;
+  /*font-size: 20px;*/
   font-weight: 300;
   line-height: 1.25;
 }

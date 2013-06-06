@@ -53,7 +53,7 @@ class Home_Controller extends Base_Controller
 	$remember = Input::get('remember');
 	if ($email !== NULL && $password !== NULL)
 	{
-	    $credentials = array('username' => $email, 'password' => $password, 'remember' => ($remember != NULL));
+	    $credentials = array('username' => trim($email), 'password' => trim($password), 'remember' => ($remember != NULL));
 
 	    if (Auth::attempt($credentials))
 	    {

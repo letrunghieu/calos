@@ -11,13 +11,17 @@ use CALOS\Entities\ActivityEntity;
  */
 class ActivityRepository
 {
-
+    public static function get_by_id($id)
+    {
+	return static::convert_from_orm(\Activity::find($id));
+    }
+    
     public static function paginate_date_task($user_id, $date, &$paginator, $options = array())
     {
 	$default = array(
 	    'sort' => 'assigning_time',
 	    'order' => 'asc',
-	    'per_page' => \Config::get('item_per_page', 20),
+	    'per_page' => \Config::get('calos.item_per_page', 20),
 	);
 
 	$options = array_merge($default, $options);
@@ -36,7 +40,7 @@ class ActivityRepository
 	    'sort' => 'created_at',
 	    'order' => 'asc',
 	    'filter' => ActivityEntity::STATUS_ALL,
-	    'per_page' => \Config::get('item_per_page', 20),
+	    'per_page' => \Config::get('calos.item_per_page', 20),
 	);
 
 	$options = array_merge($default, $options);
@@ -107,6 +111,7 @@ class ActivityRepository
 	$activity = \Activity::find($activity_id);
 	if ($activity)
 	{
+	    $activity->progress = 100;
 	    $activity->creator_comment = $comment;
 	    $activity->completed_time = (new \DateTime);
 	    $activity->save();

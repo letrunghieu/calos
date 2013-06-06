@@ -23,4 +23,12 @@ return array(
     'sort by deadline' => "Thời hạn kết thúc",
     'sort by assigning_time' => "Thời gian giao việc",
     'sort by progress' => "Tiến độ hiện tại",
+    'description' => "Mô tả",
+    'summary' => "Tóm tắt",
+    'progress update' => "Cập nhật tiến độ",
+    'mark complete' => "Xác nhận hoàn thành",
+    'update this activity progress' => "Cập nhật tiến độ hiện tại cho công việc này",
+    'confirm that activity complete' => "Xác nhận là công việc này đã hoàn thành. Bạn có thể gửi lời nhận xét của mình cho :name ngay bây giờ bằng cách nhập nhận xét của mình vào khung bên dưới.",
+    'marked completed on %s with message' => "đã xác nhận công việc vào <i>':time'</i> với lời nhắn",
+    'completed' => "Đã hoàn thành"
 );

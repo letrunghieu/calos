@@ -9,5 +9,6 @@ return array(
     'tools' => "Công cụ",
     'days' => "ngày",
     'asc' => "tăng dần",
-    'desc' => "giảm dần"
+    'desc' => "giảm dần",
+    'confirm' => "Xác nhận",
 );

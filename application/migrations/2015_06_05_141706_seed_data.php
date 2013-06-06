@@ -120,11 +120,12 @@ class Seed_Data
 	
 	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.2", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[2]->id, $activity->id);
-	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
+	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, 100);
 	
 	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.3", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[3]->id, $activity->id);
-	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
+	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, 50);
+	\CALOS\Repositories\ActivityRepository::mark_complete($activity->id, "Công việc này đã hoàn thành");
 	
 	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.4", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[4]->id, $activity->id);

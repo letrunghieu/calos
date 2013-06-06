@@ -30,7 +30,7 @@ class UserRepository
 		->where_in('user_vacancy.vacancy_id', $vacancy_ids)
 		->where('users.is_valid', '=', true)
 		->order_by("users.{$sort}", $order)
-		->paginate(\Config::get('item_per_page', 20));
+		->paginate(\Config::get('calos.item_per_page', 20));
 	return array_map(function($user)
 		{
 		    return static::convert_from_orm($user);
@@ -47,7 +47,7 @@ class UserRepository
 		->where('user_vacancy.vacancy_id', '=', $vacancy->id)
 		->where('users.is_valid', '=', true)
 		->order_by("users.{$sort}", $order)
-		->paginate(\Config::get('item_per_page', 20), array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone'));
+		->paginate(\Config::get('calos.item_per_page', 20), array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone'));
 	return array_map(function($user)
 		{
 		    $user_entity = new \CALOS\Entities\UserEntity($user->id);

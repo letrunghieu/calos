@@ -18,8 +18,12 @@
 .activity.preview h4 {
     margin: 0;
 }
-.activity.preview .progress {
+.activity .progress {
     height: 5px;
     margin-bottom: 3px;
+}
+
+.activity .personel > div {
+    margin-bottom: 5px;
 }
 
