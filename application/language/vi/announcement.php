@@ -19,4 +19,13 @@ return array(
     'view unread status' => "Chưa đọc",
     'list announcements' => "Các thông báo",
     'list of %s' => ":total thông báo (:from - :to)",
+    'posted by %s on %s in %s' => "Đăng bởi :creator vào lúc <b>:time</b> thuộc đơn vị :org",
+    'content' => "Nội dung",
+    'title' => "Tiêu đề",
+    'confirm read' => "Xác nhận đã đọc",
+    'read on %s' => "Đã đọc vào ngày :time",
+    'navigation title' => "Thao tác với thông báo",
+    'view announcement' => "Xem thông báo",
+    'view announcement read' => "Thành viên đã đọc",
+    'view announcement unread' => "Thành viên chưa đọc", 
 );

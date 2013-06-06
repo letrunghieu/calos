@@ -18,6 +18,11 @@ class Announcement extends Basemodel
     {
 	return $this->belongs_to('OrganizationUnit', 'organizationunit_id');
     }
+    
+    public function creator()
+    {
+	return $this->belongs_to('User', 'creator_id');
+    }
 }
 
 ?>

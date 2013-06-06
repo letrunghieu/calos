@@ -10,7 +10,7 @@
 	    @endif
 	</div>
 	<div class='pull_right from'>
-	    <span>{{__('announcement.from')}}</span> <strong>{{$an->org_unit->name}}</strong>
+	    <span>{{__('announcement.from')}}</span> <strong>{{HTML::link(URL::to_action('organization@view_unit',array($an->org_unit->id)), $an->org_unit->name)}}</strong>
 	</div>
 	<div class='clearfix'></div>
 	<div class='title'>

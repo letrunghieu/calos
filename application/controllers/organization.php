@@ -24,7 +24,36 @@ class Organization_Controller extends Base_Controller
 	SEO::set_title('View our organization structure');
 	return View::make('organization.index', $data);
     }
-    
+
+    public function action_unit_announcements($unit_id)
+    {
+	$data = array();
+	$org_unit = \CALOS\Repositories\OrganizationUnitRepository::get_by_id($unit_id);
+	if ($org_unit)
+	{
+	    $avail_orders = array('asc', 'desc');
+	    $order = in_array(Input::get('order'), $avail_orders) ? Input::get('order') : 'asc';
+	    if (($k = array_search($order, $avail_orders)) !== FALSE)
+		unset($avail_orders[$k]);
+	    $querystrings = $_GET;
+	    $paginator = NULL;
+	    $data['org_unit'] = $org_unit;
+	    $data['announcements'] = \CALOS\Repositories\AnnouncementRepository::paginate_unit_announcement($org_unit->id, $paginator, array(
+			'order' => $order,
+	    ));
+	    $data['querystrings'] = $querystrings;
+	    $data['paginate_total'] = $paginator->total;
+	    $data['paginate_link'] = $paginator->appends(array(
+			'order' => $order,
+		    ))->links();
+	    $data['paginate_start'] = ($paginator->page - 1) * $paginator->per_page;
+	    $data['order'] = $order;
+	    $data['avail_orders'] = $avail_orders;
+	    SEO::set_title(__('organization.announcement of %s', array('name' => $org_unit->name)));
+	    return View::make('organization.unit_announcements', $data);
+	}
+    }
+
     public function action_user_vacancies($user_id)
     {
 	$data = array();
@@ -32,11 +61,11 @@ class Organization_Controller extends Base_Controller
 	if ($user)
 	{
 	    $vacancies = CALOS\Repositories\VacancyRepository::from_user_with_unit($user_id);
-	    
+
 	    $data['user'] = $user;
 	    $data['vacancies'] = $vacancies;
 	    SEO::set_title(__('organization.vacancies of %', array('name' => $user->display_name)));
-	    
+
 	    return View::make('organization.user_vacancies', $data);
 	}
     }

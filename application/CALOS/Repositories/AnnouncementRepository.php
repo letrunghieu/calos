@@ -30,7 +30,54 @@ class AnnouncementRepository
 	}
     }
 
-    public static function paginate_user_task($user_id, &$paginator, $options = array())
+    public static function get_by_id($id)
+    {
+	$announcement = \Announcement::find($id);
+	return \CALOS\Services\ConvertService::to_entity($announcement, function($item)
+			{
+			    $entity = new AnnouncementEntity;
+			    $entity->id = $item->id;
+			    $entity->title = $item->title;
+			    $entity->content = $item->content;
+			    $entity->created_at = $item->created_at ? new \DateTime($item->created_at) : NULL;
+
+			    $entity->creator = UserRepository::convert_from_orm($item->creator);
+			    $entity->org_unit = OrganizationUnitRepository::convert_from_orm($item->org_unit);
+			    return $entity;
+			});
+    }
+
+    public static function paginate_unit_announcement($unit_id, &$paginator, $options = array())
+    {
+	$default = array(
+	    'sort' => 'created_at',
+	    'order' => 'asc',
+	    'per_page' => \Config::get('calos.item_per_page', 20),
+	);
+
+	$options = array_merge($default, $options);
+	$today = new \DateTime();
+	$query = \DB::table('announcements')
+		->left_join('users', 'announcements.creator_id', '=', 'users.id')
+		->left_join('organizationunits', 'announcements.organizationunit_id', '=', 'organizationunits.id')
+		->where('announcements.organizationunit_id', '=', $unit_id);
+
+	$paginator = $query->order_by('announcements.' . $options['sort'], $options['order'])
+		->paginate($options['per_page'], array(
+	    'announcements.id',
+	    'announcements.creator_id',
+	    'users.display_name',
+	    'users.email',
+	    'announcements.organizationunit_id',
+	    'organizationunits.name',
+	    'announcements.title',
+	    'announcements.content',
+	    'announcements.created_at',
+	));
+	return (array) static::convert_from_orm($paginator->results);
+    }
+
+    public static function paginate_user_announcement($user_id, &$paginator, $options = array())
     {
 	$default = array(
 	    'sort' => 'created_at',
@@ -113,6 +160,37 @@ class AnnouncementRepository
 	    'user_announcement.is_read',
 	));
 	return static::convert_from_orm($result);
+    }
+
+    public static function user_can_read($user_id, $announcement_id)
+    {
+	$obj = \AnnouncementReply::where('user_id', '=', $user_id)
+		->where('announcement_id', '=', $announcement_id)
+		->first();
+	if (!$obj)
+	    return false;
+	return true;
+    }
+
+    public static function user_read_time($user_id, $announcement_id)
+    {
+	$obj = \AnnouncementReply::where('user_id', '=', $user_id)
+		->where('announcement_id', '=', $announcement_id)
+		->first();
+	if ($obj && $obj->is_read)
+	    return new \DateTime($obj->updated_at);
+    }
+
+    public static function confirm_read($user_id, $announcement_id)
+    {
+	$obj = \AnnouncementReply::where('user_id', '=', $user_id)
+		->where('announcement_id', '=', $announcement_id)
+		->first();
+	if ($obj && !$obj->is_read)
+	{
+	    $obj->is_read = true;
+	    $obj->save();
+	}
     }
 
     public static function convert_from_orm($input)
