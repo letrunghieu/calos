@@ -117,10 +117,12 @@ Route::filter('after', function($response)
 	    // Do stuff after every request to your application...
 	    Asset::add('bootstrap_css', 'bootstrap-awesome/css/bootstrap.css');
 	    Asset::add('bootstrap_resp_css', 'bootstrap-awesome/css/bootstrap-responsive.css');
+	    Asset::add('datepicker_css', 'datepicker/css/datepicker.css');
 	    Asset::add('common_css', 'css/common.css');
 	    Asset::add('auth_css', 'css/auth.css');
 	    Asset::container('footer')->add('jquery', 'bootstrap-awesome/js/jquery-1.9.1.min.js');
 	    Asset::container('footer')->add('bootstrap_js', 'bootstrap-awesome/js/bootstrap.min.js');
+	    Asset::container('footer')->add('datepicker_js', 'datepicker/js/bootstrap-datepicker.js');
 	    Asset::container('footer')->add('common_js', 'js/common.js');
 
 	    # create global topbar
@@ -164,7 +166,7 @@ Route::filter('after', function($response)
 			    ->add_link("" . __('user.create'), URL::to_action('user@create'))
 		    ;
 		}
-		
+
 		if (\CALOS\Services\UserService::can_write_announcement($current_user->id))
 		{
 		    \Navigation\Navigation::get('topbar')->find_item('tools_menu')

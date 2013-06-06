@@ -72,11 +72,13 @@ class UserRepository
 	return array_map(function($item)
 		{
 		    $entity = new \CALOS\Entities\UserEntity($item->id);
+		    $entity->display_name = $item->display_name;
 		    return $entity;
 		}, \DB::table('users')
 			->left_join('user_vacancy', 'user_vacancy.user_id', '=', 'users.id')
 			->where('user_vacancy.vacancy_id', '=', $vacancy->id)
 			->where('users.is_valid', '=', true)
+			->order_by('users.display_name')
 			->group_by('users.id')
 			->get(array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone')));
     }
@@ -101,7 +103,7 @@ class UserRepository
 
     public static function create($email, $password, $first_name, $last_name)
     {
-	$user  = \User::where('email', '=', $email)->first();
+	$user = \User::where('email', '=', $email)->first();
 	if ($user)
 	    return false;
 	$user = \User::create(array(
@@ -153,7 +155,7 @@ class UserRepository
 	    return static::convert_from_orm(\Auth::user());
 	}
     }
-    
+
     public static function who_read_announcement($announcement_id, &$paginator, $is_read = true)
     {
 	$query = \AnnouncementReply::with('user')
@@ -161,7 +163,7 @@ class UserRepository
 		->where('is_read', '=', $is_read);
 	$paginator = $query->paginate(\Config::get('calos.item_per_page', 20));
 	$result = array();
-	foreach((array)$paginator->results as $q)
+	foreach ((array) $paginator->results as $q)
 	{
 	    $result[] = array(
 		'user' => UserRepository::convert_from_orm($q->user),

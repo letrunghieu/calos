@@ -43,4 +43,6 @@ return array(
     'as creator' => "Đã tạo",
     'as assignee' => "Đã được giao",
     'view by unit' => "Xem theo đơn vị",
+    'assignee' => "Người được giao việc",
+    'created' => "Công việc đã được tạo",
 );

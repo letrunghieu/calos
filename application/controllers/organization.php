@@ -25,6 +25,29 @@ class Organization_Controller extends Base_Controller
 	return View::make('organization.index', $data);
     }
 
+    public function action_add_activity($unit_id)
+    {
+	$data = array();
+	$user = CALOS\Repositories\UserRepository::current_user();
+	$org_unit = \CALOS\Repositories\OrganizationUnitRepository::get_by_id($unit_id);
+	if (Input::get('commit'))
+	{
+	    $activity = \CALOS\Repositories\ActivityRepository::create(trim(Input::get('title')), trim(Input::get('content')), $user->id, $unit_id, DateTime::createFromFormat('d-m-Y', Input::get('deadline')));
+	    if($activity)
+	    {
+		\CALOS\Repositories\ActivityRepository::assign_to(Input::get('assignee_id'), $activity->id);
+		$data['messages']['success'][] = __('activity.created');
+	    }
+	}
+	if ($org_unit)
+	{
+	    $data['org_unit'] = $org_unit;
+	    $data['members'] = CALOS\Repositories\UserRepository::get_unit_members($unit_id);
+	    SEO::set_title(__('organization.add activity'));
+	    return View::make('organization.add_activity', $data);
+	}
+    }
+
     public function action_unit_announcements($unit_id)
     {
 	$data = array();
@@ -211,7 +234,7 @@ class Organization_Controller extends Base_Controller
 	    {
 		if ($unit = CALOS\Repositories\OrganizationUnitRepository::create(trim(Input::get('name')), trim(Input::get('description')), Input::get('parent_id'), trim(Input::get('leader_title'))))
 		{
-		    $data['messages']['success'][] = __('organization.created successfully', array('link'=>HTML::link_to_action('organization@view_unit', $unit->name ,array($unit->id)) ));
+		    $data['messages']['success'][] = __('organization.created successfully', array('link' => HTML::link_to_action('organization@view_unit', $unit->name, array($unit->id))));
 		}
 	    }
 	}

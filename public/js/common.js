@@ -19,6 +19,7 @@
     $(document).ready(function() {
 	setBodyHeight();
 	$(window).resize(setBodyHeight());
+	$('.date').datepicker();
     });
 })();
 

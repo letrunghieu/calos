@@ -43,4 +43,5 @@ return array(
     'create' => "Tạo đơn vị mới",
     'created successfully' => "Đã tạo đơn vị mới thành công :link",
     'description' => "Mô tả đơn vị",
+    'add activity' => "Tạo hoạt động",
 );
