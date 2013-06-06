@@ -28,6 +28,9 @@ class AnnouncementRepository
 		'announcement_id' => $announcement->id,
 	    ));
 	}
+	
+	static::confirm_read($user_id, $announcement->id);
+	return $announcement;
     }
 
     public static function get_by_id($id)

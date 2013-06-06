@@ -29,4 +29,7 @@ return array(
     'view announcement read' => "Thành viên đã đọc",
     'view announcement unread' => "Thành viên chưa đọc", 
     'read time' => "Thời gian đọc",
+    'created failed' => "Không thể đăng thông báo",
+    'created sucessfully' => "Đăng thông báo thành công",
+    'post as' => "Đăng với vai trò",
 );

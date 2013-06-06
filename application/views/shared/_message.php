@@ -6,7 +6,7 @@
 ?>
 <?php foreach ($messages as $msg_type => $msgs): ?>
 
-    <div class="alert <?php echo $msg_type ?>">
+    <div class="alert alert-<?php echo $msg_type ?>">
 	<?php foreach ($msgs as $msg): ?>
 	    <p>
 		<?php echo $msg; ?>

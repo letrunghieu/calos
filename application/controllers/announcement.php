@@ -102,10 +102,6 @@ class Announcement_Controller extends Base_Controller
 	$announcement = \CALOS\Repositories\AnnouncementRepository::get_by_id($id);
 	if ($announcement && \CALOS\Repositories\AnnouncementRepository::user_can_read($user->id, $announcement->id))
 	{
-	    if (Input::get('commit'))
-	    {
-		\CALOS\Repositories\AnnouncementRepository::confirm_read($user->id, $id);
-	    }
 	    $data['announcement'] = $announcement;
 	    $data['user'] = $user;
 	    $paginator = NULL;
@@ -123,10 +119,6 @@ class Announcement_Controller extends Base_Controller
 	$announcement = \CALOS\Repositories\AnnouncementRepository::get_by_id($id);
 	if ($announcement && \CALOS\Repositories\AnnouncementRepository::user_can_read($user->id, $announcement->id))
 	{
-	    if (Input::get('commit'))
-	    {
-		\CALOS\Repositories\AnnouncementRepository::confirm_read($user->id, $id);
-	    }
 	    $data['announcement'] = $announcement;
 	    $data['user'] = $user;
 	    $paginator = NULL;
@@ -134,6 +126,28 @@ class Announcement_Controller extends Base_Controller
 	    $data['paginate_total'] = $paginator->total;
 	    $data['paginate_link'] = $paginator->links();
 	    return View::make('announcement.view_unread', $data);
+	}
+    }
+    
+    public function action_create()
+    {
+	$user = CALOS\Repositories\UserRepository::current_user();
+	if (CALOS\Services\UserService::can_write_announcement($user->id))
+	{
+	    if(Input::get('commit') && Input::get('org_id'))
+	    {
+		if (\CALOS\Repositories\AnnouncementRepository::create(Input::get('title'), Input::get('content'), $user->id, Input::get('org_id')))
+		{
+		    $data['messages']['success'][] = __('announcement.created sucessfully');
+		}
+		else
+		{
+		    $data['messages']['error'][] = __('announcement.created failed');
+		}
+	    }
+	    $data['user'] = $user;
+	    $data['vacancies'] = CALOS\Repositories\VacancyRepository::from_user_with_unit($user->id);
+	    return View::make('announcement.create', $data);
 	}
     }
 
