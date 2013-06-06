@@ -13,4 +13,5 @@ return array(
     'time asc' => "Cũ trước",
     'time desc' => "Mới trước",
     'confirm' => "Xác nhận",
+    'create' => "Tạo mới",
 );

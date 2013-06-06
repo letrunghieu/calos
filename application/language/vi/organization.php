@@ -39,4 +39,8 @@ return array(
     'all unit' => "Tất cả đơn vị",
     'moderators' => "Trưởng đơn vị",
     'navigation title' => "Thao tác với đơn vị",
+    'create unit' => "Tạo đơn vị mới",
+    'create' => "Tạo đơn vị mới",
+    'created successfully' => "Đã tạo đơn vị mới thành công :link",
+    'description' => "Mô tả đơn vị",
 );

@@ -199,6 +199,30 @@ class Organization_Controller extends Base_Controller
 	}
     }
 
+    public function action_create()
+    {
+	$data = array();
+	if (Input::get('commit'))
+	{
+	    if (!\CALOS\Services\OrganizationUnitService::validate_org_unit(Input::get('name'), Input::get('desctiption')))
+	    {
+		$data['messages']['error'][] = __('organization.name must be longer than 4');
+	    } else
+	    {
+		if ($unit = CALOS\Repositories\OrganizationUnitRepository::create(trim(Input::get('name')), trim(Input::get('description')), Input::get('parent_id'), trim(Input::get('leader_title'))))
+		{
+		    $data['messages']['success'][] = __('organization.created successfully', array('link'=>HTML::link_to_action('organization@view_unit', $unit->name ,array($unit->id)) ));
+		}
+	    }
+	}
+	if (true)
+	{
+	    $data['units'] = \CALOS\Repositories\OrganizationUnitRepository::get_all_hierachy();
+	    SEO::set_title(__('organization.create'));
+	    return View::make('organization.create', $data);
+	}
+    }
+
     public function action_edit_unit_vacancy($unit_id)
     {
 	$data = array();
