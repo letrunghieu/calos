@@ -15,6 +15,10 @@ class ActivityEntity
     const STATUS_DELAYED = 'delayed';
     const STATUS_100_PERCENT = '100';
     const STATUS_ALL = 'all';
+    
+    const ROLE_ALL = 'all';
+    const ROLE_CREATOR = 'creator';
+    const ROLE_ASSIGNEE = 'assignee';
 
     public $id;
     public $title;

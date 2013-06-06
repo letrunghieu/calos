@@ -34,6 +34,7 @@ return array(
     'update credential label' => 'Cập nhật thông tin',
     'email and password updated successfully' => 'Mật khẩu và thư điện tử đã được cập nhật!',
     'view profile' => "Thông tin cá nhân",
+    'navigation title' => "Thao tác với người dùng",
     
     # validation error messages
     'you must enter your current password' => 'Phải nhập mật khẩu hiện tại!',

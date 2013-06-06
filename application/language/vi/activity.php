@@ -37,4 +37,10 @@ return array(
     'activities in unit' => "Công việc trong đơn vị",
     'my activities' => "Công việc của tôi",
     'user activities' => "Các công việc",
+    'activities of %s' => "Danh sách công việc của :name",
+    'list activities of %s' => "Danh sách công việc <br /><small>:name</small>",
+    'as all' => "Với mọi vai trò",
+    'as creator' => "Đã tạo",
+    'as assignee' => "Đã được giao",
+    'view by unit' => "Xem theo đơn vị",
 );

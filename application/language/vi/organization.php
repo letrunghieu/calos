@@ -36,4 +36,5 @@ return array(
     'name' => "Tên đơn vị",
     'vacancy name' => "Chức vụ",
     'user vacancies' => "Các chức vụ",
+    'all unit' => "Tất cả đơn vị",
 );

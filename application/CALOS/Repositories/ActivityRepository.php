@@ -11,11 +11,12 @@ use CALOS\Entities\ActivityEntity;
  */
 class ActivityRepository
 {
+
     public static function get_by_id($id)
     {
 	return static::convert_from_orm(\Activity::find($id));
     }
-    
+
     public static function paginate_date_task($user_id, $date, &$paginator, $options = array())
     {
 	$default = array(
@@ -69,7 +70,66 @@ class ActivityRepository
 
 	$paginator = $query->order_by($options['sort'], $options['order'])
 		->paginate($options['per_page']);
-	return (array)static::convert_from_orm($paginator->results);
+	return (array) static::convert_from_orm($paginator->results);
+    }
+
+    public static function paginate_user_task($user_id, &$paginator, $options = array())
+    {
+	$default = array(
+	    'sort' => 'created_at',
+	    'order' => 'asc',
+	    'filter' => ActivityEntity::STATUS_ALL,
+	    'per_page' => \Config::get('calos.item_per_page', 20),
+	    'role' => ActivityEntity::ROLE_ALL,
+	    'unit' => 0,
+	);
+
+	$options = array_merge($default, $options);
+	$today = new \DateTime();
+	$query = \Activity::where(function ($query) use ($user_id)
+			{
+			    $query->where('creator_id', '=', $user_id)->or_where('assignee_id', '=', $user_id);
+			});
+	switch ($options['role'])
+	{
+	    case ActivityEntity::ROLE_CREATOR:
+		$query = \Activity::where('creator_id', '=', $user_id);
+		break;
+	    case ActivityEntity::ROLE_ASSIGNEE:
+		$query = \Activity::where('assignee_id', '=', $user_id);
+		break;
+	}
+	switch ($options['filter'])
+	{
+	    case ActivityEntity::STATUS_COMPLETED:
+		$query->where_not_null('completed_time');
+		break;
+	    case ActivityEntity::STATUS_100_PERCENT:
+		$query->where_null('completed_time')
+			->where('progress', '=', 100);
+		break;
+	    case ActivityEntity::STATUS_OCCURING:
+		$query->where_null('completed_time')
+			->where('deadline', '>', $today)
+			->where('progress', '<', 100);
+		break;
+	    case ActivityEntity::STATUS_DELAYED:
+		$query->where_null('completed_time')
+			->where('deadline', '<=', $today)
+			->where('progress', '<', 100);
+		break;
+	}
+
+	if ($options['unit'])
+	{
+	    $query->where('organizationunit_id', '=', $options['unit']);
+	}
+
+
+
+	$paginator = $query->order_by($options['sort'], $options['order'])
+		->paginate($options['per_page']);
+	return (array) static::convert_from_orm($paginator->results);
     }
 
     public static function create($title, $description, $user_id, $unit_id, $deadline, $parent_id = NULL)

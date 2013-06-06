@@ -6,7 +6,8 @@
 $action = \Laravel\Request::route()->controller_action;
 ?>
 
-<ul class='nav nav-tabs nav-stacked'>
+<ul class='nav nav-list'>
+     <li class="nav-header">{{__('user.navigation title')}}</li>
     <li class='{{$action == "view_profile" ? "active" : ""}}'>
 	<a href='{{URL::to_action("user@view_profile", array($user->id))}}'>{{__('user.view profile')}}</a>
     </li>
@@ -14,6 +15,6 @@ $action = \Laravel\Request::route()->controller_action;
 	<a href='{{URL::to_action("organization@user_vacancies", array($user->id))}}'>{{__('organization.user vacancies')}}</a>
     </li>
     <li class='{{$action == "user" ? "active" : ""}}'>
-	<a href='{{URL::to_action("activities@user", array($user->id))}}'>{{__('activity.user activities')}}</a>
+	<a href='{{URL::to_action("activity@user", array($user->id))}}'>{{__('activity.user activities')}}</a>
     </li>
 </ul>
