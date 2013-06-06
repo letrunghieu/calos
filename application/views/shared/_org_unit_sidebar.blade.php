@@ -6,8 +6,9 @@
 $action = \Laravel\Request::route()->controller_action;
 ?>
 
-<ul class='nav nav-tabs nav-stacked'>
-    <li class='{{$action == "view_unit" ? "active" : ""}}'>
+<ul class='nav nav-list'>
+    <li class="nav-header">{{__('organization.navigation title')}}</li>
+    <li class='{{in_array($action, array("view_unit", "index")) ? "active" : ""}}'>
 	<a href='{{URL::to_action("organization@view_unit", array($org_unit->id))}}'>{{__('organization.view unit')}}</a>
     </li>
     <li class="{{$action == "unit_activities" ? "active" : ""}}">

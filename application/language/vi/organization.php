@@ -37,4 +37,6 @@ return array(
     'vacancy name' => "Chức vụ",
     'user vacancies' => "Các chức vụ",
     'all unit' => "Tất cả đơn vị",
+    'moderators' => "Trưởng đơn vị",
+    'navigation title' => "Thao tác với đơn vị",
 );

@@ -51,6 +51,11 @@ class User_Controller extends Base_Controller
 	SEO::set_title("Edit your profile", false);
 	return View::make('user.edit_profile', $data);
     }
+    
+    public function action_announcements()
+    {
+	
+    }
 
     public function action_update_credential()
     {
