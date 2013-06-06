@@ -2,11 +2,13 @@
 
 class Home_Controller extends Base_Controller
 {
+
     public function __construct()
     {
 	parent::__construct();
 	Asset::add('home_css', 'css/home.css');
     }
+
     /*
       |--------------------------------------------------------------------------
       | The Default Controller
@@ -37,11 +39,15 @@ class Home_Controller extends Base_Controller
 
     public function action_index()
     {
-	$current_user = \CALOS\Repositories\UserRepository::current_user();
+	$user = \CALOS\Repositories\UserRepository::current_user();
 	$data = array();
 	$data['org'] = CALOS\Repositories\OrganizationUnitRepository::get_organizaion();
-	$data['announcements'] = CALOS\Repositories\AnnouncementRepository::get_latest($current_user->id);
-	
+	$data['announcements'] = CALOS\Repositories\AnnouncementRepository::get_latest($user->id);
+	$data['user'] = $user;
+	$data['vacancies'] = CALOS\Repositories\VacancyRepository::from_user_with_unit($user->id);
+	$data['announcements'] = \CALOS\Repositories\AnnouncementRepository::paginate_user_announcement($user->id, $paginator, array(
+		    'order' => 'desc',
+	));
 	SEO::set_title($data['org']->name);
 	return View::make('home.index', $data);
     }
@@ -58,8 +64,7 @@ class Home_Controller extends Base_Controller
 	    if (Auth::attempt($credentials))
 	    {
 		return Redirect::to_route('home');
-	    }
-	    else
+	    } else
 	    {
 		$error = __('auth.login error');
 	    }
@@ -70,7 +75,7 @@ class Home_Controller extends Base_Controller
 	SEO::set_title("Log in");
 	return View::make('home.login', $data);
     }
-    
+
     public function action_logout()
     {
 	if (!Auth::guest())
@@ -79,12 +84,12 @@ class Home_Controller extends Base_Controller
 	}
 	return Redirect::to_route('login');
     }
-    
+
     public function action_forgot_password()
     {
 	$email = Input::get('email');
-	
-	if($email)
+
+	if ($email)
 	{
 	    $user = \CALOS\Repositories\UserRepository::find_by_email($email);
 	    if ($user)
@@ -92,18 +97,16 @@ class Home_Controller extends Base_Controller
 		if (\CALOS\Services\UserService::request_new_password($user))
 		{
 		    $success = __('auth.recovery email has been sent to your email!');
-		}
-		else
+		} else
 		{
 		    $error = __('error.unknown error');
 		}
-	    }
-	    else
+	    } else
 	    {
 		$error = __('auth.cannot find this email in our database!');
 	    }
 	}
-	
+
 	$data = array();
 	if (isset($error))
 	    $data['error'] = $error;
@@ -112,17 +115,17 @@ class Home_Controller extends Base_Controller
 	SEO::set_title("Recover password");
 	return View::make('home.forgot_password', $data);
     }
-    
+
     public function action_renew_password($user_id, $renew_token)
     {
 	$new_password = Input::get('password');
 	$renew_password = Input::get('re_password');
 	if ($new_password && $renew_password)
 	{
-	    if ($new_password != $renew_password){
+	    if ($new_password != $renew_password)
+	    {
 		$error = __('auth.the two password are not match');
-	    }
-	    else
+	    } else
 	    {
 		$user = \CALOS\Repositories\UserRepository::find_by_id($user_id);
 		if ($user && $user->new_pass_token == $renew_token)
@@ -130,13 +133,11 @@ class Home_Controller extends Base_Controller
 		    if (\CALOS\Services\UserService::update_password($user, $new_password))
 		    {
 			$success = __('auth.your password has been renew!');
-		    }
-		    else
+		    } else
 		    {
 			$error = __('error.unknown error');
 		    }
-		}
-		else
+		} else
 		{
 		    $error = __('auth.cannot find the user');
 		}
