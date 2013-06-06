@@ -93,6 +93,49 @@ class Announcement_Controller extends Base_Controller
 	    return View::make('announcement.view', $data);
 	}
     }
+    
+    public function action_view_read($id)
+    {
+	$data = array();
+	$user = CALOS\Repositories\UserRepository::current_user();
+
+	$announcement = \CALOS\Repositories\AnnouncementRepository::get_by_id($id);
+	if ($announcement && \CALOS\Repositories\AnnouncementRepository::user_can_read($user->id, $announcement->id))
+	{
+	    if (Input::get('commit'))
+	    {
+		\CALOS\Repositories\AnnouncementRepository::confirm_read($user->id, $id);
+	    }
+	    $data['announcement'] = $announcement;
+	    $data['user'] = $user;
+	    $paginator = NULL;
+	    $data['users'] = CALOS\Repositories\UserRepository::who_read_announcement($id, $paginator);
+	    $data['paginate_total'] = $paginator->total;
+	    $data['paginate_link'] = $paginator->links();
+	    return View::make('announcement.view_read', $data);
+	}
+    }
+    public function action_view_unread($id)
+    {
+	$data = array();
+	$user = CALOS\Repositories\UserRepository::current_user();
+
+	$announcement = \CALOS\Repositories\AnnouncementRepository::get_by_id($id);
+	if ($announcement && \CALOS\Repositories\AnnouncementRepository::user_can_read($user->id, $announcement->id))
+	{
+	    if (Input::get('commit'))
+	    {
+		\CALOS\Repositories\AnnouncementRepository::confirm_read($user->id, $id);
+	    }
+	    $data['announcement'] = $announcement;
+	    $data['user'] = $user;
+	    $paginator = NULL;
+	    $data['users'] = CALOS\Repositories\UserRepository::who_read_announcement($id, $paginator, false);
+	    $data['paginate_total'] = $paginator->total;
+	    $data['paginate_link'] = $paginator->links();
+	    return View::make('announcement.view_unread', $data);
+	}
+    }
 
 }
 

@@ -139,7 +139,7 @@ Route::filter('after', function($response)
 				->add_link("<i class='icon-list'></i> " . __('organization.view our organization structure'), URL::to_action("organization"))
 				->add_link("<i class='icon-list'></i> " . __('organization.view your vacancies'), URL::to_action("organization@user_vacancies", array($current_user->id)))
 				, 'organization_menu')
-			->add_link(__('announcement.announcements'), URL::to_action('user@announcements'), false, array(), null, 'announcements_menu')
+			->add_link(__('announcement.announcements'), URL::to_action('announcement'), false, array(), null, 'announcements_menu')
 			->add_link(__('common.tools'), '', false, array(
 			    'element_attribs' => array('class' => 'dropdown'),
 			    'link_attribs' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
@@ -169,7 +169,7 @@ Route::filter('after', function($response)
 		{
 		    \Navigation\Navigation::get('topbar')->find_item('tools_menu')
 			    ->get_child_or_create()
-			    ->add_link("" . __('announcement.write new announcement'), URL::to_action('user@list'))
+			    ->add_link("" . __('announcement.write new announcement'), URL::to_action('announcement@create'))
 		    ;
 		}
 

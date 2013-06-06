@@ -150,6 +150,23 @@ class UserRepository
 	    return static::convert_from_orm(\Auth::user());
 	}
     }
+    
+    public static function who_read_announcement($announcement_id, &$paginator, $is_read = true)
+    {
+	$query = \AnnouncementReply::with('user')
+		->where('announcement_id', '=', $announcement_id)
+		->where('is_read', '=', $is_read);
+	$paginator = $query->paginate(\Config::get('calos.item_per_page', 20));
+	$result = array();
+	foreach((array)$paginator->results as $q)
+	{
+	    $result[] = array(
+		'user' => UserRepository::convert_from_orm($q->user),
+		'time' => new \DateTime($q->updated_at),
+	    );
+	}
+	return $result;
+    }
 
     public static function convert_from_orm($user)
     {

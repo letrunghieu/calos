@@ -28,4 +28,5 @@ return array(
     'view announcement' => "Xem thông báo",
     'view announcement read' => "Thành viên đã đọc",
     'view announcement unread' => "Thành viên chưa đọc", 
+    'read time' => "Thời gian đọc",
 );
