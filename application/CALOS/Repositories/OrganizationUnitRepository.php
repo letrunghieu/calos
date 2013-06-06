@@ -42,6 +42,11 @@ class OrganizationUnitRepository
 	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
 			->where('order', '=', 1000)->first();
 	VacancyRepository::assign_member($vacancy->id, $user_id);
+	$unit = \OrganizationUnit::find($unit_id);
+	if ($unit->parent_id)
+	{
+	    static::add_member($unit->parent_id, $user_id);
+	}
     }
 
     public static function assign_leader($unit_id, $user_id)

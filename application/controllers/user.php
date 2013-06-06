@@ -13,6 +13,54 @@ class User_Controller extends Base_Controller
 	Asset::add('user_css', 'css/user.css');
     }
 
+    public function action_create()
+    {
+	$data = array();
+	$validation_errors = array();
+	if (Input::get('commit'))
+	{
+	    $rules = array(
+		'password' => 'required',
+		'repassword' => 'required_with:password|same:password',
+		'email' => 'email',
+	    );
+
+	    $validation = Validator::make(Input::all(), $rules);
+	    if ($validation->fails())
+	    {
+		# If there is a validation error
+		if ($validation->errors->has('password'))
+		{
+		    # The current password is empty
+		    $validation_errors['password'] = __('user.you must enter your current password');
+		}
+		if ($validation->errors->has('repassword'))
+		{
+		    $validation_errors['repassword'] = __('user.this field is not the same as your new password');
+		}
+		if ($validation->errors->has('email'))
+		{
+		    $validation_errors['email'] = __('user.this is not a valid email address');
+		}
+		$data['messages']['error'] = $validation_errors;
+	    } else
+	    {
+		$user = UserRepository::create(trim(Input::get('email')), trim(Input::get('password')), trim(Input::get('first_name')), trim(Input::get('last_name')));
+		if ($user)
+		{
+		    \CALOS\Repositories\OrganizationUnitRepository::add_member(Input::get('unit_id'), $user->id);
+		    $data['messages']['success'][] = __('user.created successfully');
+		} else
+		{
+		    $data['messages']['error'][] = __('user.cannot created');
+		}
+	    }
+	}
+	$data['units'] = \CALOS\Repositories\OrganizationUnitRepository::get_all_hierachy();
+	SEO::set_title(__('user.create'));
+	return View::make('user.create', $data);
+    }
+
     public function action_view_profile($user_id)
     {
 

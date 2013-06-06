@@ -101,6 +101,9 @@ class UserRepository
 
     public static function create($email, $password, $first_name, $last_name)
     {
+	$user  = \User::where('email', '=', $email)->first();
+	if ($user)
+	    return false;
 	$user = \User::create(array(
 		    'email' => $email,
 		    'password' => $password,

@@ -35,6 +35,12 @@ return array(
     'email and password updated successfully' => 'Mật khẩu và thư điện tử đã được cập nhật!',
     'view profile' => "Thông tin cá nhân",
     'navigation title' => "Thao tác với người dùng",
+    'create' => "Thêm thành viên",
+    'password label' => "Mật khẩu",
+    'repassword label' => "Nhắc lại mật khẩu",
+    'parent unit'=> "Đơn vị",
+    'cannot created' => "Không thể tạo người dùng mới vì trùng email",
+    'created successfully' => "Đã tạo xong người dùng",
     
     # validation error messages
     'you must enter your current password' => 'Phải nhập mật khẩu hiện tại!',

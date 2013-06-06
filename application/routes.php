@@ -160,8 +160,8 @@ Route::filter('after', function($response)
 		{
 		    \Navigation\Navigation::get('topbar')->find_item('tools_menu')
 			    ->make_child()
-			    ->add_link("" . __('user.view list label'), URL::to_action('user@list'))
 			    ->add_link("" . __('organization.create unit'), URL::to_action('organization@create'))
+			    ->add_link("" . __('user.create'), URL::to_action('user@create'))
 		    ;
 		}
 		
