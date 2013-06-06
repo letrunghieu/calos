@@ -50,7 +50,13 @@ class UserRepository
 		->paginate(\Config::get('item_per_page', 20), array('users.id', 'users.display_name', 'users.first_name', 'users.email', 'users.mobile_phone'));
 	return array_map(function($user)
 		{
-		    return static::convert_from_orm($user);
+		    $user_entity = new \CALOS\Entities\UserEntity($user->id);
+
+		    $user_entity->display_name = $user->display_name ? $user->display_name : $user->first_name . " " . $user->last_name;
+		    $user_entity->first_name = $user->first_name;
+		    $user_entity->email = $user->email;
+		    $user_entity->mobile_phone = $user->mobile_phone;
+		    return $user_entity;
 		}, (array) $paginator->results);
     }
 
