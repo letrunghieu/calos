@@ -63,6 +63,7 @@ class UserRepository
 		    'first_name' => $first_name,
 		    'last_name' => $last_name,
 	));
+	OrganizationUnitRepository::add_member(1, $user->id);
 	return static::convert_from_orm($user);
     }
 

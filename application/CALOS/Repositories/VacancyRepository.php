@@ -60,10 +60,14 @@ class VacancyRepository
 	{
 	    \UserVacancy::where('vacancy_id', '=', $vacancy_id)->delete();
 	}
-	\UserVacancy::create(array(
-	    'user_id' => $member_id,
-	    'vacancy_id' => $vacancy_id,
-	));
+	$obj = \UserVacancy::where('user_id', '=', $member_id)
+		->where('vacancy_id', '=', $vacancy_id)
+		->first();
+	if (!$obj)
+	    \UserVacancy::create(array(
+		'user_id' => $member_id,
+		'vacancy_id' => $vacancy_id,
+	    ));
     }
 
     public static function convert_from_orm($obj, $with_members = false)

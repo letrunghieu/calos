@@ -40,14 +40,16 @@ class OrganizationUnitRepository
     public static function add_member($unit_id, $user_id)
     {
 	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
-			->where('order', '=', 1000) - first();
+			->where('order', '=', 1000)->first();
 	VacancyRepository::assign_member($vacancy->id, $user_id);
     }
 
     public static function assign_leader($unit_id, $user_id)
     {
+	static::add_member($unit_id, $user_id);
 	$vacancy = \Vacancy::where('organizationunit_id', '=', $unit_id)
 			->where('order', '=', 0)->first();
+	
 	VacancyRepository::assign_member($vacancy->id, $user_id, true);
     }
 
