@@ -77,57 +77,51 @@ class Seed_Data
 	}
 
 	$unit = $level1[0];
-	for ($j = 0; $j < 6; $j++)
-	{
-	    $title_j = $j + 1;
-	    CALOS\Repositories\AnnouncementRepository::create("Announcement Foo {$title_j}", "Foo bar", $leader->id, $unit->id);
-	}
+	CALOS\Repositories\AnnouncementRepository::create("Nội dung sinh hoạt tuần 1", "Foo bar", $leader->id, $unit->id);
 
 	\CALOS\Repositories\OrganizationUnitRepository::assign_leader($org->id, $admin_user->id);
-	for ($j = 0; $j < 3; $j++)
-	{
-	    $title_j = $j + 1;
-	    CALOS\Repositories\AnnouncementRepository::create("Announcement Bar {$title_j}", "Foo bar", $admin_user->id, $org->id);
-	}
+	CALOS\Repositories\AnnouncementRepository::create("Thông báo tuyển thành viên mới", "Foo bar", $admin_user->id, $org->id);
+	CALOS\Repositories\AnnouncementRepository::create("Thông báo họp mặt đầu năm", "Foo bar", $admin_user->id, $org->id);
+	CALOS\Repositories\AnnouncementRepository::create("Thông báo ứng cử ban chủ nhiệm", "Foo bar", $admin_user->id, $org->id);
 	
 	$today = new DateTime();
 	# seed activities;
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A", "", $admin_user->id, $org->id, $today->add(new DateInterval('P10D')));
+	$activity = \CALOS\Repositories\ActivityRepository::create("Chuẩn bị tuyển thành viên mới", "", $admin_user->id, $org->id, $today->add(new DateInterval('P10D')));
 	\CALOS\Repositories\ActivityRepository::assign_to($users[0]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	$parent_activity = $activity;
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc B", "", $admin_user->id, $org->id, $today->add(new DateInterval('P2D')));
+	$activity = \CALOS\Repositories\ActivityRepository::create("Chuẩn bị báo cáo tổng kết năm học trước", "", $admin_user->id, $org->id, $today->add(new DateInterval('P2D')));
 	\CALOS\Repositories\ActivityRepository::assign_to($users[0]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, 100);
 	\CALOS\Repositories\ActivityRepository::mark_complete($activity->id, "Công việc này đã hoàn thành");
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc C", "", $admin_user->id, $org->id, $today->add(new DateInterval('P1D')));
+	$activity = \CALOS\Repositories\ActivityRepository::create("Chuẩn bị kế hoạch năm học này", "", $admin_user->id, $org->id, $today->add(new DateInterval('P1D')));
 	\CALOS\Repositories\ActivityRepository::assign_to($users[0]->id, $activity->id, $admin_user->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc D", "", $admin_user->id, $org->id, $today->sub(new DateInterval('P10D')));
+	$activity = \CALOS\Repositories\ActivityRepository::create("Chuẩn bị sinh hoạt tuần 1", "", $admin_user->id, $org->id, $today->sub(new DateInterval('P10D')));
 	\CALOS\Repositories\ActivityRepository::assign_to($users[0]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc E", "", $admin_user->id, $org->id, $today->sub(new DateInterval('P5D')));
+	$activity = \CALOS\Repositories\ActivityRepository::create("Gặp mặt ban chủ nhiệm KTX", "", $admin_user->id, $org->id, $today->sub(new DateInterval('P5D')));
 	\CALOS\Repositories\ActivityRepository::assign_to($users[0]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.1", "", $users[0]->id, $org->id, $today->add(new DateInterval('P5D')), $parent_activity->id);
+	$activity = \CALOS\Repositories\ActivityRepository::create("Thống kê thành viên hiện tại", "", $users[0]->id, $org->id, $today->add(new DateInterval('P5D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[1]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.2", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
+	$activity = \CALOS\Repositories\ActivityRepository::create("Lên kế hoạch bổ sung thành viên", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[2]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, 100);
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.3", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
+	$activity = \CALOS\Repositories\ActivityRepository::create("Chuẩn bị nội dung tuyển chọn", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[3]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, 50);
 	\CALOS\Repositories\ActivityRepository::mark_complete($activity->id, "Công việc này đã hoàn thành");
 	
-	$activity = \CALOS\Repositories\ActivityRepository::create("Công việc A.4", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
+	$activity = \CALOS\Repositories\ActivityRepository::create("Mượn phòng và trang thiết bị", "", $users[0]->id, $org->id, $today->add(new DateInterval('P1D')), $parent_activity->id);
 	\CALOS\Repositories\ActivityRepository::assign_to($users[4]->id, $activity->id);
 	\CALOS\Repositories\ActivityRepository::update_progress($activity->id, rand(0, 75));
 	
